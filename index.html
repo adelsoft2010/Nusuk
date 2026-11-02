@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>أكواد إحالة نسك</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0b0f14;--panel:#121821;--panel2:#18202b;--line:#233041;--text:#e8edf3;--muted:#8a98a8;--gold:#d4af37;--gold2:#f0d78c;--green:#3fb98a}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;background:var(--bg);color:var(--text);font-family:Tajawal,system-ui,sans-serif}
+  body{padding-bottom:24px}
+  header{position:fixed;top:0;left:0;right:0;z-index:5;background:rgba(11,15,20,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 16px 10px}
+  .top{display:flex;align-items:center;gap:12px}
+  .top img{height:34px}
+  .top h1{margin:0;font-size:19px;font-weight:800;flex:1}
+  .top button{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:10px;width:48px;height:48px;font-size:18px}
+  .stats{display:flex;gap:8px;margin-bottom:12px}
+  .stat{flex:1;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px;text-align:center}
+  .stat b{display:block;font-size:20px;color:var(--gold2)}
+  .stat span{font-size:12px;color:var(--muted)}
+  .next{display:block;width:100%;margin-top:10px;padding:14px;border:0;border-radius:14px;font:800 18px Tajawal,sans-serif;color:#1a1305;background:linear-gradient(180deg,#f0d78c,#d4af37)}
+  .next:active{transform:scale(.98)}
+  .next:disabled{opacity:.5}
+  main{padding:12px 16px}
+  .row{display:flex;align-items:center;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:8px}
+  .row.pin{border-color:rgba(212,175,55,.5);background:linear-gradient(270deg,rgba(212,175,55,.12),var(--panel) 60%)}
+  .row.done{border-color:rgba(63,185,138,.35)}
+  .info{flex:1;min-width:0}
+  .code{font:700 17px ui-monospace,Consolas,monospace;direction:ltr;text-align:right;letter-spacing:.5px}
+  .row.done .code::after{content:" ✓";content:" ✓" / " تم فتحه";color:var(--green)}
+  .sub{font-size:12.5px;color:var(--muted);margin-top:3px}
+  .sub b{color:var(--gold2);font-weight:700}
+  .open{border:0;border-radius:12px;padding:12px 22px;font:800 16px Tajawal,sans-serif;color:#1a1305;background:linear-gradient(180deg,#f0d78c,#d4af37);min-width:84px;min-height:48px}
+  .open:active{transform:scale(.96)}
+  .filter{display:flex;align-items:center;gap:10px;min-height:48px;margin:12px 2px 8px;color:var(--muted);font-size:14.5px}
+  .filter input{width:20px;height:20px;margin:0;accent-color:var(--gold)}
+  .msg{text-align:center;color:var(--muted);padding:40px 10px;line-height:1.8}
+  .msg button{margin-top:12px}
+  #more{height:1px}
+  .note{margin:8px 0 0;text-align:center;color:var(--muted);font-size:12.5px}
+  /* Browser (GitHub Pages): no code list, share button at the end. The Android app keeps its list. */
+  body.web #list,body.web #more,body.web .filter{display:none}
+  .sharebox{display:none}
+  body.web .sharebox{display:block;text-align:center;margin:28px 0 8px}
+  .share-btn{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:12px;padding:10px 18px;font:700 15px Tajawal,sans-serif}
+  .share{display:none;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+  .share.open{display:flex}
+  .share a,.share button{color:var(--text);text-decoration:none;border:1px solid var(--line);background:var(--panel2);border-radius:10px;padding:8px 14px;font:500 14px Tajawal,sans-serif}
+  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--panel2);border:1px solid var(--line);padding:10px 18px;border-radius:12px;transition:transform .25s;font-size:14.5px;max-width:90%}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <img src="img/logo.svg" alt="">
+    <h1>أكواد إحالة نسك</h1>
+    <button onclick="load()" aria-label="تحديث">⟳</button>
+  </div>
+  <button class="next" id="nextBtn" onclick="openNext()" aria-describedby="nextNote">افتح كود جديد</button>
+  <p class="note" id="nextNote">كل ضغطة بتفتحلك كود جديد، والكود اللي فتحته مش هيرجعلك تاني.</p>
+</header>
+<main>
+  <div class="stats">
+    <div class="stat"><b id="sLeft">—</b><span>لسه ما اتفتحتش</span></div>
+    <div class="stat"><b id="sDone">0</b><span>فتحتها</span></div>
+    <div class="stat"><b id="sTotal">—</b><span>كل الأكواد</span></div>
+  </div>
+  <div id="pinned"></div>
+  <label class="filter"><input type="checkbox" id="showDone" onchange="store(SHOW_KEY, this.checked ? '1' : null); render()"> إظهار اللي فتحتهم</label>
+  <div id="list"><div class="msg">جاري تحميل الأكواد…</div></div>
+  <div id="more"></div>
+  <div class="sharebox">
+    <button type="button" class="share-btn" onclick="sharePage()" aria-expanded="false" aria-controls="shareLinks">📤 شارك الصفحة</button>
+    <div class="share" id="shareLinks">
+      <a id="shWa" target="_blank" rel="noopener noreferrer">واتساب</a>
+      <a id="shFb" target="_blank" rel="noopener noreferrer">فيسبوك</a>
+      <a id="shX" target="_blank" rel="noopener noreferrer">إكس</a>
+      <a id="shTg" target="_blank" rel="noopener noreferrer">تليجرام</a>
+      <button type="button" onclick="copyText(PAGE_URL)">نسخ الرابط</button>
+    </div>
+  </div>
+</main>
+<div class="toast" id="toast" role="status"></div>
+<script>
+  var API = 'https://script.google.com/macros/s/AKfycbyPybYZKOn44c2arFvMvuavOuuY_SrdAGPj-n1vxEphOPgBL5wvoXwH_CD2QzQMH13c/exec';
+  var LABELS = { 'NG-6cxFaqzt': 'كود صاحب المبادرة: عادل حمزة محمد النهر', 'NG-8KLKG8zg': 'كود أم حمزة' };
+  var OPENED_KEY = 'app_opened_v1', COUNTED_KEY = 'app_counted_v1', SHOW_KEY = 'app_showdone_v1', CACHE_KEY = 'app_cache_v1';
+  var CHUNK = 60;
+  if(!window.AndroidApp) document.body.classList.add('web');
+  // ANDROID_ID stays the same after uninstall/reinstall (same signing key), so the server can give back this phone's opened codes.
+  var DEV = '';
+  try{ if(window.AndroidApp && AndroidApp.deviceId) DEV = String(AndroidApp.deviceId() || '').toLowerCase().replace(/[^a-z0-9]/g, ''); }catch(e){}
+  var DEVQ = DEV.length >= 6 ? '&dev=' + DEV : '';
+  var pinned = [], codes = [], opens = {}, opened = loadSet(OPENED_KEY), shown = 0, visible = [];
+
+  function store(k, v){ try{ v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); }catch(e){} }
+  function read(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+  function loadSet(k){ try{ return JSON.parse(read(k) || '{}'); }catch(e){ return {}; } }
+  function link(c){ return 'https://services.nusuk.sa/app?p=27&id=' + encodeURIComponent(c); }
+  // Share (browser only): phone share sheet when allowed, otherwise a row of direct links.
+  var PAGE_URL = 'https://adelsoft2010.github.io/Nusuk/', SHARE_TEXT = 'أكواد إحالة نسك';
+  function sharePage(){
+    if(navigator.share) return navigator.share({ title: SHARE_TEXT, text: SHARE_TEXT, url: PAGE_URL }).catch(function(e){ if(e.name !== 'AbortError') shareLinks(); });
+    shareLinks();
+  }
+  function shareLinks(){
+    var u = encodeURIComponent(PAGE_URL), t = encodeURIComponent(SHARE_TEXT);
+    document.getElementById('shWa').href = 'https://wa.me/?text=' + t + '%20' + u;
+    document.getElementById('shFb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + u;
+    document.getElementById('shX').href = 'https://twitter.com/intent/tweet?text=' + t + '&url=' + u;
+    document.getElementById('shTg').href = 'https://t.me/share/url?url=' + u + '&text=' + t;
+    var open = document.getElementById('shareLinks').classList.toggle('open');
+    document.querySelector('.share-btn').setAttribute('aria-expanded', open);
+  }
+  function copyText(s){
+    var ok = function(){ toast('تم نسخ الرابط'); };
+    if(navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(s).then(ok, old);
+    old();
+    function old(){ var t = document.createElement('textarea'); t.value = s; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); ok(); }
+  }
+  function toast(m){ var t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(function(){ t.classList.remove('show'); }, 2400); }
+
+  function rowHTML(c, pin){
+    var sub = (pin && LABELS[c] ? LABELS[c] + '<br>' : '') + 'اتفتح <b>' + (opens[c] || 0) + '</b> مرة';
+    return '<div class="row' + (pin ? ' pin' : '') + (opened[c] ? ' done' : '') + '"><div class="info"><div class="code" lang="en">' + c +
+      '</div><div class="sub">' + sub + '</div></div><button class="open" data-c="' + c + '" aria-label="فتح ' + c + '">فتح</button></div>';
+  }
+
+  // Next = first code not opened on this device: pinned first, then newest to oldest.
+  function nextCode(){
+    var all = pinned.concat(codes);
+    for(var i = 0; i < all.length; i++) if(!opened[all[i]]) return all[i];
+    return null;
+  }
+  function render(){
+    document.getElementById('nextBtn').disabled = !nextCode() && codes.length > 0;
+    pad();
+    document.getElementById('pinned').innerHTML = pinned.map(function(c){ return rowHTML(c, true); }).join('');
+    var all = pinned.length + codes.length, doneN = pinned.concat(codes).filter(function(c){ return opened[c]; }).length;
+    document.getElementById('sTotal').textContent = all;      // every code in the Google data
+    document.getElementById('sDone').textContent = doneN;     // opened on this device (pinned included)
+    document.getElementById('sLeft').textContent = all - doneN;
+    var showDone = document.getElementById('showDone').checked;
+    visible = showDone ? codes : codes.filter(function(c){ return !opened[c]; });
+    var box = document.getElementById('list');
+    if(!visible.length){ box.innerHTML = '<div class="msg">' + (codes.length ? 'خلصت كل الأكواد. علّم «إظهار اللي فتحتهم» لو عايز تشوفهم.' : 'مفيش أكواد لسه.') + '</div>'; shown = 0; return; }
+    shown = Math.max(CHUNK, Math.min(shown, visible.length));
+    box.innerHTML = visible.slice(0, shown).map(function(c){ return rowHTML(c, false); }).join('');
+  }
+  function more(){
+    if(shown >= visible.length) return;
+    var box = document.getElementById('list');
+    box.insertAdjacentHTML('beforeend', visible.slice(shown, shown + CHUNK).map(function(c){ return rowHTML(c, false); }).join(''));
+    shown += CHUNK;
+  }
+  new IntersectionObserver(function(e){ if(e[0].isIntersecting) more(); }, { rootMargin: '600px' }).observe(document.getElementById('more'));
+
+  function openCode(c){
+    opened[c] = 1; store(OPENED_KEY, JSON.stringify(opened));
+    var counted = loadSet(COUNTED_KEY);
+    if(!counted[c]){ // one count per code per device
+      counted[c] = 1; store(COUNTED_KEY, JSON.stringify(counted)); opens[c] = (opens[c] || 0) + 1;
+    }
+    fetch(API + '?api=open&code=' + encodeURIComponent(c) + DEVQ).catch(function(){}); // server ignores repeats from the same phone
+    if(window.AndroidApp) AndroidApp.open(link(c)); else window.open(link(c), '_blank');
+    render();
+  }
+  function openNext(){
+    var nx = nextCode();
+    if(nx) openCode(nx); else toast('فتحت كل الأكواد.');
+  }
+  // header is fixed, so the page starts below it
+  function pad(){ document.body.style.paddingTop = document.querySelector('header').offsetHeight + 'px'; }
+  addEventListener('resize', pad); pad();
+  if(document.fonts) document.fonts.ready.then(pad);
+  document.addEventListener('click', function(e){ var b = e.target.closest('.open[data-c]'); if(b) openCode(b.dataset.c); });
+
+  function apply(d){
+    pinned = d.pinned || [];
+    var p = {}; pinned.forEach(function(c){ p[c] = 1; });
+    codes = (d.codes || []).filter(function(c){ return !p[c]; });
+    opens = d.opens || {};
+    render();
+  }
+  // Merge server + local marks: server restores them after a reinstall, local ones (offline / older versions) get uploaded.
+  function syncMine(mine){
+    var srv = {};
+    (mine || []).forEach(function(c){ srv[c] = 1; opened[c] = 1; });
+    store(OPENED_KEY, JSON.stringify(opened));
+    if(!DEVQ) return;
+    var up = Object.keys(opened).filter(function(c){ return !srv[c]; });
+    for(var i = 0; i < up.length; i += 150)
+      fetch(API + '?api=sync' + DEVQ + '&codes=' + up.slice(i, i + 150).join(',')).catch(function(){});
+  }
+  function load(){
+    fetch(API + '?api=codes' + DEVQ + '&t=' + Date.now()).then(function(r){ return r.json(); }).then(function(d){
+      syncMine(d.mine); delete d.mine;
+      store(CACHE_KEY, JSON.stringify(d)); apply(d);
+    }).catch(function(){
+      if(codes.length) return toast('مفيش اتصال، دي آخر نسخة محفوظة.');
+      if(document.body.classList.contains('web')) toast('تعذر تحميل الأكواد، اتأكد من الإنترنت واضغط ⟳.'); // the list (and its retry button) is hidden in the browser
+      document.getElementById('list').innerHTML = '<div class="msg">تعذر تحميل الأكواد، اتأكد من الإنترنت.<br><button class="open" onclick="load()">حاول تاني</button></div>';
+    });
+  }
+  document.getElementById('showDone').checked = read(SHOW_KEY) === '1';
+  try{ var cached = JSON.parse(read(CACHE_KEY) || 'null'); if(cached) apply(cached); }catch(e){}
+  load();
+</script>
+</body>
+</html>
