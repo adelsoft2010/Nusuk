@@ -125,14 +125,15 @@
   function loadSet(k){ try{ return JSON.parse(read(k) || '{}'); }catch(e){ return {}; } }
   function link(c){ return 'https://services.nusuk.sa/app?p=27&id=' + encodeURIComponent(c); }
   // Share (browser only): phone share sheet when allowed, otherwise a row of direct links.
-  var PAGE_URL = 'https://adelsoft2010.github.io/Nusuk/', SHARE_TEXT = 'أكواد إحالة نسك';
+  var PAGE_URL = 'https://adelsoft2010.github.io/Nusuk/', SHARE_TITLE = 'أكواد مسابقة تحدي نسك',
+    SHARE_TEXT = 'أكواد مسابقة تحدي نسك\n🕋💙 تخيّل تكون العمرة من نصيبك!\nافتح الكود بنفسك، وتحقق منه، واحصل على مفتاحك بسهولة!';
   function sharePage(){
-    if(navigator.share) return navigator.share({ title: SHARE_TEXT, text: SHARE_TEXT, url: PAGE_URL }).catch(function(e){ if(e.name !== 'AbortError') shareLinks(); });
+    if(navigator.share) return navigator.share({ title: SHARE_TITLE, text: SHARE_TEXT, url: PAGE_URL }).catch(function(e){ if(e.name !== 'AbortError') shareLinks(); });
     shareLinks();
   }
   function shareLinks(){
     var u = encodeURIComponent(PAGE_URL), t = encodeURIComponent(SHARE_TEXT);
-    document.getElementById('shWa').href = 'https://wa.me/?text=' + t + '%20' + u;
+    document.getElementById('shWa').href = 'https://wa.me/?text=' + t + '%0A' + u;
     document.getElementById('shFb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + u;
     document.getElementById('shX').href = 'https://twitter.com/intent/tweet?text=' + t + '&url=' + u;
     document.getElementById('shTg').href = 'https://t.me/share/url?url=' + u + '&text=' + t;
