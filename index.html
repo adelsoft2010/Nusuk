@@ -63,6 +63,13 @@
   .credit{color:var(--muted);font-size:13px;margin:22px 0 0}
   .credit a{color:var(--gold2);text-decoration:none;font-weight:700}
   .sharebox{display:none}
+  .admin{display:none;text-align:center;background:var(--panel);border:1px dashed var(--gold);border-radius:12px;padding:10px;margin-bottom:12px;font-size:14px;color:var(--gold2)}
+  .admin.shown{display:block}
+  .admin details{margin-top:8px;text-align:right;color:var(--text)}
+  .admin summary{cursor:pointer;color:var(--gold2);text-align:center}
+  .admin table{width:100%;border-collapse:collapse;margin-top:8px;font-size:13.5px}
+  .admin th,.admin td{padding:5px 6px;border-bottom:1px solid var(--line)}
+  .admin td.n{text-align:center;font-variant-numeric:tabular-nums}
   body.web .sharebox{display:block;text-align:center;margin:28px 0 8px}
   .share-btn{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:12px;padding:10px 18px;font:700 15px Tajawal,sans-serif}
   .share{display:none;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
@@ -77,7 +84,7 @@
   <div class="top">
     <img src="img/logo.svg" alt="">
     <h1>أكواد إحالة نسك</h1>
-    <button onclick="load()" aria-label="تحديث">⟳</button>
+    <button onclick="ev('refresh'); load()" aria-label="تحديث">⟳</button>
   </div>
   <button class="next" id="nextBtn" onclick="openNext()" aria-describedby="nextNote">افتح كود جديد</button>
   <p class="note" id="nextNote">كل ضغطة بتفتحلك كود جديد، والكود اللي فتحته مش هيرجعلك تاني.</p>
@@ -88,22 +95,23 @@
     <div class="stat"><b id="sDone">0</b><span>فتحتها</span></div>
     <div class="stat"><b id="sTotal">—</b><span>كل الأكواد</span></div>
   </div>
+  <div class="admin" id="adminBox" role="status"></div>
   <div id="pinned"></div>
   <label class="filter"><input type="checkbox" id="showDone" onchange="store(SHOW_KEY, this.checked ? '1' : null); render()"> إظهار اللي فتحتهم</label>
   <div id="list"><div class="msg">جاري تحميل الأكواد…</div></div>
   <div id="more"></div>
   <div class="sharebox">
     <p class="auto-note">الأكواد بتتضاف تلقائياً كل يوم. وعندك كود؟ ضيفه وخلّي غيرك يستفيد.</p>
-    <button type="button" class="add-btn" onclick="document.getElementById('addDlg').showModal()">➕ أضف كودك</button>
+    <button type="button" class="add-btn" onclick="ev('add_open'); document.getElementById('addDlg').showModal()">➕ أضف كودك</button>
     <button type="button" class="share-btn" onclick="sharePage()" aria-expanded="false" aria-controls="shareLinks">📤 شارك الصفحة</button>
     <div class="share" id="shareLinks">
-      <a id="shWa" target="_blank" rel="noopener noreferrer">واتساب</a>
-      <a id="shFb" target="_blank" rel="noopener noreferrer">فيسبوك</a>
-      <a id="shX" target="_blank" rel="noopener noreferrer">إكس</a>
-      <a id="shTg" target="_blank" rel="noopener noreferrer">تليجرام</a>
-      <button type="button" onclick="copyText(PAGE_URL)">نسخ الرابط</button>
+      <a id="shWa" data-ev="sh_wa" target="_blank" rel="noopener noreferrer">واتساب</a>
+      <a id="shFb" data-ev="sh_fb" target="_blank" rel="noopener noreferrer">فيسبوك</a>
+      <a id="shX" data-ev="sh_x" target="_blank" rel="noopener noreferrer">إكس</a>
+      <a id="shTg" data-ev="sh_tg" target="_blank" rel="noopener noreferrer">تليجرام</a>
+      <button type="button" data-ev="sh_copy" onclick="copyText(PAGE_URL)">نسخ الرابط</button>
     </div>
-    <p class="credit">برمجة <a href="https://www.facebook.com/AdelSoft2010/" target="_blank" rel="noopener noreferrer">عادل النهر</a></p>
+    <p class="credit">برمجة <a data-ev="credit" href="https://www.facebook.com/AdelSoft2010/" target="_blank" rel="noopener noreferrer">عادل النهر</a></p>
   </div>
 </main>
 <dialog id="addDlg" aria-labelledby="addTitle">
@@ -123,6 +131,11 @@
   var OPENED_KEY = 'app_opened_v1', COUNTED_KEY = 'app_counted_v1', SHOW_KEY = 'app_showdone_v1', CACHE_KEY = 'app_cache_v1';
   var CHUNK = 60;
   if(!window.AndroidApp) document.body.classList.add('web');
+  // Click counter (browser only, the owner's own clicks aren't counted). keepalive: share links leave the page.
+  function ev(name){
+    if(document.body.classList.contains('web') && !read('web_admin')) fetch(API + '?api=ev&e=' + name, { keepalive: true }).catch(function(){});
+  }
+  document.addEventListener('click', function(e){ var a = e.target.closest('[data-ev]'); if(a) ev(a.dataset.ev); });
   // ANDROID_ID stays the same after uninstall/reinstall (same signing key), so the server can give back this phone's opened codes.
   var DEV = '';
   try{ if(window.AndroidApp && AndroidApp.deviceId) DEV = String(AndroidApp.deviceId() || '').toLowerCase().replace(/[^a-z0-9]/g, ''); }catch(e){}
@@ -137,6 +150,7 @@
   var PAGE_URL = 'https://adelsoft2010.github.io/Nusuk/', SHARE_TITLE = 'أكواد مسابقة تحدي نسك',
     SHARE_TEXT = 'أكواد مسابقة تحدي نسك\n🕋💙 تخيّل تكون العمرة من نصيبك!\nافتح الكود بنفسك، وتحقق منه، واحصل على مفتاحك بسهولة!';
   function sharePage(){
+    ev('share');
     // Facebook/Messenger/Instagram drop pre-filled text by policy, so the full text is also put on the clipboard to paste.
     copyText(SHARE_TEXT + '\n' + PAGE_URL, 'النص اتنسخ — لو مش ظاهر في المشاركة (زي فيسبوك)، الصقه.');
     if(navigator.share) return navigator.share({ title: SHARE_TITLE, text: SHARE_TEXT, url: PAGE_URL }).catch(function(e){ if(e.name !== 'AbortError') shareLinks(); });
@@ -166,6 +180,7 @@
     btn.disabled = true; btn.textContent = 'جاري الإضافة…';
     fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: input.value }).then(function(r){ return r.json(); }).then(function(r){
       if(!r.ok) return msg.textContent = r.error || 'تعذر إضافة الأكواد.';
+      ev('add_ok');
       toast('اتضاف ' + r.addedCount + ' كود' + (r.duplicateCount ? '، و' + r.duplicateCount + ' موجودين قبل كده' : '') + ' ✓');
       input.value = ''; document.getElementById('addDlg').close(); load();
     }).catch(function(){ msg.textContent = 'تعذر الإضافة، اتأكد من الإنترنت.'; })
@@ -219,6 +234,7 @@
     render();
   }
   function openNext(){
+    ev('next');
     var nx = nextCode();
     if(nx) openCode(nx); else toast('فتحت كل الأكواد.');
   }
@@ -255,6 +271,34 @@
       document.getElementById('list').innerHTML = '<div class="msg">تعذر تحميل الأكواد، اتأكد من الإنترنت.<br><button class="open" onclick="load()">حاول تاني</button></div>';
     });
   }
+  // Visitor counter (browser only). The owner opens the page once with ?admin=KEY: that device then sees the counts
+  // and isn't counted itself. Everyone else just reports a random per-browser id; the server keeps the numbers.
+  if(document.body.classList.contains('web')) (function(){
+    var m = location.search.match(/[?&]admin=([a-f0-9]{16})/);
+    if(m){ store('web_admin', m[1]); history.replaceState(null, '', location.pathname); }
+    var key = read('web_admin');
+    if(key){
+      var stats = function(){ fetch(API + '?api=stats&key=' + key + '&t=' + Date.now()).then(function(r){ return r.json(); }).then(function(st){
+        if(!st.ok){ store('web_admin', null); return clearInterval(stats.t); }   // wrong/old key: a normal visitor next time
+        var b = document.getElementById('adminBox'), open = b.querySelector('details') && b.querySelector('details').open;
+        var EV = [['next', 'افتح كود جديد'], ['refresh', 'تحديث ⟳'], ['add_open', 'أضف كودك (فتح النافذة)'], ['add_ok', 'إضافة ناجحة'],
+                  ['share', 'شارك الصفحة'], ['sh_wa', 'واتساب'], ['sh_fb', 'فيسبوك'], ['sh_x', 'إكس'], ['sh_tg', 'تليجرام'],
+                  ['sh_copy', 'نسخ الرابط'], ['credit', 'عادل النهر (فيسبوك)']];
+        var t = st.events || { total: {}, today: {} }, n = function(o, k){ return Number(o[k] || 0); };
+        b.innerHTML = '👁 زوار الموقع: ' + Number(st.visitors) + ' · النهارده: ' + Number(st.today) + ' · متواجدين دلوقتي: ' + Number(st.online) + ' — ظاهر ليك بس' +
+          '<details' + (open ? ' open' : '') + '><summary>تفاصيل الضغطات</summary><table><tr><th>الزرار</th><th>النهارده</th><th>الإجمالي</th></tr>' +
+          EV.map(function(r){ return '<tr><td>' + r[1] + '</td><td class="n">' + n(t.today, r[0]) + '</td><td class="n">' + n(t.total, r[0]) + '</td></tr>'; }).join('') +
+          '</table></details>';
+        b.classList.add('shown');
+      }).catch(function(){}); };
+      stats(); stats.t = setInterval(stats, 30000);
+      return;
+    }
+    var vid = read('web_vid');
+    if(!vid){ vid = Math.random().toString(36).slice(2, 12) + Date.now().toString(36); store('web_vid', vid); }
+    fetch(API + '?api=visit&v=' + vid).catch(function(){});
+    setInterval(function(){ if(!document.hidden) fetch(API + '?api=ping&v=' + vid).catch(function(){}); }, 60000);
+  })();
   document.getElementById('showDone').checked = read(SHOW_KEY) === '1';
   try{ var cached = JSON.parse(read(CACHE_KEY) || 'null'); if(cached) apply(cached); }catch(e){}
   load();
