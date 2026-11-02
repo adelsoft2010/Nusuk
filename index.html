@@ -57,7 +57,7 @@
   body.web .sharebox{display:block;text-align:center;margin:28px 0 8px}
   .share-btn{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:12px;padding:10px 18px;font:700 15px Tajawal,sans-serif}
   .share{display:none;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
-  .share.open{display:flex}
+  .share.shown{display:flex}  /* not .open: that's the gold code-button style */
   .share a,.share button{color:var(--text);text-decoration:none;border:1px solid var(--line);background:var(--panel2);border-radius:10px;padding:8px 14px;font:500 14px Tajawal,sans-serif}
   .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--panel2);border:1px solid var(--line);padding:10px 18px;border-radius:12px;transition:transform .25s;font-size:14.5px;max-width:90%}
   .toast.show{transform:translateX(-50%) translateY(0)}
@@ -137,7 +137,7 @@
     document.getElementById('shFb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + u;
     document.getElementById('shX').href = 'https://twitter.com/intent/tweet?text=' + t + '&url=' + u;
     document.getElementById('shTg').href = 'https://t.me/share/url?url=' + u + '&text=' + t;
-    var open = document.getElementById('shareLinks').classList.toggle('open');
+    var open = document.getElementById('shareLinks').classList.toggle('shown');
     document.querySelector('.share-btn').setAttribute('aria-expanded', open);
   }
   function copyText(s){
