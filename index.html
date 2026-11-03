@@ -41,7 +41,11 @@
   .stat b{direction:ltr;display:flex;align-items:center}
   .stat b svg{height:20px;display:block}
   .sg.off{fill:#1d2a2a}
-  .stats .reset-btn{grid-column:1/-1;justify-self:center;width:min(100%,340px);padding:8px 16px;border-radius:12px;font-size:13.5px}
+  /* start over + add a code, side by side under the counters */
+  .stats-acts{grid-column:1/-1;display:flex;justify-content:center;gap:8px}
+  .stats .reset-btn{flex:1;max-width:240px;padding:8px 12px;border-radius:12px;font-size:13.5px;white-space:nowrap}
+  .stats .add-top{color:#1a1305;border:0;background:linear-gradient(180deg,#f0d78c,#d4af37)}
+  .stats .add-top:hover,.stats .add-top:focus-visible{background:linear-gradient(180deg,#f5e0a0,#dcb84a)}
   @media (max-width:400px){.stats{gap:6px}.stat{padding:7px 4px;font-size:11.5px}.stat b svg{height:17px}}
   .sg.on{fill:#6ae05a}
   .stat.done{border-color:rgba(106,224,90,.45)}
@@ -218,7 +222,10 @@
     <span class="stat done"><b id="sDone" role="img">0</b> <span data-i18n="stDone">فتحتها</span></span>
     <span class="stat"><b id="sLeft" role="img">—</b> <span data-i18n="stLeft">متفتحتش</span></span>
     <span class="stat"><b id="sTotal" role="img">—</b> <span data-i18n="stTotal">كل الأكواد</span></span>
-    <button type="button" class="reset-btn" onclick="document.getElementById('resetDlg').showModal()" data-i18n="resetBtn">↺ ابدأ من الأول</button>
+    <div class="stats-acts">
+      <button type="button" class="reset-btn" onclick="document.getElementById('resetDlg').showModal()" data-i18n="resetBtn">↺ ابدأ من الأول</button>
+      <button type="button" class="reset-btn add-top" onclick="ev('add_open'); document.getElementById('addDlg').showModal()" data-i18n="addBtn">➕ أضف كودك</button>
+    </div>
   </div>
 </header>
 <main>
@@ -491,7 +498,7 @@
     fetch(API + '?api=peek' + DEVQ + '&t=' + Date.now()).then(function(r){ return r.json(); }).then(function(d){
       peeking = false;
       if(!d.ok){ dropWait(); if(d.slow) toast(T('slow', 'ضغطات كتير ورا بعض، استنى دقيقة وكمّل.')); return; }
-      webLoaded = true; webTotal = d.total; webDone = d.opened + webPending;
+      webLoaded = true; webTotal = Number(d.total) || 0; webDone = (Number(d.opened) || 0) + webPending;
       store('web_counts', webTotal + ',' + d.opened);   // shown instantly on the next visit
       webQueue = d.codes; saveQueue();
       // codes this browser opened that the server hasn't recorded yet: tell it, then ask again (a few times at most)
