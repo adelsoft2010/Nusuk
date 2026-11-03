@@ -145,6 +145,12 @@
   @media (max-width:420px){.phone{flex-basis:124px;border-radius:18px;border-width:4px}.g-wrap{gap:10px}}
   @media (prefers-reduced-motion:reduce){.g-tap,.g-back{animation:none}.g-shot{transition:none}}
   .lang{position:relative;display:none}
+  .top .top-share{display:none;place-items:center;color:var(--gold2)}
+  body.web .top .top-share{display:grid}
+  .top-share svg{width:22px;height:22px}
+  .reset-btn{display:none;background:none;border:0;padding:4px 6px;color:var(--gold2);font:700 12.5px Tajawal,sans-serif;text-decoration:underline;cursor:pointer}
+  body.web .reset-btn{display:inline}
+  @media (max-width:400px){.top{gap:6px}.top h1{font-size:16px;white-space:nowrap}.top button{width:44px;height:44px}.top #langBtn{padding:0 8px}#langCode{display:none}}
   body.web .lang{display:block}
   .top #langBtn{display:flex;align-items:center;gap:6px;width:auto;padding:0 10px;font:800 14px Tajawal,sans-serif}
   #langBtn img,.lang-menu img{width:24px;height:16px;border-radius:3px;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.15)}
@@ -179,10 +185,11 @@
     <h1 data-i18n="h1">أكواد إحالة نسك</h1>
     <div class="lang" id="lang"><button type="button" id="langBtn" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" aria-label="اللغة / Language"><img id="langFlag" src="https://flagcdn.com/eg.svg" alt=""><span id="langCode">AR</span></button>
       <div class="lang-menu" id="langMenu" hidden></div></div>
+    <button type="button" class="top-share" onclick="topShare()" aria-label="شارك الصفحة" data-i18n-aria="shareBtn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M13.5 5.5 20.5 12l-7 6.5v-3.6c-4.7 0-7.9 1.3-10.5 4.6 1-5.2 3.9-9.6 10.5-10.4z"/></svg></button>
     <button onclick="ev('refresh'); load()" aria-label="تحديث" data-i18n-aria="refresh">⟳</button>
   </div>
   <button class="next" id="nextBtn" onclick="openNext()" aria-describedby="nextNote" data-i18n="next">افتح كود جديد</button>
-  <p class="note" id="nextNote" data-i18n="nextNote">كل ضغطة بتفتحلك كود جديد، والكود اللي فتحته مش هيرجعلك تاني.</p>
+  <p class="note"><span id="nextNote" data-i18n="nextNote">كل ضغطة بتفتحلك كود جديد، والكود اللي فتحته مش هيرجعلك تاني.</span> <button type="button" class="reset-btn" onclick="document.getElementById('resetDlg').showModal()" data-i18n="resetBtn">↺ ابدأ من الأول</button></p>
 </header>
 <main>
   <section class="guide" id="guide" aria-labelledby="gTitle">
@@ -287,6 +294,14 @@
   <ul data-i18n="termsBody"><li>الصفحة مجانية ومبادرة شخصية، ومش تابعة لتطبيق نسك ولا لأي جهة رسمية.</li><li>مش بنضمن إن كل كود شغال، ولا إن استخدام الأكواد بيضمن الفوز؛ شروط التحدي بتحددها نسك.</li><li>ضيف أكواد نسك الحقيقية بس؛ أي محتوى تاني أو إساءة استخدام ممكن يتشال.</li><li>بتستخدم الصفحة على مسؤوليتك، وممكن نعدّل الشروط دي في أي وقت.</li></ul>
   <div class="acts"><button type="button" class="go" onclick="this.closest('dialog').close()" data-i18n="close">تمام</button></div>
 </dialog>
+<dialog id="resetDlg" aria-labelledby="resetT" aria-describedby="resetD">
+  <h2 id="resetT" data-i18n="resetTitle">تبدأ من الأول؟</h2>
+  <p id="resetD" data-i18n="resetText" style="margin:0;line-height:1.8;color:#c9d3de">هيتمسح سجل الأكواد اللي فتحتها على الجهاز ده، وكل الأكواد هتظهرلك من جديد، حتى اللي فتحتها قبل كده.</p>
+  <div class="acts">
+    <button type="button" class="go" onclick="resetOpened()" data-i18n="resetGo">أيوه، ابدأ من الأول</button>
+    <button type="button" onclick="document.getElementById('resetDlg').close()" data-i18n="cancel">إلغاء</button>
+  </div>
+</dialog>
 <div class="toast" id="toast" role="status"></div>
 <script>
   var API = 'https://script.google.com/macros/s/AKfycbyPybYZKOn44c2arFvMvuavOuuY_SrdAGPj-n1vxEphOPgBL5wvoXwH_CD2QzQMH13c/exec';
@@ -328,6 +343,13 @@
     copyText(T('shareText', SHARE_TEXT) + '\n' + PAGE_URL, T('shareCopied', 'النص اتنسخ — لو مش ظاهر في المشاركة (زي فيسبوك)، الصقه.'));
     if(navigator.share) return navigator.share({ title: T('shareTitle', SHARE_TITLE), text: T('shareText', SHARE_TEXT), url: PAGE_URL }).catch(function(e){ if(e.name !== 'AbortError') shareLinks(); });
     shareLinks();
+  }
+  // header share icon: the phone's share sheet, or (desktop) the share links at the bottom, opened and scrolled to
+  function topShare(){
+    if(navigator.share) return sharePage();
+    ev('share');
+    if(!document.getElementById('shareLinks').classList.contains('shown')) shareLinks();
+    document.querySelector('.share-btn').scrollIntoView({ block: 'center' });
   }
   function shareLinks(){
     var u = encodeURIComponent(PAGE_URL), t = encodeURIComponent(T('shareText', SHARE_TEXT));
@@ -408,6 +430,12 @@
     fetch(API + '?api=open&code=' + encodeURIComponent(c) + DEVQ).catch(function(){}); // server ignores repeats from the same phone
     if(window.AndroidApp) AndroidApp.open(link(c)); else window.open(link(c), '_blank');
     render();
+  }
+  // "Start over" (browser only): forget which codes this device opened, so every code comes up again
+  function resetOpened(){
+    opened = {}; store(OPENED_KEY, null);
+    document.getElementById('resetDlg').close(); render();
+    toast(T('resetDone', 'تمام، كل الأكواد رجعت تظهر من جديد ✓'));
   }
   function openNext(){
     ev('next');
