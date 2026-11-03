@@ -27,6 +27,10 @@
   .top button{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:10px;width:48px;height:48px;font-size:18px}
   /* compact counter under the note: opened / left / total */
   .stats{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:6px;margin-top:6px}
+  /* scrolled down: header keeps the title row and the button; the note and counter fold away */
+  header .note,header .stats{max-height:90px;overflow:hidden;transition:max-height .25s,opacity .2s,margin .25s}
+  body.scrolled header .note,body.scrolled header .stats{max-height:0;opacity:0;margin-top:0;pointer-events:none}
+  @media (prefers-reduced-motion:reduce){header .note,header .stats{transition:none}}
   .stat{display:inline-flex;align-items:center;gap:6px;padding:2px 4px 2px 10px;padding-inline:10px 4px;border-radius:999px;background:var(--panel);border:1px solid var(--line);font-size:12px;color:var(--muted);white-space:nowrap}
   /* digital readout: dark display, glowing fixed-width digits */
   .stat b{direction:ltr;min-width:2.2em;text-align:center;padding:1px 7px;border-radius:999px;background:#05080c;box-shadow:inset 0 0 0 1px #1d2836;font:600 12.5px Orbitron,ui-monospace,Consolas,monospace;letter-spacing:.6px;font-variant-numeric:tabular-nums;color:var(--gold2);text-shadow:0 0 6px rgba(240,215,140,.55)}
@@ -487,7 +491,9 @@
     if(nx) openCode(nx); else toast(T('allOpened', 'فتحت كل الأكواد.'));
   }
   // header is fixed, so the page starts below it
-  function pad(){ document.body.style.paddingTop = document.querySelector('header').offsetHeight + 'px'; }
+  // (measured only while unfolded, so folding the header on scroll doesn't make the page jump)
+  function pad(){ if(!document.body.classList.contains('scrolled')) document.body.style.paddingTop = document.querySelector('header').offsetHeight + 'px'; }
+  addEventListener('scroll', function(){ document.body.classList.toggle('scrolled', scrollY > 60); }, { passive: true });
   addEventListener('resize', pad); pad();
   if(document.fonts) document.fonts.ready.then(pad);
   document.addEventListener('click', function(e){ var b = e.target.closest('.open[data-c]'); if(b) openCode(b.dataset.c); });
