@@ -38,6 +38,7 @@
     addTitle: 'Add your code', addLabel: 'Paste one code or more, or even whole Facebook comments; only the codes are kept and duplicates are skipped.',
     addGo: 'Add', cancel: 'Cancel', copied: 'Link copied', shareCopied: 'Text copied. If it doesn\'t show in the share (like on Facebook), paste it.',
     shareTitle: 'Nusuk challenge codes', shareText: 'Nusuk challenge codes\n🕋💙 Imagine Umrah being your share!\nOpen the code yourself, verify it, and get your key easily!',
+    resetBtn: '↺ Start over', resetTitle: 'Start over?', resetText: 'This clears the record of codes you opened on this device, and all codes will show up again, including ones you opened before.', resetGo: 'Yes, start over', resetDone: 'Done, all codes are back ✓',
     addEmpty: 'Paste at least one code.', adding: 'Adding…', added: '{n} codes added', addedDup: ', {d} were already there',
     addNet: 'Couldn\'t add; check your internet.', loading: 'One moment, the codes are still loading…', allOpened: 'You opened all the codes.',
     offline: 'No connection; this is the last saved copy.', loadFail: 'Couldn\'t load the codes; check your internet and tap ⟳.'
@@ -73,6 +74,7 @@
     addTitle: 'Añade tu código', addLabel: 'Pega uno o varios códigos, o incluso comentarios enteros de Facebook; solo se guardan los códigos y los duplicados se omiten.',
     addGo: 'Añadir', cancel: 'Cancelar', copied: 'Enlace copiado', shareCopied: 'Texto copiado. Si no aparece al compartir (como en Facebook), pégalo.',
     shareTitle: 'Códigos del reto Nusuk', shareText: 'Códigos del reto Nusuk\n🕋💙 ¡Imagina que la Umrah sea para ti!\nAbre el código tú mismo, verifícalo y consigue tu llave fácilmente.',
+    resetBtn: '↺ Empezar de nuevo', resetTitle: '¿Empezar de nuevo?', resetText: 'Se borrará el registro de códigos que abriste en este dispositivo y todos los códigos volverán a aparecer, incluso los que ya abriste.', resetGo: 'Sí, empezar de nuevo', resetDone: 'Listo, todos los códigos han vuelto ✓',
     addEmpty: 'Pega al menos un código.', adding: 'Añadiendo…', added: '{n} códigos añadidos', addedDup: ', {d} ya estaban',
     addNet: 'No se pudo añadir; revisa tu internet.', loading: 'Un momento, los códigos aún se están cargando…', allOpened: 'Ya abriste todos los códigos.',
     offline: 'Sin conexión; esta es la última copia guardada.', loadFail: 'No se pudieron cargar los códigos; revisa tu internet y toca ⟳.'
@@ -108,6 +110,7 @@
     addTitle: 'Ajouter votre code', addLabel: 'Collez un ou plusieurs codes, voire des commentaires Facebook entiers ; seuls les codes sont gardés et les doublons ignorés.',
     addGo: 'Ajouter', cancel: 'Annuler', copied: 'Lien copié', shareCopied: 'Texte copié. S\'il n\'apparaît pas dans le partage (comme sur Facebook), collez-le.',
     shareTitle: 'Codes du défi Nusuk', shareText: 'Codes du défi Nusuk\n🕋💙 Imaginez que la Omra soit pour vous !\nOuvrez le code vous-même, vérifiez-le et obtenez votre clé facilement !',
+    resetBtn: '↺ Recommencer', resetTitle: 'Recommencer ?', resetText: 'L\'historique des codes ouverts sur cet appareil sera effacé, et tous les codes réapparaîtront, même ceux déjà ouverts.', resetGo: 'Oui, recommencer', resetDone: 'C\'est fait, tous les codes sont de retour ✓',
     addEmpty: 'Collez au moins un code.', adding: 'Ajout…', added: '{n} codes ajoutés', addedDup: ', {d} déjà présents',
     addNet: 'Ajout impossible ; vérifiez votre connexion.', loading: 'Un instant, les codes se chargent encore…', allOpened: 'Vous avez ouvert tous les codes.',
     offline: 'Pas de connexion ; voici la dernière copie enregistrée.', loadFail: 'Impossible de charger les codes ; vérifiez votre connexion et appuyez sur ⟳.'
@@ -143,6 +146,7 @@
     addTitle: '添加你的代码', addLabel: '粘贴一个或多个代码，甚至整段 Facebook 评论；只保留代码，重复的会跳过。',
     addGo: '添加', cancel: '取消', copied: '链接已复制', shareCopied: '文字已复制。如果分享时没有显示（例如 Facebook），请粘贴。',
     shareTitle: 'Nusuk 挑战代码', shareText: 'Nusuk 挑战代码\n🕋💙 想象一下副朝之旅属于你！\n亲自打开代码、验证它，轻松获得你的钥匙！',
+    resetBtn: '↺ 重新开始', resetTitle: '要重新开始吗？', resetText: '将清除此设备上已打开代码的记录，所有代码都会重新出现，包括之前打开过的。', resetGo: '是的，重新开始', resetDone: '完成，所有代码已恢复 ✓',
     addEmpty: '请至少粘贴一个代码。', adding: '正在添加…', added: '已添加 {n} 个代码', addedDup: '，{d} 个已存在',
     addNet: '添加失败，请检查网络。', loading: '请稍候，代码仍在加载…', allOpened: '你已打开所有代码。',
     offline: '无网络，这是最后保存的版本。', loadFail: '无法加载代码，请检查网络并点击 ⟳。'
@@ -178,6 +182,7 @@
     addTitle: 'اپنا کوڈ شامل کریں', addLabel: 'ایک یا زیادہ کوڈز پیسٹ کریں، یا فیس بک کے پورے کمنٹس بھی؛ صرف کوڈز رکھے جاتے ہیں اور دہرائے گئے چھوڑ دیے جاتے ہیں۔',
     addGo: 'شامل کریں', cancel: 'منسوخ', copied: 'لنک کاپی ہو گیا', shareCopied: 'متن کاپی ہو گیا۔ اگر شیئر میں نظر نہ آئے (جیسے فیس بک)، تو پیسٹ کریں۔',
     shareTitle: 'نسک چیلنج کوڈز', shareText: 'نسک چیلنج کوڈز\n🕋💙 سوچیں عمرہ آپ کے نصیب میں ہو!\nخود کوڈ کھولیں، تصدیق کریں، اور آسانی سے اپنی چابی حاصل کریں!',
+    resetBtn: '↺ شروع سے کریں', resetTitle: 'شروع سے کریں؟', resetText: 'اس آلے پر کھولے گئے کوڈز کا ریکارڈ مٹ جائے گا، اور تمام کوڈز دوبارہ نظر آئیں گے، پہلے کھولے گئے بھی۔', resetGo: 'ہاں، شروع سے کریں', resetDone: 'ہو گیا، تمام کوڈز واپس آ گئے ✓',
     addEmpty: 'کم از کم ایک کوڈ پیسٹ کریں۔', adding: 'شامل ہو رہا ہے…', added: '{n} کوڈز شامل ہو گئے', addedDup: '، {d} پہلے سے موجود تھے',
     addNet: 'شامل نہیں ہو سکا؛ انٹرنیٹ چیک کریں۔', loading: 'ایک لمحہ، کوڈز ابھی لوڈ ہو رہے ہیں…', allOpened: 'آپ تمام کوڈز کھول چکے ہیں۔',
     offline: 'کنکشن نہیں؛ یہ آخری محفوظ نسخہ ہے۔', loadFail: 'کوڈز لوڈ نہیں ہو سکے؛ انٹرنیٹ چیک کریں اور ⟳ دبائیں۔'
@@ -213,6 +218,7 @@
     addTitle: 'Tambahkan kodemu', addLabel: 'Tempel satu kode atau lebih, bahkan seluruh komentar Facebook; hanya kode yang disimpan dan duplikat dilewati.',
     addGo: 'Tambah', cancel: 'Batal', copied: 'Tautan disalin', shareCopied: 'Teks disalin. Jika tidak muncul saat berbagi (seperti di Facebook), tempelkan.',
     shareTitle: 'Kode tantangan Nusuk', shareText: 'Kode tantangan Nusuk\n🕋💙 Bayangkan umrah jadi rezekimu!\nBuka kodenya sendiri, verifikasi, dan dapatkan kuncimu dengan mudah!',
+    resetBtn: '↺ Mulai dari awal', resetTitle: 'Mulai dari awal?', resetText: 'Catatan kode yang sudah kamu buka di perangkat ini akan dihapus, dan semua kode akan muncul lagi, termasuk yang pernah kamu buka.', resetGo: 'Ya, mulai dari awal', resetDone: 'Selesai, semua kode kembali ✓',
     addEmpty: 'Tempel minimal satu kode.', adding: 'Menambahkan…', added: '{n} kode ditambahkan', addedDup: ', {d} sudah ada',
     addNet: 'Gagal menambahkan; periksa internetmu.', loading: 'Sebentar, kode masih dimuat…', allOpened: 'Kamu sudah membuka semua kode.',
     offline: 'Tidak ada koneksi; ini salinan terakhir yang tersimpan.', loadFail: 'Gagal memuat kode; periksa internet dan ketuk ⟳.'
@@ -248,6 +254,7 @@
     addTitle: 'अपना कोड जोड़ें', addLabel: 'एक या ज़्यादा कोड पेस्ट करें, या फ़ेसबुक के पूरे कमेंट भी; सिर्फ़ कोड रखे जाते हैं और दोहराए गए छोड़ दिए जाते हैं।',
     addGo: 'जोड़ें', cancel: 'रद्द करें', copied: 'लिंक कॉपी हो गया', shareCopied: 'टेक्स्ट कॉपी हो गया। अगर शेयर में न दिखे (जैसे फ़ेसबुक), तो पेस्ट करें।',
     shareTitle: 'नुसुक चैलेंज कोड', shareText: 'नुसुक चैलेंज कोड\n🕋💙 सोचिए उमरा आपके नसीब में हो!\nखुद कोड खोलें, सत्यापित करें, और आसानी से अपनी चाबी पाएँ!',
+    resetBtn: '↺ फिर से शुरू करें', resetTitle: 'फिर से शुरू करें?', resetText: 'इस डिवाइस पर खोले गए कोड का रिकॉर्ड मिट जाएगा, और सभी कोड फिर से दिखेंगे, पहले खोले गए भी।', resetGo: 'हाँ, फिर से शुरू करें', resetDone: 'हो गया, सभी कोड वापस आ गए ✓',
     addEmpty: 'कम से कम एक कोड पेस्ट करें।', adding: 'जोड़ा जा रहा है…', added: '{n} कोड जोड़े गए', addedDup: ', {d} पहले से मौजूद थे',
     addNet: 'जोड़ नहीं सके; इंटरनेट जाँचें।', loading: 'एक पल, कोड अभी लोड हो रहे हैं…', allOpened: 'आपने सभी कोड खोल लिए।',
     offline: 'कनेक्शन नहीं; यह आख़िरी सहेजी गई कॉपी है।', loadFail: 'कोड लोड नहीं हुए; इंटरनेट जाँचें और ⟳ दबाएँ।'
@@ -283,6 +290,7 @@
     addTitle: 'আপনার কোড যোগ করুন', addLabel: 'এক বা একাধিক কোড পেস্ট করুন, এমনকি পুরো ফেসবুক কমেন্টও; শুধু কোড রাখা হয় এবং পুনরাবৃত্ত কোড বাদ যায়।',
     addGo: 'যোগ করুন', cancel: 'বাতিল', copied: 'লিংক কপি হয়েছে', shareCopied: 'লেখা কপি হয়েছে। শেয়ারে না দেখালে (যেমন ফেসবুকে), পেস্ট করুন।',
     shareTitle: 'নুসুক চ্যালেঞ্জ কোড', shareText: 'নুসুক চ্যালেঞ্জ কোড\n🕋💙 কল্পনা করুন উমরাহ আপনার ভাগ্যে!\nনিজেই কোড খুলুন, যাচাই করুন, আর সহজেই আপনার চাবি পান!',
+    resetBtn: '↺ আবার শুরু করুন', resetTitle: 'আবার শুরু করবেন?', resetText: 'এই ডিভাইসে খোলা কোডের রেকর্ড মুছে যাবে, এবং আগে খোলা কোডসহ সব কোড আবার দেখা যাবে।', resetGo: 'হ্যাঁ, আবার শুরু করুন', resetDone: 'হয়ে গেছে, সব কোড ফিরে এসেছে ✓',
     addEmpty: 'অন্তত একটি কোড পেস্ট করুন।', adding: 'যোগ হচ্ছে…', added: '{n}টি কোড যোগ হয়েছে', addedDup: ', {d}টি আগে থেকেই ছিল',
     addNet: 'যোগ করা যায়নি; ইন্টারনেট দেখুন।', loading: 'একটু অপেক্ষা করুন, কোড এখনো লোড হচ্ছে…', allOpened: 'আপনি সব কোড খুলে ফেলেছেন।',
     offline: 'সংযোগ নেই; এটি সর্বশেষ সংরক্ষিত কপি।', loadFail: 'কোড লোড হয়নি; ইন্টারনেট দেখে ⟳ চাপুন।'
@@ -318,6 +326,7 @@
     addTitle: 'Kodunu ekle', addLabel: 'Bir veya daha fazla kod, hatta Facebook yorumlarının tamamını yapıştırın; yalnızca kodlar alınır, tekrar edenler atlanır.',
     addGo: 'Ekle', cancel: 'İptal', copied: 'Bağlantı kopyalandı', shareCopied: 'Metin kopyalandı. Paylaşımda görünmezse (Facebook gibi) yapıştırın.',
     shareTitle: 'Nusuk yarışması kodları', shareText: 'Nusuk yarışması kodları\n🕋💙 Umrenin sana nasip olduğunu düşün!\nKodu kendin aç, doğrula ve anahtarını kolayca al!',
+    resetBtn: '↺ Baştan başla', resetTitle: 'Baştan başlansın mı?', resetText: 'Bu cihazda açtığınız kodların kaydı silinir ve daha önce açtıklarınız dahil tüm kodlar yeniden görünür.', resetGo: 'Evet, baştan başla', resetDone: 'Tamam, tüm kodlar geri geldi ✓',
     addEmpty: 'En az bir kod yapıştırın.', adding: 'Ekleniyor…', added: '{n} kod eklendi', addedDup: ', {d} tanesi zaten vardı',
     addNet: 'Eklenemedi; internetinizi kontrol edin.', loading: 'Bir saniye, kodlar hâlâ yükleniyor…', allOpened: 'Tüm kodları açtınız.',
     offline: 'Bağlantı yok; bu son kaydedilen kopya.', loadFail: 'Kodlar yüklenemedi; internetinizi kontrol edip ⟳ simgesine dokunun.'
@@ -334,7 +343,7 @@
     var d = D[LANG] || {}, html = document.documentElement;
     html.lang = LANG; html.dir = RTL[LANG] ? 'rtl' : 'ltr';
     els.forEach(function(e, i){ e.innerHTML = d[e.dataset.i18n] || orig[i]; });
-    arias.forEach(function(e, i){ e.setAttribute('aria-label', d[e.dataset.i18nAria] || origAria[i]); });
+    arias.forEach(function(e, i){ e.setAttribute('aria-label', String(d[e.dataset.i18nAria] || origAria[i]).replace(/^[\u{1F300}-\u{1FAFF}\u2600-\u27BF\uFE0F]+\s*/u, '')); });
     document.title = d.title || origTitle;
     var play = document.getElementById('gPlay');
     play.textContent = play.getAttribute('aria-pressed') === 'true' ? T('pause', '⏸ إيقاف') : T('play', '▶ تشغيل');
@@ -365,7 +374,10 @@
   var m = location.search.match(/[?&]lang=([a-z]{2})/), picked = (m && m[1]) || read('web_lang');
   apply(picked || 'ar');
   if(!picked){
-    var useCountry = function(cc){ if(!read('web_lang')) apply(BY_COUNTRY[cc] || 'en'); };
+    // a country not in the list (or a wrong IP guess) falls back to the browser's own language, then English
+    var browserLang = function(){ var ls = navigator.languages || [navigator.language || ''];
+      for(var i = 0; i < ls.length; i++){ var l = String(ls[i]).slice(0, 2).toLowerCase(); if(l === 'ar' || D[l]) return l; } };
+    var useCountry = function(cc){ if(!read('web_lang')) apply(BY_COUNTRY[cc] || browserLang() || 'en'); };
     var cc = read('web_cc');   // looked up once per browser
     if(cc) useCountry(cc);
     else fetch('https://api.country.is/').then(function(r){ return r.json(); }).then(function(d){
