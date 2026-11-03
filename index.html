@@ -61,8 +61,18 @@
   dialog .acts{display:flex;gap:8px;margin-top:12px}
   dialog .acts button{flex:1;border-radius:10px;padding:11px;font:700 15px Tajawal,sans-serif;border:1px solid var(--line);background:var(--panel2);color:var(--text)}
   dialog .acts .go{border:0;color:#1a1305;background:linear-gradient(180deg,#f0d78c,#d4af37)}
-  .credit{color:var(--muted);font-size:13px;margin:22px 0 0}
-  .credit a{color:var(--gold2);text-decoration:none;font-weight:700}
+  /* developer footer (browser only) */
+  .dev{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;max-width:720px;margin:34px auto 0;padding:18px 22px;border-radius:24px;background:#14110c;border:1px solid rgba(212,175,55,.25);text-align:right}
+  .dev-who{display:flex;align-items:center;gap:12px}
+  .dev-ava{flex:none;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#f0d78c,#d4af37);color:#1a1305;font:800 26px Tajawal,sans-serif}
+  .dev-who small{display:block;color:var(--muted);font-size:13px}
+  .dev-who b{display:block;color:var(--gold2);font-size:19px;line-height:1.4}
+  .dev-links{display:flex;gap:10px;flex-wrap:wrap}
+  .dev-links a{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 18px;border-radius:999px;background:#2a2620;color:var(--text);text-decoration:none;font:700 15px Tajawal,sans-serif}
+  .dev-links a:hover,.dev-links a:focus-visible{background:#3a342b}
+  .dev-links svg{width:20px;height:20px;flex:none}
+  .dev-note{color:var(--muted);font-size:13px;margin:14px 0 0}
+  @media (max-width:520px){.dev{justify-content:center;text-align:center}.dev-who{flex-direction:column}.dev-links{justify-content:center}}
   .sharebox{display:none}
   .admin{display:none;text-align:center;background:var(--panel);border:1px dashed var(--gold);border-radius:12px;padding:10px;margin-bottom:12px;font-size:14px;color:var(--gold2)}
   .admin.shown{display:block}
@@ -219,7 +229,14 @@
       <details><summary>كيف أضيف كودي إلى القائمة؟</summary><p>دوس «أضف كودك» فوق والصق الكود أو رابطه، أو حتى تعليقات كاملة فيها أكواد. بناخد الأكواد بس، والمكرر مش بيتضاف تاني.</p></details>
       <details><summary>هل هذه الصفحة تابعة لتطبيق نسك؟</summary><p>لا. دي مبادرة شخصية مستقلة، ومش تابعة لتطبيق نسك ولا لوزارة الحج والعمرة ولا لأي جهة رسمية.</p></details>
     </section>
-    <p class="credit">برمجة <a data-ev="credit" href="https://www.facebook.com/AdelSoft2010/" target="_blank" rel="noopener noreferrer">عادل النهر</a></p>
+    <footer class="dev">
+      <div class="dev-who"><span class="dev-ava" aria-hidden="true">ع</span><div><small>تطوير</small><b>عادل حمزة محمد النهر</b></div></div>
+      <div class="dev-links">
+        <a data-ev="credit" href="https://www.facebook.com/AdelSoft2010/" target="_blank" rel="noopener noreferrer" aria-label="فيسبوك: عادل النهر"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.5H16l.5-3h-3V8.6c0-.9.3-1.6 1.6-1.6h1.6V4.3A21 21 0 0 0 14.4 4C12 4 10.5 5.4 10.5 8v2.5H8v3h2.5V21z"/></svg><span>فيسبوك</span></a>
+        <a href="https://wa.me/201067908253" target="_blank" rel="noopener noreferrer" aria-label="واتساب: +201067908253"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1 0 12 3.5z"/><path d="M9 8.3c.3-.4.8-.4 1 0l.8 1.7c.1.3 0 .6-.2.8l-.5.5a5.6 5.6 0 0 0 2.6 2.6l.5-.5c.2-.2.5-.3.8-.2l1.7.8c.4.2.4.7 0 1-.6.7-1.4 1-2.3.7A8 8 0 0 1 8.3 10.6c-.3-.9 0-1.7.7-2.3z"/></svg><bdi dir="ltr">+20 106 790 8253</bdi></a>
+      </div>
+    </footer>
+    <p class="dev-note">مبادرة مستقلة لتبادل أكواد تحدي نسك، لا تتبع تطبيق نسك ولا أي جهة رسمية.</p>
   </div>
 </main>
 <dialog id="addDlg" aria-labelledby="addTitle">
