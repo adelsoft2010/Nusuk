@@ -17,6 +17,7 @@
 <style>
   :root{--bg:#0b0f14;--panel:#121821;--panel2:#18202b;--line:#233041;--text:#e8edf3;--muted:#8a98a8;--gold:#d4af37;--gold2:#f0d78c;--green:#3fb98a}
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
   html,body{margin:0;background:var(--bg);color:var(--text);font-family:Tajawal,system-ui,sans-serif}
   body{padding-bottom:24px}
   header{position:fixed;top:0;left:0;right:0;z-index:5;background:rgba(11,15,20,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 16px 10px}
@@ -79,7 +80,17 @@
   .share a,.share button{color:var(--text);text-decoration:none;border:1px solid var(--line);background:var(--panel2);border-radius:10px;padding:8px 14px;font:500 14px Tajawal,sans-serif}
   /* How-to walkthrough: phone mock-up cycling the 4 Nusuk screenshots, synced with the step list */
   .guide{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
-  .guide h2{margin:0 0 12px;font-size:17px;color:var(--gold2);text-align:center}
+  .guide h2{margin:0;font-size:17px;color:var(--gold2);text-align:center}
+  .g-head{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+  .g-vbtn{display:none;color:var(--gold2);text-decoration:none;border:1px solid rgba(212,175,55,.55);border-radius:999px;padding:5px 12px;font:700 13px Tajawal,sans-serif;background:rgba(212,175,55,.08)}
+  body.web .g-vbtn{display:inline-block}
+  /* video explainer (browser only, bottom of the page) */
+  .vid{margin:26px auto 0;max-width:360px;scroll-margin-top:170px}
+  .vid h2{margin:0 0 10px;font-size:17px;color:var(--gold2)}
+  .vid-frame{position:relative;aspect-ratio:4/5;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:0 14px 34px rgba(0,0,0,.5)}
+  .vid-frame video{position:absolute;inset:0;width:100%;height:100%;background:#000}
+  .vid-yt{display:inline-block;margin-top:10px;color:var(--muted);font-size:13px}
+  .vid-yt:hover{color:var(--gold2)}
   .g-wrap{display:flex;gap:14px;align-items:flex-start}
   .phone{position:relative;flex:0 0 150px;border-radius:22px;border:5px solid #2a3442;overflow:hidden;background:#0d1117;box-shadow:0 12px 30px -10px rgba(0,0,0,.8),0 0 0 1px #3a4656}
   .g-scr{position:relative;aspect-ratio:360/780;overflow:hidden;background:#000}
@@ -129,7 +140,7 @@
 </header>
 <main>
   <section class="guide" id="guide" aria-labelledby="gTitle">
-    <h2 id="gTitle">إزاي تاخد مفتاح بكل كود؟</h2>
+    <div class="g-head"><h2 id="gTitle">إزاي تاخد مفتاح بكل كود؟</h2><a class="g-vbtn" href="#howVideo" data-ev="video">▶ شوف الفيديو</a></div>
     <div class="g-wrap">
       <div class="phone" aria-hidden="true">
         <div class="g-scr">
@@ -181,6 +192,13 @@
       <a id="shTg" data-ev="sh_tg" target="_blank" rel="noopener noreferrer">تليجرام</a>
       <button type="button" data-ev="sh_copy" onclick="copyText(PAGE_URL)">نسخ الرابط</button>
     </div>
+    <section class="vid" id="howVideo" aria-labelledby="vTitle">
+      <h2 id="vTitle">▶ شرح بالفيديو</h2>
+      <!-- served from this site: the YouTube upload is age-restricted, and YouTube refuses to embed those -->
+      <div class="vid-frame"><video controls playsinline preload="none" poster="video/poster.jpg" aria-label="شرح أكواد مسابقة تحدي نسك بالفيديو">
+        <source src="video/nusuk-explainer.mp4" type="video/mp4"></video></div>
+      <a class="vid-yt" href="https://youtube.com/shorts/0FacUVsagkU" target="_blank" rel="noopener noreferrer">أو شوفه على يوتيوب ↗</a>
+    </section>
     <p class="credit">برمجة <a data-ev="credit" href="https://www.facebook.com/AdelSoft2010/" target="_blank" rel="noopener noreferrer">عادل النهر</a></p>
   </div>
 </main>
@@ -357,7 +375,7 @@
         var b = document.getElementById('adminBox'), open = b.querySelector('details') && b.querySelector('details').open;
         var EV = [['next', 'افتح كود جديد'], ['refresh', 'تحديث ⟳'], ['add_open', 'أضف كودك (فتح النافذة)'], ['add_ok', 'إضافة ناجحة'],
                   ['share', 'شارك الصفحة'], ['sh_wa', 'واتساب'], ['sh_fb', 'فيسبوك'], ['sh_x', 'إكس'], ['sh_tg', 'تليجرام'],
-                  ['sh_copy', 'نسخ الرابط'], ['credit', 'عادل النهر (فيسبوك)']];
+                  ['sh_copy', 'نسخ الرابط'], ['video', 'شوف الفيديو'], ['credit', 'عادل النهر (فيسبوك)']];
         var t = st.events || { total: {}, today: {} }, n = function(o, k){ return Number(o[k] || 0); };
         b.innerHTML = '👁 زوار الموقع: ' + Number(st.visitors) + ' · النهارده: ' + Number(st.today) + ' · متواجدين دلوقتي: ' + Number(st.online) + ' — ظاهر ليك بس' +
           '<details' + (open ? ' open' : '') + '><summary>تفاصيل الضغطات</summary><table><tr><th>الزرار</th><th>النهارده</th><th>الإجمالي</th></tr>' +
