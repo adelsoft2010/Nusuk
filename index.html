@@ -5,14 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>أكواد إحالة نسك</title>
 <!-- link preview (Facebook, WhatsApp, Telegram, X): what shows when the page link is shared -->
-<meta name="description" content="🕋💙 تخيّل تكون العمرة من نصيبك! افتح الكود بنفسك، وتحقق منه، واحصل على مفتاحك بسهولة!">
+<meta name="description" content="آلاف أكواد تحدي نسك جاهزة وبتتحدّث كل يوم 🔑 افتحها بنفسك، ومع كل ضغطة مفتاح جديد يزوّد فرصتك في السحب. مجاناً ومن غير تسجيل.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://adelsoft2010.github.io/Nusuk/">
-<meta property="og:title" content="أكواد مسابقة تحدي نسك">
-<meta property="og:description" content="🕋💙 تخيّل تكون العمرة من نصيبك! افتح الكود بنفسك، وتحقق منه، واحصل على مفتاحك بسهولة!">
-<meta property="og:image" content="https://adelsoft2010.github.io/Nusuk/img/icon192.png">
+<meta property="og:title" content="🕋💙 أكواد ومفاتيح تحدي نسك | قرّب حلم العمرة!">
+<meta property="og:description" content="آلاف أكواد تحدي نسك جاهزة وبتتحدّث كل يوم 🔑 افتحها بنفسك، ومع كل ضغطة مفتاح جديد يزوّد فرصتك في السحب. مجاناً ومن غير تسجيل.">
+<!-- ?v= forces Facebook/WhatsApp to fetch the new card instead of a cached one; bump it when og.jpg changes -->
+<meta property="og:image" content="https://adelsoft2010.github.io/Nusuk/og.jpg?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="أكواد ومفاتيح تحدي نسك: آلاف الأكواد جاهزة، كل ضغطة مفتاح جديد">
 <meta property="og:locale" content="ar_AR">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://adelsoft2010.github.io/Nusuk/og.jpg?v=2">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#0b0f14;--panel:#121821;--panel2:#18202b;--line:#233041;--text:#e8edf3;--muted:#8a98a8;--gold:#d4af37;--gold2:#f0d78c;--green:#3fb98a}
@@ -393,6 +398,7 @@
   function sharePage(){
     ev('share');
     // Facebook/Messenger/Instagram drop pre-filled text by policy, so the full text is also put on the clipboard to paste.
+    nativeShare();   // the phone's own share sheet first: it needs the tap, so it goes before anything async
     copyText(fullShareText(), T('shareCopied', 'النص اتنسخ — لو مش ظاهر في المشاركة (زي فيسبوك)، الصقه.'));
     shareLinks();
   }
@@ -400,8 +406,10 @@
     sharePage();
     document.querySelector('.share-btn').scrollIntoView({ block: 'center' });
   }
+  // Android app: Android's own share menu through the bridge; browsers: the Web Share sheet when there is one
   function nativeShare(){
-    navigator.share({ title: T('shareTitle', SHARE_TITLE), text: fullShareText() }).catch(function(){});   // link is inside the text
+    if(window.AndroidApp && AndroidApp.share) return AndroidApp.share(fullShareText());
+    if(navigator.share) navigator.share({ title: T('shareTitle', SHARE_TITLE), text: fullShareText() }).catch(function(){});   // link is inside the text
   }
   function shareLinks(){
     var u = encodeURIComponent(PAGE_URL), t = encodeURIComponent(shareTextNoUrl());
@@ -411,7 +419,7 @@
     document.getElementById('shTg').href = 'https://t.me/share/url?url=' + u + '&text=' + t;
     document.getElementById('shSms').href = 'sms:?&body=' + encodeURIComponent(fullShareText());
     document.getElementById('shMail').href = 'mailto:?subject=' + encodeURIComponent(T('shareTitle', SHARE_TITLE)) + '&body=' + encodeURIComponent(fullShareText());
-    document.getElementById('shMore').hidden = !navigator.share;
+    document.getElementById('shMore').hidden = !navigator.share && !(window.AndroidApp && AndroidApp.share);
     document.getElementById('shareLinks').classList.add('shown');   // stays open; tapping again just copies again
     document.querySelector('.share-btn').setAttribute('aria-expanded', 'true');
   }
