@@ -263,7 +263,10 @@
       <a id="shFb" data-ev="sh_fb" target="_blank" rel="noopener noreferrer" data-i18n="fb">فيسبوك</a>
       <a id="shX" data-ev="sh_x" target="_blank" rel="noopener noreferrer" data-i18n="x">إكس</a>
       <a id="shTg" data-ev="sh_tg" target="_blank" rel="noopener noreferrer" data-i18n="tg">تليجرام</a>
-      <button type="button" data-ev="sh_copy" onclick="copyText(PAGE_URL)" data-i18n="copyLink">نسخ الرابط</button>
+      <a id="shSms" data-i18n="sms">رسالة نصية</a>
+      <a id="shMail" data-i18n="email">إيميل</a>
+      <button type="button" data-ev="sh_copy" onclick="copyText(fullShareText())" data-i18n="copyLink">📋 نسخ النص والرابط</button>
+      <button type="button" id="shMore" onclick="nativeShare()" hidden data-i18n="more">⋯ المزيد</button>
     </div>
     <section class="vid" id="howVideo" aria-labelledby="vTitle">
       <h2 id="vTitle" data-i18n="vTitle">▶ شرح بالفيديو</h2>
@@ -382,19 +385,21 @@
   // Share (browser only): phone share sheet when allowed, otherwise a row of direct links.
   var PAGE_URL = 'https://adelsoft2010.github.io/Nusuk/', SHARE_TITLE = 'أكواد مسابقة تحدي نسك',
     SHARE_TEXT = 'أكواد مسابقة تحدي نسك\n🕋💙 تخيّل تكون العمرة من نصيبك!\nافتح الكود بنفسك، وتحقق منه، واحصل على مفتاحك بسهولة!';
+  // Share (both buttons, phone and desktop): copy the full text + link, then show every share option at once;
+  // "More" opens the phone's own share sheet when it has one.
+  function fullShareText(){ return T('shareText', SHARE_TEXT) + '\n' + PAGE_URL; }
   function sharePage(){
     ev('share');
     // Facebook/Messenger/Instagram drop pre-filled text by policy, so the full text is also put on the clipboard to paste.
-    copyText(T('shareText', SHARE_TEXT) + '\n' + PAGE_URL, T('shareCopied', 'النص اتنسخ — لو مش ظاهر في المشاركة (زي فيسبوك)، الصقه.'));
-    if(navigator.share) return navigator.share({ title: T('shareTitle', SHARE_TITLE), text: T('shareText', SHARE_TEXT), url: PAGE_URL }).catch(function(e){ if(e.name !== 'AbortError') shareLinks(); });
+    copyText(fullShareText(), T('shareCopied', 'النص اتنسخ — لو مش ظاهر في المشاركة (زي فيسبوك)، الصقه.'));
     shareLinks();
   }
-  // header share icon: the phone's share sheet, or (desktop) the share links at the bottom, opened and scrolled to
   function topShare(){
-    if(navigator.share) return sharePage();
-    ev('share');
-    if(!document.getElementById('shareLinks').classList.contains('shown')) shareLinks();
+    sharePage();
     document.querySelector('.share-btn').scrollIntoView({ block: 'center' });
+  }
+  function nativeShare(){
+    navigator.share({ title: T('shareTitle', SHARE_TITLE), text: T('shareText', SHARE_TEXT), url: PAGE_URL }).catch(function(){});
   }
   function shareLinks(){
     var u = encodeURIComponent(PAGE_URL), t = encodeURIComponent(T('shareText', SHARE_TEXT));
@@ -402,8 +407,11 @@
     document.getElementById('shFb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + u;
     document.getElementById('shX').href = 'https://twitter.com/intent/tweet?text=' + t + '&url=' + u;
     document.getElementById('shTg').href = 'https://t.me/share/url?url=' + u + '&text=' + t;
-    var open = document.getElementById('shareLinks').classList.toggle('shown');
-    document.querySelector('.share-btn').setAttribute('aria-expanded', open);
+    document.getElementById('shSms').href = 'sms:?&body=' + encodeURIComponent(fullShareText());
+    document.getElementById('shMail').href = 'mailto:?subject=' + encodeURIComponent(T('shareTitle', SHARE_TITLE)) + '&body=' + encodeURIComponent(fullShareText());
+    document.getElementById('shMore').hidden = !navigator.share;
+    document.getElementById('shareLinks').classList.add('shown');   // stays open; tapping again just copies again
+    document.querySelector('.share-btn').setAttribute('aria-expanded', 'true');
   }
   function copyText(s, msg){
     var ok = function(){ toast(msg || T('copied', 'تم نسخ الرابط')); };
