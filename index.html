@@ -62,9 +62,10 @@
   dialog .acts button{flex:1;border-radius:10px;padding:11px;font:700 15px Tajawal,sans-serif;border:1px solid var(--line);background:var(--panel2);color:var(--text)}
   dialog .acts .go{border:0;color:#1a1305;background:linear-gradient(180deg,#f0d78c,#d4af37)}
   /* developer footer (browser only) */
-  .dev{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;max-width:720px;margin:34px auto 0;padding:18px 22px;border-radius:24px;background:#14110c;border:1px solid rgba(212,175,55,.25);text-align:right}
+  .dev{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;max-width:720px;margin:34px auto 0;padding:18px 22px;border-radius:24px;background:#14110c;border:1px solid rgba(212,175,55,.25);text-align:start}
   .dev-who{display:flex;align-items:center;gap:12px}
-  .dev-ava{flex:none;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,#f0d78c,#d4af37);color:#1a1305;font:800 26px Tajawal,sans-serif}
+  .dev-ava{flex:none;width:58px;height:58px;border-radius:50%;overflow:hidden;background:linear-gradient(180deg,#f0d78c,#d4af37)}
+  .dev-ava svg{display:block;width:100%;height:100%}
   .dev-who small{display:block;color:var(--muted);font-size:13px}
   .dev-who b{display:block;color:var(--gold2);font-size:19px;line-height:1.4}
   .dev-links{display:flex;gap:10px;flex-wrap:wrap}
@@ -101,7 +102,7 @@
   .vid-frame video{position:absolute;inset:0;width:100%;height:100%;background:#000}
   .vid-yt{display:inline-block;margin-top:10px;color:var(--muted);font-size:13px}
   .vid-yt:hover{color:var(--gold2)}
-  .faq{margin:30px auto 0;max-width:560px;text-align:right}
+  .faq{margin:30px auto 0;max-width:560px;text-align:start}
   .faq h2{margin:0 0 12px;font-size:17px;color:var(--gold2);text-align:center}
   .faq details{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:8px}
   .faq summary{cursor:pointer;padding:12px 14px;font-weight:700;font-size:14.5px;list-style:none;display:flex;justify-content:space-between;gap:10px;align-items:center}
@@ -137,12 +138,28 @@
   .g-txt{display:none;margin:6px 0 0;font-size:13px;line-height:1.75;color:#c9d3de}
   .g-step.on .g-txt{display:block}
   .g-step q{quotes:"\00AB" "\00BB";color:var(--gold2);font-weight:700}
-  .guide.auto .g-step.on button::after{content:"";position:absolute;right:0;bottom:0;height:3px;background:var(--gold);animation:g-prog 6s linear forwards}
+  .guide.auto .g-step.on button::after{content:"";position:absolute;inset-inline-start:0;bottom:0;height:3px;background:var(--gold);animation:g-prog 6s linear forwards}
   @keyframes g-prog{from{width:0}to{width:100%}}
   .g-nav{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:10px}
   .g-nav button{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:10px;min-width:44px;min-height:44px;font:700 15px Tajawal,sans-serif;padding:0 12px}
   @media (max-width:420px){.phone{flex-basis:124px;border-radius:18px;border-width:4px}.g-wrap{gap:10px}}
   @media (prefers-reduced-motion:reduce){.g-tap,.g-back{animation:none}.g-shot{transition:none}}
+  .lang{position:relative;display:none}
+  body.web .lang{display:block}
+  .top #langBtn{display:flex;align-items:center;gap:6px;width:auto;padding:0 10px;font:800 14px Tajawal,sans-serif}
+  #langBtn img,.lang-menu img{width:24px;height:16px;border-radius:3px;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.15)}
+  .lang-menu{position:fixed;top:66px;inset-inline-end:12px;z-index:9;display:grid;grid-template-columns:1fr 1fr;gap:4px;width:min(calc(100vw - 24px),420px);padding:8px;border-radius:16px;background:var(--panel);border:1px solid var(--line);box-shadow:0 18px 40px rgba(0,0,0,.6)}
+  .lang-menu[hidden]{display:none}
+  .lang-menu button{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:10px;min-height:46px;padding:8px 10px;border-radius:10px;cursor:pointer;color:var(--text);font:700 15px Tajawal,system-ui,sans-serif}
+  .lang-menu button span{flex:1}
+  .lang-menu button small{color:var(--muted);font-weight:700;font-size:12px}
+  .lang-menu button:hover,.lang-menu button:focus-visible,.lang-menu button[aria-current=true]{background:var(--panel2)}
+  .lang-menu button:focus-visible{outline:2px solid var(--gold)}
+  .lang-menu button[aria-current=true] span{color:var(--gold2)}
+  [dir=ltr] #gPrev,[dir=ltr] #gNext{transform:scaleX(-1)}
+  .legal{margin:12px 0 0;display:flex;justify-content:center;gap:22px;font-size:13.5px}
+  .legal a{color:var(--gold2)}
+  .legal-dlg ul{margin:6px 0 0;padding-inline-start:20px;line-height:1.9;font-size:14px;color:#c9d3de}
   .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--panel2);border:1px solid var(--line);padding:10px 18px;border-radius:12px;transition:transform .25s;font-size:14.5px;max-width:90%}
   .toast.show{transform:translateX(-50%) translateY(0)}
 </style>
@@ -151,15 +168,17 @@
 <header>
   <div class="top">
     <img src="img/logo.svg" alt="">
-    <h1>أكواد إحالة نسك</h1>
-    <button onclick="ev('refresh'); load()" aria-label="تحديث">⟳</button>
+    <h1 data-i18n="h1">أكواد إحالة نسك</h1>
+    <div class="lang" id="lang"><button type="button" id="langBtn" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" aria-label="اللغة / Language"><img id="langFlag" src="https://flagcdn.com/eg.svg" alt=""><span id="langCode">AR</span></button>
+      <div class="lang-menu" id="langMenu" hidden></div></div>
+    <button onclick="ev('refresh'); load()" aria-label="تحديث" data-i18n-aria="refresh">⟳</button>
   </div>
-  <button class="next" id="nextBtn" onclick="openNext()" aria-describedby="nextNote">افتح كود جديد</button>
-  <p class="note" id="nextNote">كل ضغطة بتفتحلك كود جديد، والكود اللي فتحته مش هيرجعلك تاني.</p>
+  <button class="next" id="nextBtn" onclick="openNext()" aria-describedby="nextNote" data-i18n="next">افتح كود جديد</button>
+  <p class="note" id="nextNote" data-i18n="nextNote">كل ضغطة بتفتحلك كود جديد، والكود اللي فتحته مش هيرجعلك تاني.</p>
 </header>
 <main>
   <section class="guide" id="guide" aria-labelledby="gTitle">
-    <div class="g-head"><h2 id="gTitle">إزاي تاخد مفتاح بكل كود؟</h2><a class="g-vbtn" href="#howVideo" data-ev="video">▶ شوف الفيديو</a></div>
+    <div class="g-head"><h2 id="gTitle" data-i18n="gTitle">إزاي تاخد مفتاح بكل كود؟</h2><a class="g-vbtn" href="#howVideo" data-ev="video" data-i18n="vbtn">▶ شوف الفيديو</a></div>
     <div class="g-wrap">
       <div class="phone" aria-hidden="true">
         <div class="g-scr">
@@ -170,29 +189,29 @@
         </div>
         <div class="g-navbar"><span>|||</span><span>◯</span><span class="g-navback">‹</span></div>
         <span class="g-tap" hidden></span>
-        <span class="g-back" hidden>زرار الرجوع ↓</span>
+        <span class="g-back" hidden data-i18n="gBack">زرار الرجوع ↓</span>
       </div>
       <ol class="g-steps">
-        <li class="g-step on"><button type="button" aria-current="step"><b><span class="g-num">1</span><span>افتح تطبيق نسك الأول</span></b>
-          <span class="g-txt">افتحه واستنى لحد ما تظهر الصفحة الرئيسية، وسيبه مفتوح.</span></button></li>
-        <li class="g-step"><button type="button"><b><span class="g-num">2</span><span>ارجع هنا ودوس <q>افتح كود جديد</q></span></b>
-          <span class="g-txt">هينقلك لنسك والكود مكتوب جاهز — دوس <q>تحقق من الرمز</q>.</span></button></li>
-        <li class="g-step"><button type="button"><b><span class="g-num">3</span><span>مبارك! 🎉 خدت مفتاح</span></b>
-          <span class="g-txt">ظهرت رسالة <q>مبارك</q>؟ يبقى المفتاح اتضاف. عايز مفتاح كمان؟ ارجع هنا ودوس <q>افتح كود جديد</q> تاني.</span></button></li>
-        <li class="g-step"><button type="button"><b><span class="g-num">4</span><span>ظهرت رسالة خطأ؟</span></b>
-          <span class="g-txt">دوس زرار <q>الرجوع</q> في موبايلك لحد ما تظهر رسالة <q>مبارك</q> (أو ارجع للصفحة الرئيسية في نسك)، وبعدين ارجع هنا ودوس <q>افتح كود جديد</q> ودوس <q>تحقق من الرمز</q> — حتى لو رسالة الخطأ لسه ظاهرة.</span></button></li>
+        <li class="g-step on"><button type="button" aria-current="step"><b><span class="g-num">1</span><span data-i18n="s1">افتح تطبيق نسك الأول</span></b>
+          <span class="g-txt" data-i18n="t1">افتحه واستنى لحد ما تظهر الصفحة الرئيسية، وسيبه مفتوح.</span></button></li>
+        <li class="g-step"><button type="button"><b><span class="g-num">2</span><span data-i18n="s2">ارجع هنا ودوس <q>افتح كود جديد</q></span></b>
+          <span class="g-txt" data-i18n="t2">هينقلك لنسك والكود مكتوب جاهز — دوس <q>تحقق من الرمز</q>.</span></button></li>
+        <li class="g-step"><button type="button"><b><span class="g-num">3</span><span data-i18n="s3">مبارك! 🎉 خدت مفتاح</span></b>
+          <span class="g-txt" data-i18n="t3">ظهرت رسالة <q>مبارك</q>؟ يبقى المفتاح اتضاف. عايز مفتاح كمان؟ ارجع هنا ودوس <q>افتح كود جديد</q> تاني.</span></button></li>
+        <li class="g-step"><button type="button"><b><span class="g-num">4</span><span data-i18n="s4">ظهرت رسالة خطأ؟</span></b>
+          <span class="g-txt" data-i18n="t4">دوس زرار <q>الرجوع</q> في موبايلك لحد ما تظهر رسالة <q>مبارك</q> (أو ارجع للصفحة الرئيسية في نسك)، وبعدين ارجع هنا ودوس <q>افتح كود جديد</q> ودوس <q>تحقق من الرمز</q> — حتى لو رسالة الخطأ لسه ظاهرة.</span></button></li>
       </ol>
     </div>
     <div class="g-nav">
-      <button type="button" id="gPrev" aria-label="الخطوة السابقة">→</button>
+      <button type="button" id="gPrev" aria-label="الخطوة السابقة" data-i18n-aria="prev">→</button>
       <button type="button" id="gPlay" aria-pressed="true">⏸ إيقاف</button>
-      <button type="button" id="gNext" aria-label="الخطوة التالية">←</button>
+      <button type="button" id="gNext" aria-label="الخطوة التالية" data-i18n-aria="nextStep">←</button>
     </div>
   </section>
   <div class="stats">
-    <div class="stat"><b id="sLeft">—</b><span>لسه ما اتفتحتش</span></div>
-    <div class="stat"><b id="sDone">0</b><span>فتحتها</span></div>
-    <div class="stat"><b id="sTotal">—</b><span>كل الأكواد</span></div>
+    <div class="stat"><b id="sLeft">—</b><span data-i18n="stLeft">لسه ما اتفتحتش</span></div>
+    <div class="stat"><b id="sDone">0</b><span data-i18n="stDone">فتحتها</span></div>
+    <div class="stat"><b id="sTotal">—</b><span data-i18n="stTotal">كل الأكواد</span></div>
   </div>
   <div class="admin" id="adminBox" role="status"></div>
   <div id="pinned"></div>
@@ -200,54 +219,65 @@
   <div id="list"><div class="msg">جاري تحميل الأكواد…</div></div>
   <div id="more"></div>
   <div class="sharebox">
-    <p class="auto-note">الأكواد بتتضاف تلقائياً كل يوم. وعندك كود؟ ضيفه وخلّي غيرك يستفيد.</p>
-    <button type="button" class="add-btn" onclick="ev('add_open'); document.getElementById('addDlg').showModal()">➕ أضف كودك</button>
-    <p class="share-cta"><b>🤲 «لا يؤمن أحدكم حتى يحب لأخيه ما يحب لنفسه»</b>شارك الصفحة مع أهلك وصحابك وجروباتك… يمكن ضغطة منك تكون سبب في عمرة لحد غيرك، و«الدال على الخير كفاعله».</p>
-    <button type="button" class="share-btn" onclick="sharePage()" aria-expanded="false" aria-controls="shareLinks">📤 شارك الصفحة</button>
+    <p class="auto-note" data-i18n="autoNote">الأكواد بتتضاف تلقائياً كل يوم. وعندك كود؟ ضيفه وخلّي غيرك يستفيد.</p>
+    <button type="button" class="add-btn" onclick="ev('add_open'); document.getElementById('addDlg').showModal()" data-i18n="addBtn">➕ أضف كودك</button>
+    <p class="share-cta" data-i18n="shareCta"><b>🤲 «لا يؤمن أحدكم حتى يحب لأخيه ما يحب لنفسه»</b>شارك الصفحة مع أهلك وصحابك وجروباتك… يمكن ضغطة منك تكون سبب في عمرة لحد غيرك، و«الدال على الخير كفاعله».</p>
+    <button type="button" class="share-btn" onclick="sharePage()" aria-expanded="false" aria-controls="shareLinks" data-i18n="shareBtn">📤 شارك الصفحة</button>
     <div class="share" id="shareLinks">
-      <a id="shWa" data-ev="sh_wa" target="_blank" rel="noopener noreferrer">واتساب</a>
-      <a id="shFb" data-ev="sh_fb" target="_blank" rel="noopener noreferrer">فيسبوك</a>
-      <a id="shX" data-ev="sh_x" target="_blank" rel="noopener noreferrer">إكس</a>
-      <a id="shTg" data-ev="sh_tg" target="_blank" rel="noopener noreferrer">تليجرام</a>
-      <button type="button" data-ev="sh_copy" onclick="copyText(PAGE_URL)">نسخ الرابط</button>
+      <a id="shWa" data-ev="sh_wa" target="_blank" rel="noopener noreferrer" data-i18n="wa">واتساب</a>
+      <a id="shFb" data-ev="sh_fb" target="_blank" rel="noopener noreferrer" data-i18n="fb">فيسبوك</a>
+      <a id="shX" data-ev="sh_x" target="_blank" rel="noopener noreferrer" data-i18n="x">إكس</a>
+      <a id="shTg" data-ev="sh_tg" target="_blank" rel="noopener noreferrer" data-i18n="tg">تليجرام</a>
+      <button type="button" data-ev="sh_copy" onclick="copyText(PAGE_URL)" data-i18n="copyLink">نسخ الرابط</button>
     </div>
     <section class="vid" id="howVideo" aria-labelledby="vTitle">
-      <h2 id="vTitle">▶ شرح بالفيديو</h2>
+      <h2 id="vTitle" data-i18n="vTitle">▶ شرح بالفيديو</h2>
       <!-- served from this site: the YouTube upload is age-restricted, and YouTube refuses to embed those -->
-      <div class="vid-frame"><video controls playsinline preload="none" poster="video/poster.jpg" aria-label="شرح أكواد مسابقة تحدي نسك بالفيديو">
+      <div class="vid-frame"><video controls playsinline preload="none" poster="video/poster.jpg" aria-label="شرح أكواد مسابقة تحدي نسك بالفيديو" data-i18n-aria="vAria">
         <source src="video/nusuk-explainer.mp4" type="video/mp4"></video></div>
-      <a class="vid-yt" href="https://youtube.com/shorts/0FacUVsagkU" target="_blank" rel="noopener noreferrer">أو شوفه على يوتيوب ↗</a>
+      <a class="vid-yt" href="https://youtube.com/shorts/0FacUVsagkU" target="_blank" rel="noopener noreferrer" data-i18n="yt">أو شوفه على يوتيوب ↗</a>
     </section>
     <section class="faq" aria-labelledby="faqTitle">
-      <h2 id="faqTitle">أسئلة شائعة عن أكواد مفاتيح نسك</h2>
-      <details><summary>ما هي أكواد إحالة نسك؟</summary><p>أكواد بتبدأ بـ <bdi>NG-</bdi> وبعدها ٨ حروف وأرقام، كل مشترك في تحدي نسك عنده كود. الصفحة دي بتجمع أكواد الناس في مكان واحد، وكل كود تتحقق منه في نسك بيضيفلك مفتاح.</p></details>
-      <details><summary>كيف أستخدم كود تطبيق نسك؟</summary><p>افتح تطبيق نسك الأول وسيبه مفتوح، وارجع هنا ودوس «افتح كود جديد». هينقلك لنسك والكود مكتوب جاهز، دوس «تحقق من الرمز». وبعدها ارجع هنا وافتح كود جديد تاني.</p></details>
-      <details><summary>هل كود مفاتيح نسك هو نفسه كود الإحالة؟</summary><p>أيوه، ناس كتير بتسميه «كود مفاتيح نسك» أو «رمز المفتاح»، وهو نفسه كود الإحالة اللي بيبدأ بـ <bdi>NG-</bdi>. وعدد المفاتيح وشروطها بتحددها نسك نفسها.</p></details>
-      <details><summary>كيف يعمل تبادل أكواد تحدي نسك هنا؟</summary><p>كل واحد بيضيف كوده، والأكواد بتتجمع كمان تلقائياً كل يوم. وزر «افتح كود جديد» بيفتحلك كل مرة كود ما فتحتهوش قبل كده. الصفحة مجانية ومن غير حساب ولا تسجيل.</p></details>
-      <details><summary>لماذا لا يعمل بعض أكواد مفاتيح تطبيق نسك؟</summary><p>ممكن الكود يكون مكتوب غلط أو مبقاش متاح، والصفحة مش بتقدر تتأكد من كل كود جوه نسك. لو ظهرت رسالة خطأ متقلقش: ارجع هنا وافتح كود جديد.</p></details>
-      <details><summary>ما جوائز مسابقة نسك؟</summary><p>حسب إعلانات التحدي: ١٠٠ رحلة عمرة مجانية لشخصين، و١٠ آلاف كرتونة مياه زمزم. الشروط والتفاصيل الرسمية في تطبيق نسك، والأكواد لوحدها مش بتضمن الفوز.</p></details>
-      <details><summary>كيف أضيف كودي إلى القائمة؟</summary><p>دوس «أضف كودك» فوق والصق الكود أو رابطه، أو حتى تعليقات كاملة فيها أكواد. بناخد الأكواد بس، والمكرر مش بيتضاف تاني.</p></details>
-      <details><summary>هل هذه الصفحة تابعة لتطبيق نسك؟</summary><p>لا. دي مبادرة شخصية مستقلة، ومش تابعة لتطبيق نسك ولا لوزارة الحج والعمرة ولا لأي جهة رسمية.</p></details>
+      <h2 id="faqTitle" data-i18n="faqTitle">أسئلة شائعة عن أكواد مفاتيح نسك</h2>
+      <details name="faq"><summary data-i18n="q1">ما هي أكواد إحالة نسك؟</summary><p data-i18n="a1">أكواد بتبدأ بـ <bdi>NG-</bdi> وبعدها ٨ حروف وأرقام، كل مشترك في تحدي نسك عنده كود. الصفحة دي بتجمع أكواد الناس في مكان واحد، وكل كود تتحقق منه في نسك بيضيفلك مفتاح.</p></details>
+      <details name="faq"><summary data-i18n="q2">كيف أستخدم كود تطبيق نسك؟</summary><p data-i18n="a2">افتح تطبيق نسك الأول وسيبه مفتوح، وارجع هنا ودوس «افتح كود جديد». هينقلك لنسك والكود مكتوب جاهز، دوس «تحقق من الرمز». وبعدها ارجع هنا وافتح كود جديد تاني.</p></details>
+      <details name="faq"><summary data-i18n="q3">هل كود مفاتيح نسك هو نفسه كود الإحالة؟</summary><p data-i18n="a3">أيوه، ناس كتير بتسميه «كود مفاتيح نسك» أو «رمز المفتاح»، وهو نفسه كود الإحالة اللي بيبدأ بـ <bdi>NG-</bdi>. وعدد المفاتيح وشروطها بتحددها نسك نفسها.</p></details>
+      <details name="faq"><summary data-i18n="q4">كيف يعمل تبادل أكواد تحدي نسك هنا؟</summary><p data-i18n="a4">كل واحد بيضيف كوده، والأكواد بتتجمع كمان تلقائياً كل يوم. وزر «افتح كود جديد» بيفتحلك كل مرة كود ما فتحتهوش قبل كده. الصفحة مجانية ومن غير حساب ولا تسجيل.</p></details>
+      <details name="faq"><summary data-i18n="q5">لماذا لا يعمل بعض أكواد مفاتيح تطبيق نسك؟</summary><p data-i18n="a5">ممكن الكود يكون مكتوب غلط أو مبقاش متاح، والصفحة مش بتقدر تتأكد من كل كود جوه نسك. لو ظهرت رسالة خطأ متقلقش: ارجع هنا وافتح كود جديد.</p></details>
+      <details name="faq"><summary data-i18n="q6">ما جوائز مسابقة نسك؟</summary><p data-i18n="a6">حسب إعلانات التحدي: ١٠٠ رحلة عمرة مجانية لشخصين، و١٠ آلاف كرتونة مياه زمزم. الشروط والتفاصيل الرسمية في تطبيق نسك، والأكواد لوحدها مش بتضمن الفوز.</p></details>
+      <details name="faq"><summary data-i18n="q7">كيف أضيف كودي إلى القائمة؟</summary><p data-i18n="a7">دوس «أضف كودك» فوق والصق الكود أو رابطه، أو حتى تعليقات كاملة فيها أكواد. بناخد الأكواد بس، والمكرر مش بيتضاف تاني.</p></details>
+      <details name="faq"><summary data-i18n="q8">هل هذه الصفحة تابعة لتطبيق نسك؟</summary><p data-i18n="a8">لا. دي مبادرة شخصية مستقلة، ومش تابعة لتطبيق نسك ولا لوزارة الحج والعمرة ولا لأي جهة رسمية.</p></details>
     </section>
     <footer class="dev">
-      <div class="dev-who"><span class="dev-ava" aria-hidden="true">ع</span><div><small>تطوير</small><b>عادل حمزة محمد النهر</b></div></div>
+      <div class="dev-who"><span class="dev-ava" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M12 64c0-12 9-19 20-19s20 7 20 19z" fill="#4a3f8f"/><rect x="27" y="38" width="10" height="9" rx="3" fill="#e0a77e"/><ellipse cx="32" cy="27" rx="12" ry="14" fill="#f1bf95"/><path d="M20 26c0-10 5-15 12-15s12 5 12 15c-2-4-6-7-12-7s-10 3-12 7z" fill="#2b2118"/><path d="M20 28c0 9 5 15 12 15s12-6 12-15c-1 4-3 6-5 6-2-2-4-3-7-3s-5 1-7 3c-2 0-4-2-5-6z" fill="#2b2118"/><path d="M28 36c2 1.5 6 1.5 8 0" stroke="#f1bf95" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="27" cy="27" r="1.6" fill="#2b2118"/><circle cx="37" cy="27" r="1.6" fill="#2b2118"/></svg></span><div><small data-i18n="devBy">تطوير</small><b data-i18n="devName">عادل حمزة محمد النهر</b></div></div>
       <div class="dev-links">
-        <a data-ev="credit" href="https://www.facebook.com/AdelSoft2010/" target="_blank" rel="noopener noreferrer" aria-label="فيسبوك: عادل النهر"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.5H16l.5-3h-3V8.6c0-.9.3-1.6 1.6-1.6h1.6V4.3A21 21 0 0 0 14.4 4C12 4 10.5 5.4 10.5 8v2.5H8v3h2.5V21z"/></svg><span>فيسبوك</span></a>
+        <a data-ev="credit" href="https://www.facebook.com/AdelSoft2010/" target="_blank" rel="noopener noreferrer" aria-label="فيسبوك: عادل النهر"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 21v-7.5H16l.5-3h-3V8.6c0-.9.3-1.6 1.6-1.6h1.6V4.3A21 21 0 0 0 14.4 4C12 4 10.5 5.4 10.5 8v2.5H8v3h2.5V21z"/></svg><span data-i18n="fb">فيسبوك</span></a>
         <a href="https://wa.me/201067908253" target="_blank" rel="noopener noreferrer" aria-label="واتساب: +201067908253"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1 0 12 3.5z"/><path d="M9 8.3c.3-.4.8-.4 1 0l.8 1.7c.1.3 0 .6-.2.8l-.5.5a5.6 5.6 0 0 0 2.6 2.6l.5-.5c.2-.2.5-.3.8-.2l1.7.8c.4.2.4.7 0 1-.6.7-1.4 1-2.3.7A8 8 0 0 1 8.3 10.6c-.3-.9 0-1.7.7-2.3z"/></svg><bdi dir="ltr">+20 106 790 8253</bdi></a>
       </div>
     </footer>
-    <p class="dev-note">مبادرة مستقلة لتبادل أكواد تحدي نسك، لا تتبع تطبيق نسك ولا أي جهة رسمية.</p>
+    <p class="dev-note" data-i18n="devNote">مبادرة مستقلة لتبادل أكواد تحدي نسك، لا تتبع تطبيق نسك ولا أي جهة رسمية.</p>
+    <p class="legal"><a href="#privacy" data-dlg="privacyDlg" data-i18n="privacy">سياسة الخصوصية</a><a href="#terms" data-dlg="termsDlg" data-i18n="terms">شروط الاستخدام</a></p>
   </div>
 </main>
 <dialog id="addDlg" aria-labelledby="addTitle">
-  <h2 id="addTitle">أضف كودك</h2>
-  <label for="addInput">الصق كود أو أكتر، أو حتى تعليقات فيسبوك كاملة — بناخد الأكواد بس والمكرر بيتخطى.</label>
+  <h2 id="addTitle" data-i18n="addTitle">أضف كودك</h2>
+  <label for="addInput" data-i18n="addLabel">الصق كود أو أكتر، أو حتى تعليقات فيسبوك كاملة — بناخد الأكواد بس والمكرر بيتخطى.</label>
   <textarea id="addInput" placeholder="NG-XXXXXXXX" spellcheck="false"></textarea>
   <p id="addMsg" role="status" style="color:#f07178;font-size:13px;margin:8px 0 0"></p>
   <div class="acts">
-    <button type="button" class="go" id="addGo" onclick="addCodes()">إضافة</button>
-    <button type="button" onclick="document.getElementById('addDlg').close()">إلغاء</button>
+    <button type="button" class="go" id="addGo" onclick="addCodes()" data-i18n="addGo">إضافة</button>
+    <button type="button" onclick="document.getElementById('addDlg').close()" data-i18n="cancel">إلغاء</button>
   </div>
+</dialog>
+<dialog id="privacyDlg" class="legal-dlg" aria-labelledby="privacyDlgT">
+  <h2 id="privacyDlgT" data-i18n="privacy">سياسة الخصوصية</h2>
+  <ul data-i18n="privacyBody"><li>الصفحة مش بتطلب اسم ولا إيميل ولا رقم موبايل، ومفيش تسجيل دخول.</li><li>الأكواد اللي فتحتها ولغتك بيتحفظوا على جهازك بس (في المتصفح)، عشان الكود ميرجعلكش تاني.</li><li>بنعدّ الزوار والضغطات على الأزرار بمعرّف عشوائي محفوظ في متصفحك، من غير أي بيانات شخصية.</li><li>الأكواد اللي بتضيفها بتظهر لكل الناس، فمتضيفش غير أكواد نسك.</li><li>الصفحة بتستخدم خدمات من جوجل (البيانات والخطوط) وجيت هب (الاستضافة)، ودول ليهم سياساتهم الخاصة.</li><li>عايز تمسح كودك أو عندك سؤال؟ كلّمنا على واتساب أو فيسبوك من أسفل الصفحة.</li></ul>
+  <div class="acts"><button type="button" class="go" onclick="this.closest('dialog').close()" data-i18n="close">تمام</button></div>
+</dialog>
+<dialog id="termsDlg" class="legal-dlg" aria-labelledby="termsDlgT">
+  <h2 id="termsDlgT" data-i18n="terms">شروط الاستخدام</h2>
+  <ul data-i18n="termsBody"><li>الصفحة مجانية ومبادرة شخصية، ومش تابعة لتطبيق نسك ولا لأي جهة رسمية.</li><li>مش بنضمن إن كل كود شغال، ولا إن استخدام الأكواد بيضمن الفوز؛ شروط التحدي بتحددها نسك.</li><li>ضيف أكواد نسك الحقيقية بس؛ أي محتوى تاني أو إساءة استخدام ممكن يتشال.</li><li>بتستخدم الصفحة على مسؤوليتك، وممكن نعدّل الشروط دي في أي وقت.</li></ul>
+  <div class="acts"><button type="button" class="go" onclick="this.closest('dialog').close()" data-i18n="close">تمام</button></div>
 </dialog>
 <div class="toast" id="toast" role="status"></div>
 <script>
@@ -256,6 +286,14 @@
   var OPENED_KEY = 'app_opened_v1', COUNTED_KEY = 'app_counted_v1', SHOW_KEY = 'app_showdone_v1', CACHE_KEY = 'app_cache_v1';
   var CHUNK = 60;
   if(!window.AndroidApp) document.body.classList.add('web');
+  // Translations (browser only) live in i18n.js; Arabic is the page itself, so T() falls back to it.
+  var I18N = {}, LANG = 'ar';
+  function T(k, ar){ return (LANG !== 'ar' && I18N[LANG] && I18N[LANG][k]) || ar; }
+  // privacy / terms links open their dialog
+  document.addEventListener('click', function(e){ var a = e.target.closest('[data-dlg]'); if(a){ e.preventDefault(); document.getElementById(a.dataset.dlg).showModal(); } });
+  // FAQ: one question open at a time (details name="faq" does it natively; this covers older browsers)
+  document.querySelectorAll('.faq details').forEach(function(d){ d.addEventListener('toggle', function(){
+    if(d.open) document.querySelectorAll('.faq details[open]').forEach(function(o){ if(o !== d) o.open = false; }); }); });
   // Click counter (browser only, the owner's own clicks aren't counted). keepalive: share links leave the page.
   function ev(name){
     if(document.body.classList.contains('web') && !read('web_admin')) fetch(API + '?api=ev&e=' + name, { keepalive: true }).catch(function(){});
@@ -279,12 +317,12 @@
   function sharePage(){
     ev('share');
     // Facebook/Messenger/Instagram drop pre-filled text by policy, so the full text is also put on the clipboard to paste.
-    copyText(SHARE_TEXT + '\n' + PAGE_URL, 'النص اتنسخ — لو مش ظاهر في المشاركة (زي فيسبوك)، الصقه.');
-    if(navigator.share) return navigator.share({ title: SHARE_TITLE, text: SHARE_TEXT, url: PAGE_URL }).catch(function(e){ if(e.name !== 'AbortError') shareLinks(); });
+    copyText(T('shareText', SHARE_TEXT) + '\n' + PAGE_URL, T('shareCopied', 'النص اتنسخ — لو مش ظاهر في المشاركة (زي فيسبوك)، الصقه.'));
+    if(navigator.share) return navigator.share({ title: T('shareTitle', SHARE_TITLE), text: T('shareText', SHARE_TEXT), url: PAGE_URL }).catch(function(e){ if(e.name !== 'AbortError') shareLinks(); });
     shareLinks();
   }
   function shareLinks(){
-    var u = encodeURIComponent(PAGE_URL), t = encodeURIComponent(SHARE_TEXT);
+    var u = encodeURIComponent(PAGE_URL), t = encodeURIComponent(T('shareText', SHARE_TEXT));
     document.getElementById('shWa').href = 'https://wa.me/?text=' + t + '%0A' + u;
     document.getElementById('shFb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + u;
     document.getElementById('shX').href = 'https://twitter.com/intent/tweet?text=' + t + '&url=' + u;
@@ -293,7 +331,7 @@
     document.querySelector('.share-btn').setAttribute('aria-expanded', open);
   }
   function copyText(s, msg){
-    var ok = function(){ toast(msg || 'تم نسخ الرابط'); };
+    var ok = function(){ toast(msg || T('copied', 'تم نسخ الرابط')); };
     if(navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(s).then(ok, old);
     old();
     function old(){ var t = document.createElement('textarea'); t.value = s; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove(); ok(); }
@@ -303,15 +341,15 @@
     // errors go inside the dialog: a modal dialog covers the page toast
     var input = document.getElementById('addInput'), btn = document.getElementById('addGo'), msg = document.getElementById('addMsg');
     msg.textContent = '';
-    if(!input.value.trim()) return msg.textContent = 'الصق كود واحد على الأقل.';
-    btn.disabled = true; btn.textContent = 'جاري الإضافة…';
+    if(!input.value.trim()) return msg.textContent = T('addEmpty', 'الصق كود واحد على الأقل.');
+    btn.disabled = true; btn.textContent = T('adding', 'جاري الإضافة…');
     fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: input.value }).then(function(r){ return r.json(); }).then(function(r){
       if(!r.ok) return msg.textContent = r.error || 'تعذر إضافة الأكواد.';
       ev('add_ok');
-      toast('اتضاف ' + r.addedCount + ' كود' + (r.duplicateCount ? '، و' + r.duplicateCount + ' موجودين قبل كده' : '') + ' ✓');
+      toast(T('added', 'اتضاف {n} كود').replace('{n}', r.addedCount) + (r.duplicateCount ? T('addedDup', '، و{d} موجودين قبل كده').replace('{d}', r.duplicateCount) : '') + ' ✓');
       input.value = ''; document.getElementById('addDlg').close(); load();
-    }).catch(function(){ msg.textContent = 'تعذر الإضافة، اتأكد من الإنترنت.'; })
-      .then(function(){ btn.disabled = false; btn.textContent = 'إضافة'; });
+    }).catch(function(){ msg.textContent = T('addNet', 'تعذر الإضافة، اتأكد من الإنترنت.'); })
+      .then(function(){ btn.disabled = false; btn.textContent = T('addGo', 'إضافة'); });
   }
   function toast(m){ var t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(function(){ t.classList.remove('show'); }, 2400); }
 
@@ -365,9 +403,9 @@
   }
   function openNext(){
     ev('next');
-    if(!codes.length) return toast('لحظة، الأكواد لسه بتتحمّل…');
+    if(!codes.length) return toast(T('loading', 'لحظة، الأكواد لسه بتتحمّل…'));
     var nx = nextCode();
-    if(nx) openCode(nx); else toast('فتحت كل الأكواد.');
+    if(nx) openCode(nx); else toast(T('allOpened', 'فتحت كل الأكواد.'));
   }
   // header is fixed, so the page starts below it
   function pad(){ document.body.style.paddingTop = document.querySelector('header').offsetHeight + 'px'; }
@@ -397,8 +435,8 @@
       syncMine(d.mine); delete d.mine;
       store(CACHE_KEY, JSON.stringify(d)); apply(d);
     }).catch(function(){
-      if(codes.length) return toast('مفيش اتصال، دي آخر نسخة محفوظة.');
-      if(document.body.classList.contains('web')) toast('تعذر تحميل الأكواد، اتأكد من الإنترنت واضغط ⟳.'); // the list (and its retry button) is hidden in the browser
+      if(codes.length) return toast(T('offline', 'مفيش اتصال، دي آخر نسخة محفوظة.'));
+      if(document.body.classList.contains('web')) toast(T('loadFail', 'تعذر تحميل الأكواد، اتأكد من الإنترنت واضغط ⟳.')); // the list (and its retry button) is hidden in the browser
       document.getElementById('list').innerHTML = '<div class="msg">تعذر تحميل الأكواد، اتأكد من الإنترنت.<br><button class="open" onclick="load()">حاول تاني</button></div>';
     });
   }
@@ -453,7 +491,7 @@
     }
     function play(on){
       clearInterval(timer); g.classList.toggle('auto', on);
-      playBtn.textContent = on ? '⏸ إيقاف' : '▶ تشغيل'; playBtn.setAttribute('aria-pressed', on);
+      playBtn.textContent = on ? T('pause', '⏸ إيقاف') : T('play', '▶ تشغيل'); playBtn.setAttribute('aria-pressed', on);
       if(on) timer = setInterval(function(){ show(cur + 1); }, 6000);
     }
     for(var k = 0; k < steps.length; k++) (function(k){ steps[k].querySelector('button').onclick = function(){ play(false); show(k); }; })(k);
@@ -467,5 +505,6 @@
   try{ var cached = JSON.parse(read(CACHE_KEY) || 'null'); if(cached) apply(cached); }catch(e){}
   load();
 </script>
+<script src="i18n.js" defer></script>
 </body>
 </html>
