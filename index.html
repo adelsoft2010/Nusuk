@@ -140,8 +140,7 @@
   var DEV = '';
   try{ if(window.AndroidApp && AndroidApp.deviceId) DEV = String(AndroidApp.deviceId() || '').toLowerCase().replace(/[^a-z0-9]/g, ''); }catch(e){}
   var DEVQ = DEV.length >= 6 ? '&dev=' + DEV : '';
-  // pinned codes are known up front, so a press before the list loads still opens them first (the server sends the same two)
-  var pinned = ['NG-6cxFaqzt', 'NG-8KLKG8zg'], codes = [], opens = {}, opened = loadSet(OPENED_KEY), shown = 0, visible = [];
+  var pinned = [], codes = [], opens = {}, opened = loadSet(OPENED_KEY), shown = 0, visible = [];
 
   function store(k, v){ try{ v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); }catch(e){} }
   function read(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
@@ -195,9 +194,12 @@
       '</div><div class="sub">' + sub + '</div></div><button class="open" data-c="' + c + '" aria-label="فتح ' + c + '">فتح</button></div>';
   }
 
-  // Next = first code not opened on this device: pinned first, then newest to oldest.
+  // Next = first code not opened on this device, in this order: 3 newest codes, the priority codes, then the rest.
+  // The first code opened right after Nusuk starts often doesn't register, so the priority ones come 4th-6th.
+  var PRIORITY = ['NG-6cxFaqzt', 'NG-8KLKG8zg', 'NG-m9MfCxg8'];
   function nextCode(){
-    var all = pinned.concat(codes);
+    var rest = pinned.concat(codes).filter(function(c){ return PRIORITY.indexOf(c) === -1; });
+    var all = rest.slice(0, 3).concat(PRIORITY, rest.slice(3));
     for(var i = 0; i < all.length; i++) if(!opened[all[i]]) return all[i];
     return null;
   }
@@ -236,6 +238,7 @@
   }
   function openNext(){
     ev('next');
+    if(!codes.length) return toast('لحظة، الأكواد لسه بتتحمّل…');
     var nx = nextCode();
     if(nx) openCode(nx); else toast('فتحت كل الأكواد.');
   }
