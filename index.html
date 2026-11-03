@@ -446,6 +446,7 @@
       peeking = false;
       if(!d.ok){ if(d.slow) toast(T('slow', 'ضغطات كتير ورا بعض، استنى دقيقة وكمّل.')); return; }
       webLoaded = true; webTotal = d.total; webDone = d.opened + webPending;
+      store('web_counts', webTotal + ',' + d.opened);   // shown instantly on the next visit
       webQueue = d.codes;
       // codes this browser opened that the server hasn't recorded yet: tell it, then ask again (a few times at most)
       var stale = d.codes.filter(function(c){ return opened[c]; });
@@ -518,6 +519,19 @@
     (function step(t){ var k = Math.min(1, (t - t0) / 700); el.innerHTML = seg(fmt(from + (to - from) * (1 - Math.pow(1 - k, 3))));
       if(k < 1) el._raf = requestAnimationFrame(step); })(t0);
   }
+  // Before the first numbers arrive (browser): dim 8s in every card, and the total races upward until it lands.
+  if(WEB){
+    ['sDone', 'sLeft', 'sTotal'].forEach(function(id){ document.getElementById(id).innerHTML = seg('88,888').replace(/sg on/g, 'sg off'); });
+    var last = (read('web_counts') || '').split(',').map(Number);
+    if(last[0] > 0){ countTo('sTotal', last[0]); countTo('sDone', last[1] || 0); countTo('sLeft', Math.max(0, last[0] - (last[1] || 0))); }
+    else if(!REDUCED) (function(){
+      var n = 0, el = document.getElementById('sTotal'), spin = setInterval(function(){
+        if(webLoaded) return clearInterval(spin);   // render() takes over and rolls to the real total from here
+        n = (n + 211 + Math.floor(Math.random() * 600)) % 100000;
+        el.dataset.v = n; el.innerHTML = seg(n.toLocaleString('en-US'));
+      }, 45);
+    })();
+  }
   function more(){
     if(shown >= visible.length) return;
     var box = document.getElementById('list');
@@ -542,7 +556,7 @@
   // "Start over" (browser only): forget which codes this device opened, so every code comes up again
   function resetOpened(){
     opened = {}; store(OPENED_KEY, null);
-    if(WEB){ DEV = newCid(); DEVQ = '&dev=' + DEV; webQueue = []; webDone = 0; peek(); }   // a fresh id = a fresh start on the server
+    if(WEB){ DEV = newCid(); DEVQ = '&dev=' + DEV; webQueue = []; webDone = 0; store('web_counts', webTotal + ',0'); peek(); }   // a fresh id = a fresh start on the server
     document.getElementById('resetDlg').close(); render();
     toast(T('resetDone', 'تمام، كل الأكواد رجعت تظهر من جديد ✓'));
   }
