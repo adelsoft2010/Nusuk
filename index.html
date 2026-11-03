@@ -140,7 +140,8 @@
   var DEV = '';
   try{ if(window.AndroidApp && AndroidApp.deviceId) DEV = String(AndroidApp.deviceId() || '').toLowerCase().replace(/[^a-z0-9]/g, ''); }catch(e){}
   var DEVQ = DEV.length >= 6 ? '&dev=' + DEV : '';
-  var pinned = [], codes = [], opens = {}, opened = loadSet(OPENED_KEY), shown = 0, visible = [];
+  // pinned codes are known up front, so a press before the list loads still opens them first (the server sends the same two)
+  var pinned = ['NG-6cxFaqzt', 'NG-8KLKG8zg'], codes = [], opens = {}, opened = loadSet(OPENED_KEY), shown = 0, visible = [];
 
   function store(k, v){ try{ v == null ? localStorage.removeItem(k) : localStorage.setItem(k, v); }catch(e){} }
   function read(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
