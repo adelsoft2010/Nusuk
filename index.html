@@ -85,12 +85,21 @@
   .g-vbtn{display:none;color:var(--gold2);text-decoration:none;border:1px solid rgba(212,175,55,.55);border-radius:999px;padding:5px 12px;font:700 13px Tajawal,sans-serif;background:rgba(212,175,55,.08)}
   body.web .g-vbtn{display:inline-block}
   /* video explainer (browser only, bottom of the page) */
-  .vid{margin:26px auto 0;max-width:360px;scroll-margin-top:170px}
+  .vid{margin:26px auto 0;max-width:360px;scroll-margin-top:200px}
   .vid h2{margin:0 0 10px;font-size:17px;color:var(--gold2)}
   .vid-frame{position:relative;aspect-ratio:4/5;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:0 14px 34px rgba(0,0,0,.5)}
   .vid-frame video{position:absolute;inset:0;width:100%;height:100%;background:#000}
   .vid-yt{display:inline-block;margin-top:10px;color:var(--muted);font-size:13px}
   .vid-yt:hover{color:var(--gold2)}
+  .faq{margin:30px auto 0;max-width:560px;text-align:right}
+  .faq h2{margin:0 0 12px;font-size:17px;color:var(--gold2);text-align:center}
+  .faq details{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:8px}
+  .faq summary{cursor:pointer;padding:12px 14px;font-weight:700;font-size:14.5px;list-style:none;display:flex;justify-content:space-between;gap:10px;align-items:center}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--gold2);font-size:20px;line-height:1;flex:none}
+  .faq details[open] summary::after{content:"−"}
+  .faq summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:12px}
+  .faq details p{margin:0;padding:0 14px 14px;font-size:13.5px;line-height:1.9;color:#c9d3de}
   .g-wrap{display:flex;gap:14px;align-items:flex-start}
   .phone{position:relative;flex:0 0 150px;border-radius:22px;border:5px solid #2a3442;overflow:hidden;background:#0d1117;box-shadow:0 12px 30px -10px rgba(0,0,0,.8),0 0 0 1px #3a4656}
   .g-scr{position:relative;aspect-ratio:360/780;overflow:hidden;background:#000}
@@ -199,6 +208,17 @@
         <source src="video/nusuk-explainer.mp4" type="video/mp4"></video></div>
       <a class="vid-yt" href="https://youtube.com/shorts/0FacUVsagkU" target="_blank" rel="noopener noreferrer">أو شوفه على يوتيوب ↗</a>
     </section>
+    <section class="faq" aria-labelledby="faqTitle">
+      <h2 id="faqTitle">أسئلة شائعة عن أكواد مفاتيح نسك</h2>
+      <details><summary>ما هي أكواد إحالة نسك؟</summary><p>أكواد بتبدأ بـ <bdi>NG-</bdi> وبعدها ٨ حروف وأرقام، كل مشترك في تحدي نسك عنده كود. الصفحة دي بتجمع أكواد الناس في مكان واحد، وكل كود تتحقق منه في نسك بيضيفلك مفتاح.</p></details>
+      <details><summary>كيف أستخدم كود تطبيق نسك؟</summary><p>افتح تطبيق نسك الأول وسيبه مفتوح، وارجع هنا ودوس «افتح كود جديد». هينقلك لنسك والكود مكتوب جاهز، دوس «تحقق من الرمز». وبعدها ارجع هنا وافتح كود جديد تاني.</p></details>
+      <details><summary>هل كود مفاتيح نسك هو نفسه كود الإحالة؟</summary><p>أيوه، ناس كتير بتسميه «كود مفاتيح نسك» أو «رمز المفتاح»، وهو نفسه كود الإحالة اللي بيبدأ بـ <bdi>NG-</bdi>. وعدد المفاتيح وشروطها بتحددها نسك نفسها.</p></details>
+      <details><summary>كيف يعمل تبادل أكواد تحدي نسك هنا؟</summary><p>كل واحد بيضيف كوده، والأكواد بتتجمع كمان تلقائياً كل يوم. وزر «افتح كود جديد» بيفتحلك كل مرة كود ما فتحتهوش قبل كده. الصفحة مجانية ومن غير حساب ولا تسجيل.</p></details>
+      <details><summary>لماذا لا يعمل بعض أكواد مفاتيح تطبيق نسك؟</summary><p>ممكن الكود يكون مكتوب غلط أو مبقاش متاح، والصفحة مش بتقدر تتأكد من كل كود جوه نسك. لو ظهرت رسالة خطأ متقلقش: ارجع هنا وافتح كود جديد.</p></details>
+      <details><summary>ما جوائز مسابقة نسك؟</summary><p>حسب إعلانات التحدي: ١٠٠ رحلة عمرة مجانية لشخصين، و١٠ آلاف كرتونة مياه زمزم. الشروط والتفاصيل الرسمية في تطبيق نسك، والأكواد لوحدها مش بتضمن الفوز.</p></details>
+      <details><summary>كيف أضيف كودي إلى القائمة؟</summary><p>دوس «أضف كودك» فوق والصق الكود أو رابطه، أو حتى تعليقات كاملة فيها أكواد. بناخد الأكواد بس، والمكرر مش بيتضاف تاني.</p></details>
+      <details><summary>هل هذه الصفحة تابعة لتطبيق نسك؟</summary><p>لا. دي مبادرة شخصية مستقلة، ومش تابعة لتطبيق نسك ولا لوزارة الحج والعمرة ولا لأي جهة رسمية.</p></details>
+    </section>
     <p class="credit">برمجة <a data-ev="credit" href="https://www.facebook.com/AdelSoft2010/" target="_blank" rel="noopener noreferrer">عادل النهر</a></p>
   </div>
 </main>
@@ -224,6 +244,8 @@
     if(document.body.classList.contains('web') && !read('web_admin')) fetch(API + '?api=ev&e=' + name, { keepalive: true }).catch(function(){});
   }
   document.addEventListener('click', function(e){ var a = e.target.closest('[data-ev]'); if(a) ev(a.dataset.ev); });
+  // "Watch the video": scroll to it and start it right away (the click counts as the gesture browsers need for sound).
+  document.querySelector('.g-vbtn').addEventListener('click', function(){ var v = document.querySelector('#howVideo video'); var p = v.play(); if(p) p.catch(function(){}); });
   // ANDROID_ID stays the same after uninstall/reinstall (same signing key), so the server can give back this phone's opened codes.
   var DEV = '';
   try{ if(window.AndroidApp && AndroidApp.deviceId) DEV = String(AndroidApp.deviceId() || '').toLowerCase().replace(/[^a-z0-9]/g, ''); }catch(e){}
