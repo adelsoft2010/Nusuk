@@ -13,7 +13,7 @@
 <meta property="og:image" content="https://adelsoft2010.github.io/Nusuk/img/icon192.png">
 <meta property="og:locale" content="ar_AR">
 <meta name="twitter:card" content="summary">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
   :root{--bg:#0b0f14;--panel:#121821;--panel2:#18202b;--line:#233041;--text:#e8edf3;--muted:#8a98a8;--gold:#d4af37;--gold2:#f0d78c;--green:#3fb98a}
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -33,9 +33,12 @@
   @media (prefers-reduced-motion:reduce){header .note,header .stats{transition:none}}
   .stat{display:inline-flex;align-items:center;gap:6px;padding:2px 4px 2px 10px;padding-inline:10px 4px;border-radius:999px;background:var(--panel);border:1px solid var(--line);font-size:12px;color:var(--muted);white-space:nowrap}
   /* digital readout: dark display, glowing fixed-width digits */
-  .stat b{direction:ltr;min-width:2.2em;text-align:center;padding:1px 7px;border-radius:999px;background:#05080c;box-shadow:inset 0 0 0 1px #1d2836;font:600 12.5px Orbitron,ui-monospace,Consolas,monospace;letter-spacing:.6px;font-variant-numeric:tabular-nums;color:var(--gold2);text-shadow:0 0 6px rgba(240,215,140,.55)}
-  .stat.done{border-color:rgba(63,185,138,.45)}
-  .stat.done b{color:#5fe0a8;text-shadow:0 0 6px rgba(95,224,168,.6)}
+  /* seven-segment display: lit segments glow green, unlit ones stay faintly visible like a real LCD */
+  .stat b{direction:ltr;display:inline-flex;align-items:center;padding:4px 8px;border-radius:7px;background:#040604;box-shadow:inset 0 0 0 1px #1c261c}
+  .stat b svg{height:15px;display:block}
+  .sg.off{fill:#132013}
+  .sg.on{fill:#6ae05a}
+  .stat.done{border-color:rgba(106,224,90,.45)}
   .stat b.tick{animation:tick .35s ease-out}
   @keyframes tick{40%{transform:scale(1.12);filter:brightness(1.4)}}
   @media (prefers-reduced-motion:reduce){.stat b.tick{animation:none}}
@@ -205,10 +208,10 @@
   </div>
   <button class="next" id="nextBtn" onclick="openNext()" aria-describedby="nextNote" data-i18n="next">افتح كود جديد</button>
   <p class="note"><span id="nextNote" data-i18n="nextNote">كل ضغطة بتفتحلك كود جديد، والكود اللي فتحته مش هيرجعلك تاني.</span></p>
-  <div class="stats" role="status" aria-live="polite">
-    <span class="stat done"><b id="sDone">0</b> <span data-i18n="stDone">فتحتها</span></span>
-    <span class="stat"><b id="sLeft">—</b> <span data-i18n="stLeft">لسه ما اتفتحتش</span></span>
-    <span class="stat"><b id="sTotal">—</b> <span data-i18n="stTotal">كل الأكواد</span></span>
+  <div class="stats">
+    <span class="stat done"><b id="sDone" role="img">0</b> <span data-i18n="stDone">فتحتها</span></span>
+    <span class="stat"><b id="sLeft" role="img">—</b> <span data-i18n="stLeft">لسه ما اتفتحتش</span></span>
+    <span class="stat"><b id="sTotal" role="img">—</b> <span data-i18n="stTotal">كل الأكواد</span></span>
     <button type="button" class="reset-btn" onclick="document.getElementById('resetDlg').showModal()" data-i18n="resetBtn">↺ ابدأ من الأول</button>
   </div>
 </header>
@@ -450,14 +453,39 @@
   }
   // Counter: rolls from the shown value to the new one (0.7 s, ease-out); instant with reduced motion.
   var REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Seven-segment digits, same drawing as the Mihrab TV launcher clock: slim upright digits, chamfered bars
+  // (A top, B/C right, D bottom, E/F left, G middle), unlit bars kept as a faint ghost so changes read.
+  var SEG_MAP = { '0': 'ABCDEF', '1': 'BC', '2': 'ABDEG', '3': 'ABCDG', '4': 'BCFG', '5': 'ACDFG', '6': 'ACDEFG', '7': 'ABC', '8': 'ABCDEFG', '9': 'ABCDFG' };
+  var SEG_T = 20, SEG_LH = 72, SEG_LV = 80, SEG_DW = 92, SEG_DH = 180, SEG_GAP = 24, SEG_SEP = 24;
+  var SEGS = (function(){
+    var h = SEG_T / 2, g = 2, cxL = h, cxR = SEG_DW - h, cxM = SEG_DW / 2, cyA = h, cyG = SEG_DH / 2, cyD = SEG_DH - h;
+    var cyU = (cyA + cyG) / 2, cyLo = (cyG + cyD) / 2;
+    function hbar(cx, cy){ var L = SEG_LH / 2; return [[cx - L + g, cy], [cx - L + h + g, cy - h], [cx + L - h - g, cy - h], [cx + L - g, cy], [cx + L - h - g, cy + h], [cx - L + h + g, cy + h]]; }
+    function vbar(cx, cy){ var L = SEG_LV / 2; return [[cx, cy - L + g], [cx + h, cy - L + h + g], [cx + h, cy + L - h - g], [cx, cy + L - g], [cx - h, cy + L - h - g], [cx - h, cy - L + h + g]]; }
+    var o = { A: hbar(cxM, cyA), B: vbar(cxR, cyU), C: vbar(cxR, cyLo), D: hbar(cxM, cyD), E: vbar(cxL, cyLo), F: vbar(cxL, cyU), G: hbar(cxM, cyG) };
+    Object.keys(o).forEach(function(k){ o[k] = o[k].map(function(q){ return q[0] + ',' + q[1]; }).join(' '); });
+    return o;
+  })();
+  function seg(text){
+    var x = 0, out = '';
+    for(var i = 0; i < text.length; i++){
+      var ch = text.charAt(i);
+      if(ch === ','){ out += '<rect class="sg on" x="' + (x + 2) + '" y="' + (SEG_DH - 22) + '" width="20" height="22"/>'; x += SEG_SEP + SEG_GAP; continue; }
+      var lit = SEG_MAP[ch] || '';
+      out += '<g transform="translate(' + x + ',0)">' + 'ABCDEFG'.split('').map(function(k){ return '<polygon class="sg ' + (lit.indexOf(k) > -1 ? 'on' : 'off') + '" points="' + SEGS[k] + '"/>'; }).join('') + '</g>';
+      x += SEG_DW + SEG_GAP;
+    }
+    x -= SEG_GAP;
+    return '<svg viewBox="0 0 ' + x + ' ' + SEG_DH + '" style="width:' + (x / SEG_DH * 15).toFixed(1) + 'px" aria-hidden="true">' + out + '</svg>';
+  }
   function countTo(id, to){
     var el = document.getElementById(id), from = Number(el.dataset.v || 0), fmt = function(n){ return Math.round(n).toLocaleString('en-US'); };
     if(from === to && el.dataset.v) return;
-    el.dataset.v = to; cancelAnimationFrame(el._raf);
-    if(REDUCED){ el.textContent = fmt(to); return; }
+    el.dataset.v = to; cancelAnimationFrame(el._raf); el.setAttribute('aria-label', fmt(to));
+    if(REDUCED){ el.innerHTML = seg(fmt(to)); return; }
     el.classList.remove('tick'); void el.offsetWidth; el.classList.add('tick');
     var t0 = performance.now();
-    (function step(t){ var k = Math.min(1, (t - t0) / 700); el.textContent = fmt(from + (to - from) * (1 - Math.pow(1 - k, 3)));
+    (function step(t){ var k = Math.min(1, (t - t0) / 700); el.innerHTML = seg(fmt(from + (to - from) * (1 - Math.pow(1 - k, 3))));
       if(k < 1) el._raf = requestAnimationFrame(step); })(t0);
   }
   function more(){
