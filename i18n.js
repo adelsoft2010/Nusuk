@@ -33,7 +33,7 @@
     devBy: 'Developed by', devName: 'Adel Hamza Mohamed El-Nahr',
     devNote: 'An independent initiative for exchanging Nusuk challenge codes, not affiliated with the Nusuk app or any official body.',
     privacy: 'Privacy policy', terms: 'Terms of use', close: 'OK',
-    privacyBody: '<li>The page doesn\'t ask for your name, email or phone number, and there is no sign-in.</li><li>The codes you opened and your language are saved only on your device (in the browser), so a code doesn\'t come back to you.</li><li>We count visitors and button taps with a random ID kept in your browser, without any personal data.</li><li>Codes you add are shown to everyone, so only add Nusuk codes.</li><li>The page uses services from Google (data and fonts) and GitHub (hosting), which have their own policies.</li><li>Want your code removed or have a question? Contact us on WhatsApp or Facebook at the bottom of the page.</li>',
+    privacyBody: '<li>The page doesn\'t ask for your name, email or phone number, and there is no sign-in.</li><li>The codes you opened and your language are saved only on your device (in the browser), so a code doesn\'t come back to you.</li><li>We count visitors and button taps with a random ID kept in your browser, without any personal data.</li><li>To open the page in your country\'s language, we look up only your country from your internet address through <bdi>country.is</bdi>; we don\'t store the address.</li><li>Codes you add are shown to everyone, so only add Nusuk codes.</li><li>The page uses services from Google (data and fonts) and GitHub (hosting), which have their own policies.</li><li>Want your code removed or have a question? Contact us on WhatsApp or Facebook at the bottom of the page.</li>',
     termsBody: '<li>The page is free and a personal initiative, not affiliated with the Nusuk app or any official body.</li><li>We don\'t guarantee that every code works, or that using codes guarantees winning; the challenge rules are set by Nusuk.</li><li>Only add real Nusuk codes; any other content or misuse may be removed.</li><li>You use the page at your own responsibility, and these terms may change at any time.</li>',
     addTitle: 'Add your code', addLabel: 'Paste one code or more, or even whole Facebook comments; only the codes are kept and duplicates are skipped.',
     addGo: 'Add', cancel: 'Cancel', copied: 'Link copied', shareCopied: 'Text copied. If it doesn\'t show in the share (like on Facebook), paste it.',
@@ -68,7 +68,7 @@
     devBy: 'Desarrollado por', devName: 'Adel Hamza Mohamed El-Nahr',
     devNote: 'Una iniciativa independiente para intercambiar códigos del reto Nusuk, sin relación con la app Nusuk ni con ningún organismo oficial.',
     privacy: 'Política de privacidad', terms: 'Condiciones de uso', close: 'Vale',
-    privacyBody: '<li>La página no pide nombre, correo ni teléfono, y no hay inicio de sesión.</li><li>Los códigos que abriste y tu idioma se guardan solo en tu dispositivo (en el navegador), para que un código no te vuelva a salir.</li><li>Contamos visitas y toques en botones con un identificador aleatorio guardado en tu navegador, sin datos personales.</li><li>Los códigos que añades los ve todo el mundo, así que añade solo códigos de Nusuk.</li><li>La página usa servicios de Google (datos y fuentes) y GitHub (alojamiento), que tienen sus propias políticas.</li><li>¿Quieres borrar tu código o tienes una pregunta? Escríbenos por WhatsApp o Facebook al final de la página.</li>',
+    privacyBody: '<li>La página no pide nombre, correo ni teléfono, y no hay inicio de sesión.</li><li>Los códigos que abriste y tu idioma se guardan solo en tu dispositivo (en el navegador), para que un código no te vuelva a salir.</li><li>Contamos visitas y toques en botones con un identificador aleatorio guardado en tu navegador, sin datos personales.</li><li>Para abrir la página en el idioma de tu país, consultamos solo tu país a partir de tu dirección de internet mediante <bdi>country.is</bdi>; no guardamos la dirección.</li><li>Los códigos que añades los ve todo el mundo, así que añade solo códigos de Nusuk.</li><li>La página usa servicios de Google (datos y fuentes) y GitHub (alojamiento), que tienen sus propias políticas.</li><li>¿Quieres borrar tu código o tienes una pregunta? Escríbenos por WhatsApp o Facebook al final de la página.</li>',
     termsBody: '<li>La página es gratuita y una iniciativa personal, sin relación con la app Nusuk ni con ningún organismo oficial.</li><li>No garantizamos que todos los códigos funcionen, ni que usarlos garantice ganar; las reglas del reto las fija Nusuk.</li><li>Añade solo códigos reales de Nusuk; cualquier otro contenido o abuso puede eliminarse.</li><li>Usas la página bajo tu responsabilidad, y estas condiciones pueden cambiar en cualquier momento.</li>',
     addTitle: 'Añade tu código', addLabel: 'Pega uno o varios códigos, o incluso comentarios enteros de Facebook; solo se guardan los códigos y los duplicados se omiten.',
     addGo: 'Añadir', cancel: 'Cancelar', copied: 'Enlace copiado', shareCopied: 'Texto copiado. Si no aparece al compartir (como en Facebook), pégalo.',
@@ -103,7 +103,7 @@
     devBy: 'Développé par', devName: 'Adel Hamza Mohamed El-Nahr',
     devNote: 'Une initiative indépendante d\'échange de codes du défi Nusuk, sans lien avec l\'application Nusuk ni aucun organisme officiel.',
     privacy: 'Politique de confidentialité', terms: 'Conditions d\'utilisation', close: 'OK',
-    privacyBody: '<li>La page ne demande ni nom, ni e-mail, ni numéro de téléphone, et il n\'y a pas de connexion.</li><li>Les codes que vous avez ouverts et votre langue sont enregistrés uniquement sur votre appareil (dans le navigateur), pour qu\'un code ne vous revienne pas.</li><li>Nous comptons les visites et les appuis sur les boutons avec un identifiant aléatoire gardé dans votre navigateur, sans donnée personnelle.</li><li>Les codes que vous ajoutez sont visibles par tous : n\'ajoutez que des codes Nusuk.</li><li>La page utilise des services de Google (données et polices) et de GitHub (hébergement), qui ont leurs propres politiques.</li><li>Vous voulez supprimer votre code ou poser une question ? Contactez-nous sur WhatsApp ou Facebook en bas de la page.</li>',
+    privacyBody: '<li>La page ne demande ni nom, ni e-mail, ni numéro de téléphone, et il n\'y a pas de connexion.</li><li>Les codes que vous avez ouverts et votre langue sont enregistrés uniquement sur votre appareil (dans le navigateur), pour qu\'un code ne vous revienne pas.</li><li>Nous comptons les visites et les appuis sur les boutons avec un identifiant aléatoire gardé dans votre navigateur, sans donnée personnelle.</li><li>Pour ouvrir la page dans la langue de votre pays, nous déterminons seulement votre pays à partir de votre adresse internet via <bdi>country.is</bdi> ; nous ne conservons pas l\'adresse.</li><li>Les codes que vous ajoutez sont visibles par tous : n\'ajoutez que des codes Nusuk.</li><li>La page utilise des services de Google (données et polices) et de GitHub (hébergement), qui ont leurs propres politiques.</li><li>Vous voulez supprimer votre code ou poser une question ? Contactez-nous sur WhatsApp ou Facebook en bas de la page.</li>',
     termsBody: '<li>La page est gratuite et une initiative personnelle, sans lien avec l\'application Nusuk ni aucun organisme officiel.</li><li>Nous ne garantissons pas que chaque code fonctionne, ni que les codes garantissent de gagner ; les règles du défi sont fixées par Nusuk.</li><li>N\'ajoutez que de vrais codes Nusuk ; tout autre contenu ou abus peut être supprimé.</li><li>Vous utilisez la page sous votre propre responsabilité, et ces conditions peuvent changer à tout moment.</li>',
     addTitle: 'Ajouter votre code', addLabel: 'Collez un ou plusieurs codes, voire des commentaires Facebook entiers ; seuls les codes sont gardés et les doublons ignorés.',
     addGo: 'Ajouter', cancel: 'Annuler', copied: 'Lien copié', shareCopied: 'Texte copié. S\'il n\'apparaît pas dans le partage (comme sur Facebook), collez-le.',
@@ -138,7 +138,7 @@
     devBy: '开发者', devName: 'Adel Hamza Mohamed El-Nahr',
     devNote: '一个交换 Nusuk 挑战代码的独立倡议，与 Nusuk 应用或任何官方机构无关。',
     privacy: '隐私政策', terms: '使用条款', close: '好的',
-    privacyBody: '<li>本页不要求姓名、邮箱或手机号，也没有登录。</li><li>你打开过的代码和语言只保存在你的设备上（浏览器中），以免代码再次出现。</li><li>我们用保存在浏览器中的随机标识统计访客和按钮点击，不含任何个人数据。</li><li>你添加的代码对所有人可见，请只添加 Nusuk 代码。</li><li>本页使用 Google（数据和字体）和 GitHub（托管）的服务，它们有各自的政策。</li><li>想删除你的代码或有疑问？请通过页面底部的 WhatsApp 或 Facebook 联系我们。</li>',
+    privacyBody: '<li>本页不要求姓名、邮箱或手机号，也没有登录。</li><li>你打开过的代码和语言只保存在你的设备上（浏览器中），以免代码再次出现。</li><li>我们用保存在浏览器中的随机标识统计访客和按钮点击，不含任何个人数据。</li><li>为了用你所在国家的语言打开页面，我们通过 <bdi>country.is</bdi> 仅根据你的网络地址判断国家，不保存该地址。</li><li>你添加的代码对所有人可见，请只添加 Nusuk 代码。</li><li>本页使用 Google（数据和字体）和 GitHub（托管）的服务，它们有各自的政策。</li><li>想删除你的代码或有疑问？请通过页面底部的 WhatsApp 或 Facebook 联系我们。</li>',
     termsBody: '<li>本页免费，是个人倡议，与 Nusuk 应用或任何官方机构无关。</li><li>我们不保证每个代码都有效，也不保证使用代码就能获奖；挑战规则由 Nusuk 决定。</li><li>请只添加真实的 Nusuk 代码；其他内容或滥用可能被删除。</li><li>使用本页风险自负，本条款可随时更改。</li>',
     addTitle: '添加你的代码', addLabel: '粘贴一个或多个代码，甚至整段 Facebook 评论；只保留代码，重复的会跳过。',
     addGo: '添加', cancel: '取消', copied: '链接已复制', shareCopied: '文字已复制。如果分享时没有显示（例如 Facebook），请粘贴。',
@@ -173,7 +173,7 @@
     devBy: 'تیار کردہ', devName: 'عادل حمزہ محمد النہر',
     devNote: 'نسک چیلنج کوڈز کے تبادلے کا ایک آزاد اقدام، جس کا نسک ایپ یا کسی سرکاری ادارے سے تعلق نہیں۔',
     privacy: 'رازداری کی پالیسی', terms: 'استعمال کی شرائط', close: 'ٹھیک ہے',
-    privacyBody: '<li>یہ صفحہ نام، ای میل یا فون نمبر نہیں مانگتا، اور کوئی لاگ ان نہیں۔</li><li>آپ کے کھولے گئے کوڈز اور زبان صرف آپ کے آلے (براؤزر) میں محفوظ ہوتے ہیں، تاکہ کوڈ دوبارہ نہ آئے۔</li><li>ہم زائرین اور بٹن دبانے کی گنتی آپ کے براؤزر میں محفوظ ایک بے ترتیب شناخت سے کرتے ہیں، بغیر کسی ذاتی ڈیٹا کے۔</li><li>آپ کے شامل کیے گئے کوڈز سب کو دکھائی دیتے ہیں، اس لیے صرف نسک کوڈز شامل کریں۔</li><li>یہ صفحہ گوگل (ڈیٹا اور فونٹس) اور گٹ ہب (ہوسٹنگ) کی خدمات استعمال کرتا ہے، جن کی اپنی پالیسیاں ہیں۔</li><li>اپنا کوڈ ہٹوانا ہے یا کوئی سوال ہے؟ صفحے کے نیچے واٹس ایپ یا فیس بک پر رابطہ کریں۔</li>',
+    privacyBody: '<li>یہ صفحہ نام، ای میل یا فون نمبر نہیں مانگتا، اور کوئی لاگ ان نہیں۔</li><li>آپ کے کھولے گئے کوڈز اور زبان صرف آپ کے آلے (براؤزر) میں محفوظ ہوتے ہیں، تاکہ کوڈ دوبارہ نہ آئے۔</li><li>ہم زائرین اور بٹن دبانے کی گنتی آپ کے براؤزر میں محفوظ ایک بے ترتیب شناخت سے کرتے ہیں، بغیر کسی ذاتی ڈیٹا کے۔</li><li>صفحہ آپ کے ملک کی زبان میں کھولنے کے لیے ہم <bdi>country.is</bdi> کے ذریعے آپ کے انٹرنیٹ پتے سے صرف ملک معلوم کرتے ہیں، اور پتہ محفوظ نہیں کرتے۔</li><li>آپ کے شامل کیے گئے کوڈز سب کو دکھائی دیتے ہیں، اس لیے صرف نسک کوڈز شامل کریں۔</li><li>یہ صفحہ گوگل (ڈیٹا اور فونٹس) اور گٹ ہب (ہوسٹنگ) کی خدمات استعمال کرتا ہے، جن کی اپنی پالیسیاں ہیں۔</li><li>اپنا کوڈ ہٹوانا ہے یا کوئی سوال ہے؟ صفحے کے نیچے واٹس ایپ یا فیس بک پر رابطہ کریں۔</li>',
     termsBody: '<li>یہ صفحہ مفت اور ذاتی اقدام ہے، جس کا نسک ایپ یا کسی سرکاری ادارے سے تعلق نہیں۔</li><li>ہم ضمانت نہیں دیتے کہ ہر کوڈ کام کرے گا یا کوڈز استعمال کرنے سے جیت یقینی ہے؛ چیلنج کی شرائط نسک طے کرتا ہے۔</li><li>صرف اصلی نسک کوڈز شامل کریں؛ کوئی اور مواد یا غلط استعمال ہٹایا جا سکتا ہے۔</li><li>آپ صفحہ اپنی ذمہ داری پر استعمال کرتے ہیں، اور یہ شرائط کسی بھی وقت بدل سکتی ہیں۔</li>',
     addTitle: 'اپنا کوڈ شامل کریں', addLabel: 'ایک یا زیادہ کوڈز پیسٹ کریں، یا فیس بک کے پورے کمنٹس بھی؛ صرف کوڈز رکھے جاتے ہیں اور دہرائے گئے چھوڑ دیے جاتے ہیں۔',
     addGo: 'شامل کریں', cancel: 'منسوخ', copied: 'لنک کاپی ہو گیا', shareCopied: 'متن کاپی ہو گیا۔ اگر شیئر میں نظر نہ آئے (جیسے فیس بک)، تو پیسٹ کریں۔',
@@ -208,7 +208,7 @@
     devBy: 'Dikembangkan oleh', devName: 'Adel Hamza Mohamed El-Nahr',
     devNote: 'Inisiatif independen untuk bertukar kode tantangan Nusuk, tidak terkait dengan aplikasi Nusuk atau lembaga resmi mana pun.',
     privacy: 'Kebijakan privasi', terms: 'Ketentuan penggunaan', close: 'Oke',
-    privacyBody: '<li>Halaman ini tidak meminta nama, email, atau nomor ponsel, dan tidak ada login.</li><li>Kode yang sudah kamu buka dan bahasamu hanya disimpan di perangkatmu (di browser), agar kode tidak muncul lagi.</li><li>Kami menghitung pengunjung dan ketukan tombol dengan ID acak yang disimpan di browsermu, tanpa data pribadi.</li><li>Kode yang kamu tambahkan terlihat oleh semua orang, jadi tambahkan kode Nusuk saja.</li><li>Halaman ini memakai layanan Google (data dan font) dan GitHub (hosting), yang punya kebijakan sendiri.</li><li>Ingin kodemu dihapus atau punya pertanyaan? Hubungi kami lewat WhatsApp atau Facebook di bagian bawah halaman.</li>',
+    privacyBody: '<li>Halaman ini tidak meminta nama, email, atau nomor ponsel, dan tidak ada login.</li><li>Kode yang sudah kamu buka dan bahasamu hanya disimpan di perangkatmu (di browser), agar kode tidak muncul lagi.</li><li>Kami menghitung pengunjung dan ketukan tombol dengan ID acak yang disimpan di browsermu, tanpa data pribadi.</li><li>Agar halaman terbuka dalam bahasa negaramu, kami hanya mengetahui negaramu dari alamat internetmu melalui <bdi>country.is</bdi>; alamatnya tidak kami simpan.</li><li>Kode yang kamu tambahkan terlihat oleh semua orang, jadi tambahkan kode Nusuk saja.</li><li>Halaman ini memakai layanan Google (data dan font) dan GitHub (hosting), yang punya kebijakan sendiri.</li><li>Ingin kodemu dihapus atau punya pertanyaan? Hubungi kami lewat WhatsApp atau Facebook di bagian bawah halaman.</li>',
     termsBody: '<li>Halaman ini gratis dan inisiatif pribadi, tidak terkait dengan aplikasi Nusuk atau lembaga resmi mana pun.</li><li>Kami tidak menjamin setiap kode berfungsi, atau bahwa memakai kode menjamin menang; aturan tantangan ditentukan oleh Nusuk.</li><li>Tambahkan hanya kode Nusuk asli; konten lain atau penyalahgunaan bisa dihapus.</li><li>Kamu memakai halaman ini atas tanggung jawabmu sendiri, dan ketentuan ini bisa berubah kapan saja.</li>',
     addTitle: 'Tambahkan kodemu', addLabel: 'Tempel satu kode atau lebih, bahkan seluruh komentar Facebook; hanya kode yang disimpan dan duplikat dilewati.',
     addGo: 'Tambah', cancel: 'Batal', copied: 'Tautan disalin', shareCopied: 'Teks disalin. Jika tidak muncul saat berbagi (seperti di Facebook), tempelkan.',
@@ -243,7 +243,7 @@
     devBy: 'विकसितकर्ता', devName: 'Adel Hamza Mohamed El-Nahr',
     devNote: 'नुसुक चैलेंज कोड के आदान-प्रदान की एक स्वतंत्र पहल, जिसका नुसुक ऐप या किसी आधिकारिक संस्था से संबंध नहीं।',
     privacy: 'गोपनीयता नीति', terms: 'उपयोग की शर्तें', close: 'ठीक है',
-    privacyBody: '<li>यह पेज नाम, ईमेल या फ़ोन नंबर नहीं माँगता, और कोई लॉग-इन नहीं है।</li><li>आपके खोले गए कोड और आपकी भाषा सिर्फ़ आपके डिवाइस (ब्राउज़र) में सहेजे जाते हैं, ताकि कोड दोबारा न आए।</li><li>हम विज़िटर और बटन टैप की गिनती आपके ब्राउज़र में रखी एक रैंडम आईडी से करते हैं, बिना किसी निजी डेटा के।</li><li>आपके जोड़े गए कोड सबको दिखते हैं, इसलिए सिर्फ़ नुसुक कोड जोड़ें।</li><li>यह पेज गूगल (डेटा और फ़ॉन्ट) और गिटहब (होस्टिंग) की सेवाएँ इस्तेमाल करता है, जिनकी अपनी नीतियाँ हैं।</li><li>अपना कोड हटवाना है या कोई सवाल है? पेज के नीचे व्हाट्सऐप या फ़ेसबुक पर संपर्क करें।</li>',
+    privacyBody: '<li>यह पेज नाम, ईमेल या फ़ोन नंबर नहीं माँगता, और कोई लॉग-इन नहीं है।</li><li>आपके खोले गए कोड और आपकी भाषा सिर्फ़ आपके डिवाइस (ब्राउज़र) में सहेजे जाते हैं, ताकि कोड दोबारा न आए।</li><li>हम विज़िटर और बटन टैप की गिनती आपके ब्राउज़र में रखी एक रैंडम आईडी से करते हैं, बिना किसी निजी डेटा के।</li><li>पेज आपके देश की भाषा में खोलने के लिए हम <bdi>country.is</bdi> के ज़रिए आपके इंटरनेट पते से सिर्फ़ देश पता करते हैं, और पता सहेजते नहीं।</li><li>आपके जोड़े गए कोड सबको दिखते हैं, इसलिए सिर्फ़ नुसुक कोड जोड़ें।</li><li>यह पेज गूगल (डेटा और फ़ॉन्ट) और गिटहब (होस्टिंग) की सेवाएँ इस्तेमाल करता है, जिनकी अपनी नीतियाँ हैं।</li><li>अपना कोड हटवाना है या कोई सवाल है? पेज के नीचे व्हाट्सऐप या फ़ेसबुक पर संपर्क करें।</li>',
     termsBody: '<li>यह पेज मुफ़्त और निजी पहल है, जिसका नुसुक ऐप या किसी आधिकारिक संस्था से संबंध नहीं।</li><li>हम गारंटी नहीं देते कि हर कोड काम करेगा या कोड इस्तेमाल करने से जीत पक्की है; चैलेंज के नियम नुसुक तय करता है।</li><li>सिर्फ़ असली नुसुक कोड जोड़ें; कोई और सामग्री या दुरुपयोग हटाया जा सकता है।</li><li>आप पेज अपनी ज़िम्मेदारी पर इस्तेमाल करते हैं, और ये शर्तें कभी भी बदल सकती हैं।</li>',
     addTitle: 'अपना कोड जोड़ें', addLabel: 'एक या ज़्यादा कोड पेस्ट करें, या फ़ेसबुक के पूरे कमेंट भी; सिर्फ़ कोड रखे जाते हैं और दोहराए गए छोड़ दिए जाते हैं।',
     addGo: 'जोड़ें', cancel: 'रद्द करें', copied: 'लिंक कॉपी हो गया', shareCopied: 'टेक्स्ट कॉपी हो गया। अगर शेयर में न दिखे (जैसे फ़ेसबुक), तो पेस्ट करें।',
@@ -278,7 +278,7 @@
     devBy: 'ডেভেলপার', devName: 'Adel Hamza Mohamed El-Nahr',
     devNote: 'নুসুক চ্যালেঞ্জ কোড বিনিময়ের একটি স্বাধীন উদ্যোগ, নুসুক অ্যাপ বা কোনো সরকারি সংস্থার সাথে সম্পর্কিত নয়।',
     privacy: 'গোপনীয়তা নীতি', terms: 'ব্যবহারের শর্তাবলি', close: 'ঠিক আছে',
-    privacyBody: '<li>এই পেজ নাম, ইমেইল বা ফোন নম্বর চায় না, এবং কোনো লগইন নেই।</li><li>আপনার খোলা কোড ও ভাষা শুধু আপনার ডিভাইসে (ব্রাউজারে) সংরক্ষিত থাকে, যাতে কোড আবার না আসে।</li><li>আমরা আপনার ব্রাউজারে রাখা একটি র‍্যান্ডম আইডি দিয়ে ভিজিটর ও বোতাম চাপ গণনা করি, কোনো ব্যক্তিগত তথ্য ছাড়া।</li><li>আপনার যোগ করা কোড সবাই দেখতে পায়, তাই শুধু নুসুক কোড যোগ করুন।</li><li>এই পেজ গুগল (ডেটা ও ফন্ট) এবং গিটহাব (হোস্টিং)-এর সেবা ব্যবহার করে, যাদের নিজস্ব নীতি আছে।</li><li>আপনার কোড মুছতে চান বা প্রশ্ন আছে? পেজের নিচে হোয়াটসঅ্যাপ বা ফেসবুকে যোগাযোগ করুন।</li>',
+    privacyBody: '<li>এই পেজ নাম, ইমেইল বা ফোন নম্বর চায় না, এবং কোনো লগইন নেই।</li><li>আপনার খোলা কোড ও ভাষা শুধু আপনার ডিভাইসে (ব্রাউজারে) সংরক্ষিত থাকে, যাতে কোড আবার না আসে।</li><li>আমরা আপনার ব্রাউজারে রাখা একটি র‍্যান্ডম আইডি দিয়ে ভিজিটর ও বোতাম চাপ গণনা করি, কোনো ব্যক্তিগত তথ্য ছাড়া।</li><li>পেজটি আপনার দেশের ভাষায় খুলতে আমরা <bdi>country.is</bdi>-এর মাধ্যমে আপনার ইন্টারনেট ঠিকানা থেকে শুধু দেশ জানি, ঠিকানা সংরক্ষণ করি না।</li><li>আপনার যোগ করা কোড সবাই দেখতে পায়, তাই শুধু নুসুক কোড যোগ করুন।</li><li>এই পেজ গুগল (ডেটা ও ফন্ট) এবং গিটহাব (হোস্টিং)-এর সেবা ব্যবহার করে, যাদের নিজস্ব নীতি আছে।</li><li>আপনার কোড মুছতে চান বা প্রশ্ন আছে? পেজের নিচে হোয়াটসঅ্যাপ বা ফেসবুকে যোগাযোগ করুন।</li>',
     termsBody: '<li>পেজটি বিনামূল্যে ও ব্যক্তিগত উদ্যোগ, নুসুক অ্যাপ বা কোনো সরকারি সংস্থার সাথে সম্পর্কিত নয়।</li><li>আমরা নিশ্চয়তা দিই না যে প্রতিটি কোড কাজ করবে, বা কোড ব্যবহারে জয় নিশ্চিত; চ্যালেঞ্জের নিয়ম নুসুক ঠিক করে।</li><li>শুধু আসল নুসুক কোড যোগ করুন; অন্য কোনো কনটেন্ট বা অপব্যবহার মুছে ফেলা হতে পারে।</li><li>আপনি নিজ দায়িত্বে পেজটি ব্যবহার করেন, এবং এই শর্তাবলি যেকোনো সময় বদলাতে পারে।</li>',
     addTitle: 'আপনার কোড যোগ করুন', addLabel: 'এক বা একাধিক কোড পেস্ট করুন, এমনকি পুরো ফেসবুক কমেন্টও; শুধু কোড রাখা হয় এবং পুনরাবৃত্ত কোড বাদ যায়।',
     addGo: 'যোগ করুন', cancel: 'বাতিল', copied: 'লিংক কপি হয়েছে', shareCopied: 'লেখা কপি হয়েছে। শেয়ারে না দেখালে (যেমন ফেসবুকে), পেস্ট করুন।',
@@ -313,7 +313,7 @@
     devBy: 'Geliştiren', devName: 'Adel Hamza Mohamed El-Nahr',
     devNote: 'Nusuk yarışması kodlarını paylaşmak için bağımsız bir girişim; Nusuk uygulaması veya herhangi bir resmî kurumla bağlantısı yoktur.',
     privacy: 'Gizlilik politikası', terms: 'Kullanım koşulları', close: 'Tamam',
-    privacyBody: '<li>Sayfa ad, e-posta veya telefon numarası istemez; giriş yapmak yoktur.</li><li>Açtığınız kodlar ve diliniz yalnızca cihazınızda (tarayıcıda) saklanır, böylece bir kod size tekrar gelmez.</li><li>Ziyaretçileri ve düğme dokunuşlarını tarayıcınızda tutulan rastgele bir kimlikle, kişisel veri olmadan sayarız.</li><li>Eklediğiniz kodlar herkese görünür; bu yüzden yalnızca Nusuk kodları ekleyin.</li><li>Sayfa Google (veri ve yazı tipleri) ve GitHub (barındırma) hizmetlerini kullanır; bunların kendi politikaları vardır.</li><li>Kodunuzu sildirmek veya soru sormak mı istiyorsunuz? Sayfanın altındaki WhatsApp veya Facebook üzerinden bize ulaşın.</li>',
+    privacyBody: '<li>Sayfa ad, e-posta veya telefon numarası istemez; giriş yapmak yoktur.</li><li>Açtığınız kodlar ve diliniz yalnızca cihazınızda (tarayıcıda) saklanır, böylece bir kod size tekrar gelmez.</li><li>Ziyaretçileri ve düğme dokunuşlarını tarayıcınızda tutulan rastgele bir kimlikle, kişisel veri olmadan sayarız.</li><li>Sayfayı ülkenizin dilinde açmak için <bdi>country.is</bdi> aracılığıyla internet adresinizden yalnızca ülkenizi öğreniriz; adresi saklamayız.</li><li>Eklediğiniz kodlar herkese görünür; bu yüzden yalnızca Nusuk kodları ekleyin.</li><li>Sayfa Google (veri ve yazı tipleri) ve GitHub (barındırma) hizmetlerini kullanır; bunların kendi politikaları vardır.</li><li>Kodunuzu sildirmek veya soru sormak mı istiyorsunuz? Sayfanın altındaki WhatsApp veya Facebook üzerinden bize ulaşın.</li>',
     termsBody: '<li>Sayfa ücretsizdir ve kişisel bir girişimdir; Nusuk uygulaması veya herhangi bir resmî kurumla bağlantısı yoktur.</li><li>Her kodun çalışacağını ya da kod kullanmanın kazanmayı garanti edeceğini taahhüt etmeyiz; yarışma kurallarını Nusuk belirler.</li><li>Yalnızca gerçek Nusuk kodları ekleyin; başka içerik veya kötüye kullanım kaldırılabilir.</li><li>Sayfayı kendi sorumluluğunuzda kullanırsınız; bu koşullar her zaman değişebilir.</li>',
     addTitle: 'Kodunu ekle', addLabel: 'Bir veya daha fazla kod, hatta Facebook yorumlarının tamamını yapıştırın; yalnızca kodlar alınır, tekrar edenler atlanır.',
     addGo: 'Ekle', cancel: 'İptal', copied: 'Bağlantı kopyalandı', shareCopied: 'Metin kopyalandı. Paylaşımda görünmezse (Facebook gibi) yapıştırın.',
@@ -329,7 +329,7 @@
   var orig = els.map(function(e){ return e.innerHTML; }), origAria = arias.map(function(e){ return e.getAttribute('aria-label'); }), origTitle = document.title;
   var btn = document.getElementById('langBtn'), menu = document.getElementById('langMenu');
 
-  function apply(l){
+  function apply(l, chosen){
     LANG = D[l] ? l : 'ar';
     var d = D[LANG] || {}, html = document.documentElement;
     html.lang = LANG; html.dir = RTL[LANG] ? 'rtl' : 'ltr';
@@ -342,21 +342,34 @@
     document.getElementById('langFlag').src = 'https://flagcdn.com/' + cur[2] + '.svg';
     document.getElementById('langCode').textContent = LANG.toUpperCase();
     [].forEach.call(menu.children, function(b){ b.setAttribute('aria-current', b.dataset.l === LANG); });
-    store('web_lang', LANG === 'ar' ? null : LANG);
+    if(chosen) store('web_lang', LANG);   // only a choice from the menu sticks; the country guess is redone
     pad();   // header height can change with the language
   }
 
   menu.innerHTML = LANGS.map(function(x){
-    return '<button type="button" data-l="' + x[0] + '" lang="' + x[0] + '" dir="' + (RTL[x[0]] ? 'rtl' : 'ltr') + '"><img src="https://flagcdn.com/' + x[2] +
-      '.svg" alt="" loading="lazy"><span>' + x[1] + '</span><small>' + x[0].toUpperCase() + '</small></button>';
+    return '<button type="button" data-l="' + x[0] + '"><img src="https://flagcdn.com/' + x[2] +
+      '.svg" alt="" loading="lazy"><span lang="' + x[0] + '">' + x[1] + '</span><small>' + x[0].toUpperCase() + '</small></button>';
   }).join('');
   function toggle(open){ menu.hidden = !open; btn.setAttribute('aria-expanded', open); if(open) (menu.querySelector('[aria-current=true]') || menu.firstChild).focus(); }
   btn.onclick = function(){ toggle(menu.hidden); };
-  menu.onclick = function(e){ var b = e.target.closest('[data-l]'); if(b){ apply(b.dataset.l); toggle(false); btn.focus(); } };
+  menu.onclick = function(e){ var b = e.target.closest('[data-l]'); if(b){ apply(b.dataset.l, true); toggle(false); btn.focus(); } };
   document.addEventListener('click', function(e){ if(!menu.hidden && !e.target.closest('#lang')) toggle(false); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && !menu.hidden){ toggle(false); btn.focus(); } });
 
-  // ?lang=xx in a shared link, else the visitor's last choice; Arabic by default (most visitors are Arabic speakers).
-  var m = location.search.match(/[?&]lang=([a-z]{2})/);
-  apply((m && m[1]) || read('web_lang') || 'ar');
+  // Order: ?lang=xx in a shared link, the visitor's own choice, then the visitor's country (from the IP), else Arabic.
+  // ponytail: the country comes from api.country.is (free, no key); if it's down or blocked the page just stays Arabic.
+  var BY_COUNTRY = { PK: 'ur', CN: 'zh', TW: 'zh', HK: 'zh', MO: 'zh', IN: 'hi', BD: 'bn', ID: 'id', TR: 'tr',
+    ES: 'es', MX: 'es', AR: 'es', CO: 'es', CL: 'es', PE: 'es', VE: 'es', EC: 'es', GT: 'es', CU: 'es', BO: 'es', DO: 'es', HN: 'es', PY: 'es', SV: 'es', NI: 'es', CR: 'es', PA: 'es', UY: 'es', GQ: 'es',
+    FR: 'fr', BE: 'fr', LU: 'fr', MC: 'fr', SN: 'fr', CI: 'fr', ML: 'fr', BF: 'fr', NE: 'fr', GN: 'fr', BJ: 'fr', TG: 'fr', CM: 'fr', GA: 'fr', CG: 'fr', CD: 'fr', MG: 'fr', HT: 'fr',
+    SA: 'ar', EG: 'ar', AE: 'ar', KW: 'ar', QA: 'ar', BH: 'ar', OM: 'ar', YE: 'ar', JO: 'ar', PS: 'ar', LB: 'ar', SY: 'ar', IQ: 'ar', LY: 'ar', TN: 'ar', DZ: 'ar', MA: 'ar', SD: 'ar', MR: 'ar', SO: 'ar', DJ: 'ar', KM: 'ar' };
+  var m = location.search.match(/[?&]lang=([a-z]{2})/), picked = (m && m[1]) || read('web_lang');
+  apply(picked || 'ar');
+  if(!picked){
+    var useCountry = function(cc){ if(!read('web_lang')) apply(BY_COUNTRY[cc] || 'en'); };
+    var cc = read('web_cc');   // looked up once per browser
+    if(cc) useCountry(cc);
+    else fetch('https://api.country.is/').then(function(r){ return r.json(); }).then(function(d){
+      if(/^[A-Z]{2}$/.test(d.country || '')){ store('web_cc', d.country); useCountry(d.country); }
+    }).catch(function(){});
+  }
 })();
