@@ -436,6 +436,29 @@
     msg.textContent = '';
     if(!input.value.trim()) return msg.textContent = T('addEmpty', 'الصق كود واحد على الأقل.');
     btn.disabled = true; btn.textContent = T('adding', 'جاري الإضافة…');
+    // Owner (the browser that sees the stats): any amount; the codes are pulled out here and sent 500 at a time,
+    // the server's per-call limit. Everyone else keeps the single-call limits.
+    if(read('web_admin')){
+      var all = [], seenC = {}, re = /(?:^|[^A-Za-z0-9])NG[-_]([A-Za-z0-9]{8})(?![A-Za-z0-9])/gi, m;
+      while((m = re.exec(input.value))){ var c = 'NG-' + m[1]; if(!seenC[c]){ seenC[c] = 1; all.push(c); } }
+      if(!all.length){ btn.disabled = false; btn.textContent = T('addGo', 'إضافة'); return msg.textContent = 'مفيش أكواد صحيحة. الشكل: NG-XXXXXXXX'; }
+      var added = 0, dup = 0, i = 0;
+      (function next(){
+        if(i >= all.length){
+          toast('اتضاف ' + added + ' كود' + (dup ? '، و' + dup + ' موجودين قبل كده' : '') + ' ✓');
+          input.value = ''; btn.disabled = false; btn.textContent = T('addGo', 'إضافة'); document.getElementById('addDlg').close(); return load();
+        }
+        btn.textContent = 'جاري الإضافة… ' + Math.min(i + 500, all.length) + ' من ' + all.length;
+        fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: all.slice(i, i + 500).join(' ') }).then(function(r){ return r.json(); }).then(function(r){
+          if(!r.ok) throw new Error(r.error || 'رفض');
+          added += r.addedCount; dup += r.duplicateCount; i += 500; next();
+        }).catch(function(e){
+          msg.textContent = 'وقفت عند ' + i + ' من ' + all.length + ' (اتضاف ' + added + '): ' + (e.message || 'مشكلة في الاتصال') + '. دوس إضافة تاني يكمّل.';
+          btn.disabled = false; btn.textContent = T('addGo', 'إضافة');
+        });
+      })();
+      return;
+    }
     fetch(API, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: input.value }).then(function(r){ return r.json(); }).then(function(r){
       if(!r.ok) return msg.textContent = r.error || 'تعذر إضافة الأكواد.';
       ev('add_ok');
