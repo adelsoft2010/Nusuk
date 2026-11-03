@@ -37,6 +37,16 @@
   .stat b{direction:ltr;display:inline-flex;align-items:center;padding:4px 8px;border-radius:7px;background:#040604;box-shadow:inset 0 0 0 1px #1c261c}
   .stat b svg{height:15px;display:block}
   .sg.off{fill:#132013}
+  /* phone: the same single row, each item stacked (digits over the label) so all four fit */
+  @media (max-width:520px){
+    .stats{flex-wrap:nowrap;gap:4px}
+    .stat{flex-direction:column;gap:3px;padding:4px 5px;border-radius:12px;font-size:10px}
+    .stat b{padding:3px 5px}
+    .stat b svg{height:11px}
+    .stats .reset-btn{align-self:stretch;border-radius:12px;padding:2px 6px;font-size:10px;white-space:nowrap}
+  }
+  /* very narrow phones: the start-over button keeps only its ↺ (the text stays for screen readers) */
+  @media (max-width:350px){.stats .reset-btn{font-size:0;padding:2px 9px}.stats .reset-btn::before{content:"↺";font-size:17px}}
   .sg.on{fill:#6ae05a}
   .stat.done{border-color:rgba(106,224,90,.45)}
   .stat b.tick{animation:tick .35s ease-out}
