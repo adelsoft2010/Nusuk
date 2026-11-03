@@ -366,6 +366,10 @@
   // ANDROID_ID stays the same after uninstall/reinstall (same signing key), so the server can give back this phone's opened codes.
   var DEV = '';
   try{ if(window.AndroidApp && AndroidApp.deviceId) DEV = String(AndroidApp.deviceId() || '').toLowerCase().replace(/[^a-z0-9]/g, ''); }catch(e){}
+  // Browser (GitHub page): a random id kept in this browser; the server remembers which codes it opened.
+  var WEB = !window.AndroidApp;
+  function newCid(){ var id = ''; while(id.length < 20) id += Math.random().toString(36).slice(2); id = id.slice(0, 20); store('web_cid', id); return id; }
+  if(WEB) DEV = read('web_cid') || newCid();
   var DEVQ = DEV.length >= 6 ? '&dev=' + DEV : '';
   var pinned = [], codes = [], opens = {}, opened = loadSet(OPENED_KEY), shown = 0, visible = [];
 
@@ -431,13 +435,38 @@
   // Next = first code not opened on this device, in this order: 3 newest codes, the priority codes, then the rest.
   // The first code opened right after Nusuk starts often doesn't register, so the priority ones come 4th-6th.
   var PRIORITY = ['NG-6cxFaqzt', 'NG-8KLKG8zg', 'NG-m9MfCxg8'];
+  // Browser: never gets the full list. It holds the next 10 unopened codes (?api=peek) and asks for more
+  // in the background when 3 are left, so a tap never waits on the network.
+  var webQueue = [], webTotal = 0, webDone = 0, webPending = 0, webLoaded = false, peeking = false, peekRetry = 0;
+  function webNext(){ for(var i = 0; i < webQueue.length; i++) if(!opened[webQueue[i]]) return webQueue[i]; return null; }
+  function webLeft(){ return webQueue.filter(function(c){ return !opened[c]; }).length; }
+  function peek(){
+    if(peeking) return; peeking = true;
+    fetch(API + '?api=peek' + DEVQ + '&t=' + Date.now()).then(function(r){ return r.json(); }).then(function(d){
+      peeking = false;
+      if(!d.ok){ if(d.slow) toast(T('slow', 'ضغطات كتير ورا بعض، استنى دقيقة وكمّل.')); return; }
+      webLoaded = true; webTotal = d.total; webDone = d.opened + webPending;
+      webQueue = d.codes;
+      // codes this browser opened that the server hasn't recorded yet: tell it, then ask again (a few times at most)
+      var stale = d.codes.filter(function(c){ return opened[c]; });
+      if(stale.length && !webLeft() && peekRetry++ < 5) return fetch(API + '?api=sync' + DEVQ + '&codes=' + stale.join(',')).then(peek, peek);
+      peekRetry = 0; render();
+    }).catch(function(){ peeking = false; toast(T('loadFail', 'تعذر تحميل الأكواد، اتأكد من الإنترنت واضغط ⟳.')); });
+  }
   function nextCode(){
+    if(WEB) return webNext();
     var rest = pinned.concat(codes).filter(function(c){ return PRIORITY.indexOf(c) === -1; });
     var all = rest.slice(0, 3).concat(PRIORITY, rest.slice(3));
     for(var i = 0; i < all.length; i++) if(!opened[all[i]]) return all[i];
     return null;
   }
   function render(){
+    if(WEB){
+      document.getElementById('nextBtn').disabled = webLoaded && !webNext() && webDone >= webTotal;
+      pad();
+      countTo('sTotal', webTotal); countTo('sDone', webDone); countTo('sLeft', Math.max(0, webTotal - webDone));
+      return;
+    }
     document.getElementById('nextBtn').disabled = !nextCode() && codes.length > 0;
     pad();
     document.getElementById('pinned').innerHTML = pinned.map(function(c){ return rowHTML(c, true); }).join('');
@@ -503,19 +532,24 @@
     if(!counted[c]){ // one count per code per device
       counted[c] = 1; store(COUNTED_KEY, JSON.stringify(counted)); opens[c] = (opens[c] || 0) + 1;
     }
-    fetch(API + '?api=open&code=' + encodeURIComponent(c) + DEVQ).catch(function(){}); // server ignores repeats from the same phone
+    if(WEB){ webDone++; webPending++; }
+    fetch(API + '?api=open&code=' + encodeURIComponent(c) + DEVQ).catch(function(){}).then(function(){ // server ignores repeats from the same phone
+      if(WEB){ webPending--; if(webLeft() < 3) peek(); }
+    });
     if(window.AndroidApp) AndroidApp.open(link(c)); else window.open(link(c), '_blank');
     render();
   }
   // "Start over" (browser only): forget which codes this device opened, so every code comes up again
   function resetOpened(){
     opened = {}; store(OPENED_KEY, null);
+    if(WEB){ DEV = newCid(); DEVQ = '&dev=' + DEV; webQueue = []; webDone = 0; peek(); }   // a fresh id = a fresh start on the server
     document.getElementById('resetDlg').close(); render();
     toast(T('resetDone', 'تمام، كل الأكواد رجعت تظهر من جديد ✓'));
   }
   function openNext(){
     ev('next');
-    if(!codes.length) return toast(T('loading', 'لحظة، الأكواد لسه بتتحمّل…'));
+    if(WEB && !webNext()){ peek(); return toast(T('loading', 'لحظة، الأكواد لسه بتتحمّل…')); }
+    if(!WEB && !codes.length) return toast(T('loading', 'لحظة، الأكواد لسه بتتحمّل…'));
     var nx = nextCode();
     if(nx) openCode(nx); else toast(T('allOpened', 'فتحت كل الأكواد.'));
   }
@@ -545,7 +579,18 @@
       fetch(API + '?api=sync' + DEVQ + '&codes=' + up.slice(i, i + 150).join(',')).catch(function(){});
   }
   function load(){
-    fetch(API + '?api=codes' + DEVQ + '&t=' + Date.now()).then(function(r){ return r.json(); }).then(function(d){
+    if(WEB){
+      // first visit after this update: codes this browser opened before are sent once, so they don't come back
+      var old = Object.keys(opened).filter(function(c){ return /^NG-[A-Za-z0-9]{8}$/.test(c); });
+      if(old.length && !read('web_synced')){
+        var sends = [];
+        for(var i = 0; i < old.length; i += 150) sends.push(fetch(API + '?api=sync' + DEVQ + '&codes=' + old.slice(i, i + 150).join(',')).catch(function(){}));
+        return Promise.all(sends).then(function(){ store('web_synced', '1'); peek(); });
+      }
+      store('web_synced', '1');
+      return peek();
+    }
+    fetch(API + '?api=codes&k=' + (window.APP_KEY || '') + DEVQ + '&t=' + Date.now()).then(function(r){ return r.json(); }).then(function(d){
       syncMine(d.mine); delete d.mine;
       store(CACHE_KEY, JSON.stringify(d)); apply(d);
     }).catch(function(){
@@ -616,8 +661,11 @@
     show(0);
   })();
   document.getElementById('showDone').checked = read(SHOW_KEY) === '1';
-  try{ var cached = JSON.parse(read(CACHE_KEY) || 'null'); if(cached) apply(cached); }catch(e){}
-  load();
+  if(WEB) store(CACHE_KEY, null);   // older page versions kept the whole list here
+  else try{ var cached = JSON.parse(read(CACHE_KEY) || 'null'); if(cached) apply(cached); }catch(e){}
+  // the app's key for the full list ships only inside the APK (app-key.js), never on the GitHub page
+  if(WEB) load();
+  else { var ks = document.createElement('script'); ks.src = 'app-key.js'; ks.onload = ks.onerror = load; document.head.appendChild(ks); }
   linkNusuk();
 </script>
 <script src="i18n.js" defer></script>
