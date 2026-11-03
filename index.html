@@ -329,7 +329,8 @@
   var LABELS = { 'NG-6cxFaqzt': 'كود صاحب المبادرة: عادل حمزة محمد النهر', 'NG-8KLKG8zg': 'كود أم حمزة' };
   var OPENED_KEY = 'app_opened_v1', COUNTED_KEY = 'app_counted_v1', SHOW_KEY = 'app_showdone_v1', CACHE_KEY = 'app_cache_v1';
   var CHUNK = 60;
-  if(!window.AndroidApp) document.body.classList.add('web');
+  // served from the web (the GitHub page, in a browser or inside the Android app): protected 10-at-a-time mode
+  if(location.protocol !== 'file:') document.body.classList.add('web');
   // Translations (browser only) live in i18n.js; Arabic is the page itself, so T() falls back to it.
   var I18N = {}, LANG = 'ar';
   function T(k, ar){ return (LANG !== 'ar' && I18N[LANG] && I18N[LANG][k]) || ar; }
@@ -367,9 +368,10 @@
   var DEV = '';
   try{ if(window.AndroidApp && AndroidApp.deviceId) DEV = String(AndroidApp.deviceId() || '').toLowerCase().replace(/[^a-z0-9]/g, ''); }catch(e){}
   // Browser (GitHub page): a random id kept in this browser; the server remembers which codes it opened.
-  var WEB = !window.AndroidApp;
+  var WEB = location.protocol !== 'file:';
   function newCid(){ var id = ''; while(id.length < 20) id += Math.random().toString(36).slice(2); id = id.slice(0, 20); store('web_cid', id); return id; }
-  if(WEB) DEV = read('web_cid') || newCid();
+  // inside the app the phone's ANDROID_ID is the id, so opened codes survive reinstalling; "start over" swaps in a fresh one
+  if(WEB) DEV = read('web_cid') || (DEV.length >= 6 ? (store('web_cid', DEV), DEV) : newCid());
   var DEVQ = DEV.length >= 6 ? '&dev=' + DEV : '';
   var pinned = [], codes = [], opens = {}, opened = loadSet(OPENED_KEY), shown = 0, visible = [];
 
@@ -435,25 +437,31 @@
   // Next = first code not opened on this device, in this order: 3 newest codes, the priority codes, then the rest.
   // The first code opened right after Nusuk starts often doesn't register, so the priority ones come 4th-6th.
   var PRIORITY = ['NG-6cxFaqzt', 'NG-8KLKG8zg', 'NG-m9MfCxg8'];
-  // Browser: never gets the full list. It holds the next 10 unopened codes (?api=peek) and asks for more
-  // in the background when 3 are left, so a tap never waits on the network.
-  var webQueue = [], webTotal = 0, webDone = 0, webPending = 0, webLoaded = false, peeking = false, peekRetry = 0;
+  // Browser: never gets the full list. It holds the next 10 unopened codes (?api=peek), keeps them in localStorage
+  // so they're ready the moment the page (re)loads, and asks for more in the background when 5 are left.
+  // A tap that comes before the very first batch is held (waitTap) and opens the code as soon as it arrives.
+  var webQueue = [], webTotal = 0, webDone = 0, webPending = 0, webLoaded = false, peeking = false, peekRetry = 0, waitTap = null;
+  function saveQueue(){ store('web_queue', JSON.stringify(webQueue)); }
+  try{ webQueue = JSON.parse(read('web_queue') || '[]'); }catch(e){}
   function webNext(){ for(var i = 0; i < webQueue.length; i++) if(!opened[webQueue[i]]) return webQueue[i]; return null; }
   function webLeft(){ return webQueue.filter(function(c){ return !opened[c]; }).length; }
   function peek(){
     if(peeking) return; peeking = true;
     fetch(API + '?api=peek' + DEVQ + '&t=' + Date.now()).then(function(r){ return r.json(); }).then(function(d){
       peeking = false;
-      if(!d.ok){ if(d.slow) toast(T('slow', 'ضغطات كتير ورا بعض، استنى دقيقة وكمّل.')); return; }
+      if(!d.ok){ dropWait(); if(d.slow) toast(T('slow', 'ضغطات كتير ورا بعض، استنى دقيقة وكمّل.')); return; }
       webLoaded = true; webTotal = d.total; webDone = d.opened + webPending;
       store('web_counts', webTotal + ',' + d.opened);   // shown instantly on the next visit
-      webQueue = d.codes;
+      webQueue = d.codes; saveQueue();
       // codes this browser opened that the server hasn't recorded yet: tell it, then ask again (a few times at most)
       var stale = d.codes.filter(function(c){ return opened[c]; });
       if(stale.length && !webLeft() && peekRetry++ < 5) return fetch(API + '?api=sync' + DEVQ + '&codes=' + stale.join(',')).then(peek, peek);
       peekRetry = 0; render();
-    }).catch(function(){ peeking = false; toast(T('loadFail', 'تعذر تحميل الأكواد، اتأكد من الإنترنت واضغط ⟳.')); });
+      if(waitTap){ var nx = webNext(); if(nx) openCode(nx); else dropWait(); }
+    }).catch(function(){ peeking = false; dropWait(); toast(T('loadFail', 'تعذر تحميل الأكواد، اتأكد من الإنترنت واضغط ⟳.')); });
   }
+  // the blank tab a held tap opened (browsers only allow new tabs right inside a tap); closed if no code comes
+  function dropWait(){ if(waitTap && waitTap.close) waitTap.close(); waitTap = null; }
   function nextCode(){
     if(WEB) return webNext();
     var rest = pinned.concat(codes).filter(function(c){ return PRIORITY.indexOf(c) === -1; });
@@ -548,21 +556,26 @@
     }
     if(WEB){ webDone++; webPending++; }
     fetch(API + '?api=open&code=' + encodeURIComponent(c) + DEVQ).catch(function(){}).then(function(){ // server ignores repeats from the same phone
-      if(WEB){ webPending--; if(webLeft() < 3) peek(); }
+      if(WEB){ webPending--; if(webLeft() < 5) peek(); }
     });
-    if(window.AndroidApp) AndroidApp.open(link(c)); else window.open(link(c), '_blank');
+    if(WEB){ webQueue = webQueue.filter(function(x){ return x !== c; }); saveQueue(); }
+    if(window.AndroidApp) AndroidApp.open(link(c));
+    else if(waitTap && waitTap.location){ waitTap.location.href = link(c); }
+    else window.open(link(c), '_blank');
+    waitTap = null;
     render();
   }
   // "Start over" (browser only): forget which codes this device opened, so every code comes up again
   function resetOpened(){
     opened = {}; store(OPENED_KEY, null);
-    if(WEB){ DEV = newCid(); DEVQ = '&dev=' + DEV; webQueue = []; webDone = 0; store('web_counts', webTotal + ',0'); peek(); }   // a fresh id = a fresh start on the server
+    if(WEB){ DEV = newCid(); DEVQ = '&dev=' + DEV; webQueue = []; saveQueue(); webDone = 0; store('web_counts', webTotal + ',0'); peek(); }   // a fresh id = a fresh start on the server
     document.getElementById('resetDlg').close(); render();
     toast(T('resetDone', 'تمام، كل الأكواد رجعت تظهر من جديد ✓'));
   }
   function openNext(){
     ev('next');
-    if(WEB && !webNext()){ peek(); return toast(T('loading', 'لحظة، الأكواد لسه بتتحمّل…')); }
+    // no code in hand yet (first visit, batch still on its way): hold the tap and open it the moment codes arrive
+    if(WEB && !webNext()){ waitTap = window.AndroidApp ? true : (window.open('', '_blank') || true); peek(); return; }
     if(!WEB && !codes.length) return toast(T('loading', 'لحظة، الأكواد لسه بتتحمّل…'));
     var nx = nextCode();
     if(nx) openCode(nx); else toast(T('allOpened', 'فتحت كل الأكواد.'));
