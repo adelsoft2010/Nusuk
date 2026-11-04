@@ -232,7 +232,7 @@
     <div class="stats-acts">
       <button type="button" class="reset-btn" onclick="document.getElementById('resetDlg').showModal()" data-i18n="resetBtn">↺ ابدأ من الأول</button>
       <button type="button" class="reset-btn add-top" onclick="ev('add_open'); document.getElementById('addDlg').showModal()" data-i18n="addBtn">➕ أضف كودك</button>
-      <a class="reset-btn apk-btn" href="Nusuk-Codes.apk" download data-i18n="apkBtn">📲 نزّل التطبيق</a>
+      <a class="reset-btn apk-btn" href="Nusuk-Codes.apk" download onclick="apkTap()" data-i18n="apkBtn">📲 تطبيق أكواد نسك</a>
     </div>
   </div>
 </header>
@@ -484,7 +484,9 @@
     }).catch(function(){ msg.textContent = T('addNet', 'تعذر الإضافة، اتأكد من الإنترنت.'); })
       .then(function(){ btn.disabled = false; btn.textContent = T('addGo', 'إضافة'); });
   }
-  function toast(m){ var t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(function(){ t.classList.remove('show'); }, 2400); }
+  // تنزيل التطبيق: تنبيه إنه مش تطبيق نسك الرسمي، وعدّ التنزيلات للمالك (موبايل ولا كمبيوتر)
+  function apkTap(){ ev(/Android/i.test(navigator.userAgent) ? 'apk' : 'apk_pc'); toast(T('apkHint', 'بينزّل تطبيق أكواد نسك للأندرويد. تطبيق مستقل، مش تطبيق نسك الرسمي.')); }
+  function toast(m){ var t = document.getElementById('toast'); t.textContent = m; t.classList.add('show'); clearTimeout(toast.t); toast.t = setTimeout(function(){ t.classList.remove('show'); }, Math.max(2400, m.length * 60)); }   // الرسايل الطويلة بتفضل وقت يكفي لقرايتها
 
   function rowHTML(c, pin){
     var sub = (pin && LABELS[c] ? LABELS[c] + '<br>' : '') + 'اتفتح <b>' + (opens[c] || 0) + '</b> مرة';
@@ -701,7 +703,8 @@
         var b = document.getElementById('adminBox'), open = b.querySelector('details') && b.querySelector('details').open;
         var EV = [['next', 'افتح كود جديد'], ['refresh', 'تحديث ⟳'], ['add_open', 'أضف كودك (فتح النافذة)'], ['add_ok', 'إضافة ناجحة'],
                   ['share', 'شارك الصفحة'], ['sh_wa', 'واتساب'], ['sh_fb', 'فيسبوك'], ['sh_x', 'إكس'], ['sh_tg', 'تليجرام'],
-                  ['sh_copy', 'نسخ الرابط'], ['video', 'شوف الفيديو'], ['credit', 'عادل النهر (فيسبوك)']];
+                  ['sh_copy', 'نسخ الرابط'], ['video', 'شوف الفيديو'], ['credit', 'عادل النهر (فيسبوك)'],
+                  ['apk', 'تنزيل التطبيق: موبايل أندرويد'], ['apk_pc', 'تنزيل التطبيق: كمبيوتر']];
         var t = st.events || { total: {}, today: {} }, n = function(o, k){ return Number(o[k] || 0); };
         b.innerHTML = '👁 زوار الموقع: ' + Number(st.visitors) + ' · النهارده: ' + Number(st.today) + ' · متواجدين دلوقتي: ' + Number(st.online) + ' — ظاهر ليك بس' +
           '<details' + (open ? ' open' : '') + '><summary>تفاصيل الضغطات</summary><table><tr><th>الزرار</th><th>النهارده</th><th>الإجمالي</th></tr>' +
