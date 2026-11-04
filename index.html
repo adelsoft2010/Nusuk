@@ -491,14 +491,19 @@
   var webQueue = [], webTotal = 0, webDone = 0, webPending = 0, webLoaded = false, peeking = false, peekRetry = 0, waitTap = null;
   function saveQueue(){ store('web_queue', JSON.stringify(webQueue)); }
   try{ webQueue = JSON.parse(read('web_queue') || '[]'); }catch(e){}
+  // آخر أرقام محفوظة هي البداية، فلو السيرفر اتأخر أو رفض العدادات ماتنزلش لصفر
+  (function(){ var l = (read('web_counts') || '').split(',').map(Number); if(l[0] > 0){ webTotal = l[0]; webDone = l[1] || 0; } })();
+  var slowTry = 0;
   function webNext(){ for(var i = 0; i < webQueue.length; i++) if(!opened[webQueue[i]]) return webQueue[i]; return null; }
   function webLeft(){ return webQueue.filter(function(c){ return !opened[c]; }).length; }
   function peek(){
     if(peeking) return; peeking = true;
     fetch(API + '?api=peek' + DEVQ + '&t=' + Date.now()).then(function(r){ return r.json(); }).then(function(d){
       peeking = false;
-      if(!d.ok){ dropWait(); if(d.slow) toast(T('slow', 'ضغطات كتير ورا بعض، استنى دقيقة وكمّل.')); return; }
-      webLoaded = true; webTotal = Number(d.total) || 0; webDone = (Number(d.opened) || 0) + webPending;
+      // السيرفر مشغول: نعيد الطلب لوحدنا بعد ٢ و٤ و٨ ثواني… والرسالة تظهر بس لو حد ضاغط ومستني وفشلنا كذا مرة
+      if(!d.ok){ if(d.slow && slowTry < 6){ setTimeout(peek, 2000 * Math.pow(2, slowTry++)); if(slowTry > 2 && waitTap){ dropWait(); toast(T('slow', 'ضغطات كتير ورا بعض، استنى دقيقة وكمّل.')); } return; }
+                 dropWait(); return; }
+      slowTry = 0; webLoaded = true; webTotal = Number(d.total) || 0; webDone = (Number(d.opened) || 0) + webPending;
       store('web_counts', webTotal + ',' + d.opened);   // shown instantly on the next visit
       webQueue = d.codes; saveQueue();
       // codes this browser opened that the server hasn't recorded yet: tell it, then ask again (a few times at most)
