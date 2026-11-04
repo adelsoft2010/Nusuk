@@ -29,24 +29,28 @@
   .top{display:flex;align-items:center;gap:12px}
   .top img{height:34px}
   .top h1{margin:0;font-size:19px;font-weight:800;flex:1}
+  .top .h1s{display:none}
   .top button{background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:10px;width:48px;height:48px;font-size:18px}
   /* counter under the note: three equal cards across the header (opened / left / total), start-over button below */
-  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:760px;margin:8px auto 0}
+  .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;max-width:760px;margin:8px auto 0}
   /* scrolled down: header keeps the title row and the button; the note and counter fold away */
   header .note,header .stats{max-height:160px;overflow:hidden;transition:max-height .25s,opacity .2s,margin .25s}
   body.scrolled header .note,body.scrolled header .stats{max-height:0;opacity:0;margin-top:0;pointer-events:none}
   @media (prefers-reduced-motion:reduce){header .note,header .stats{transition:none}}
-  .stat{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 6px;border-radius:14px;background:var(--panel);border:1px solid var(--line);font-size:12.5px;color:var(--muted);white-space:nowrap}
+  .stat{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 6px;border-radius:14px;background:var(--panel);border:1px solid var(--line);font-size:12.5px;color:var(--muted);text-align:center;line-height:1.2}
   /* seven-segment display: lit segments green, unlit ones faintly visible like a real LCD */
   .stat b{direction:ltr;display:flex;align-items:center}
   .stat b svg{height:20px;display:block}
   .sg.off{fill:#1d2a2a}
   /* start over + add a code, side by side under the counters */
-  .stats-acts{grid-column:1/-1;display:flex;justify-content:center;gap:8px}
-  .stats .reset-btn{flex:1;max-width:240px;padding:8px 12px;border-radius:12px;font-size:13.5px;white-space:nowrap}
+  /* الأزرار على نفس أعمدة كروت الأرقام؛ النص الطويل (لغات تانية) بينزل سطرين والصف كله بنفس الطول */
+  .stats-acts{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:inherit}
+  body.web .stats .reset-btn{display:flex;align-items:center;justify-content:center;min-width:0;min-height:40px;padding:6px;border-radius:12px;font-size:13.5px;line-height:1.25;text-align:center}
+  body.web.noapk .stats .apk-btn{display:none}
+  @media (max-width:520px){body.web .stats .reset-btn{font-size:12.5px}}
   .stats .add-top{color:#1a1305;border:0;background:linear-gradient(180deg,#f0d78c,#d4af37)}
   .stats .add-top:hover,.stats .add-top:focus-visible{background:linear-gradient(180deg,#f5e0a0,#dcb84a)}
-  @media (max-width:400px){.stats{gap:6px}.stat{padding:7px 4px;font-size:11.5px}.stat b svg{height:17px}}
+  @media (max-width:400px){.stats{gap:6px}.stat{padding:7px 4px;font-size:11.5px}.stat b svg{height:17px}body.web .stats .reset-btn{font-size:12px;padding:5px 4px}}
   .sg.on{fill:#6ae05a}
   .stat.done{border-color:rgba(106,224,90,.45)}
   .stat b.tick{animation:tick .35s ease-out}
@@ -178,7 +182,10 @@
   .reset-btn{display:none;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--gold2);font:700 12px Tajawal,sans-serif;cursor:pointer}
   .reset-btn:hover,.reset-btn:focus-visible{background:var(--panel2)}
   body.web .reset-btn{display:inline-block}
-  @media (max-width:400px){.top{gap:6px}.top h1{font-size:16px;white-space:nowrap}.top button{width:44px;height:44px}.top #langBtn{padding:0 8px}#langCode{display:none}}
+  .apk-btn{text-decoration:none}
+  /* الموبايل: صف واحد ثابت بعنوان أقصر، عشان الأزرار ماتتزقّش برّه الشاشة */
+  @media (max-width:520px){.top{gap:8px}.top img{height:30px}.top h1{min-width:0;font-size:17px;line-height:1.2}.top .h1l{display:none}.top .h1s{display:inline}.top button{width:42px;height:42px;font-size:17px}.top #langBtn{padding:0 8px}#langCode{display:none}}
+  @media (max-width:360px){.top{gap:6px}.top img{height:26px}.top h1{font-size:15.5px}.top button{width:40px;height:40px}}
   body.web .lang{display:block}
   .top #langBtn{display:flex;align-items:center;gap:6px;width:auto;padding:0 10px;font:800 14px Tajawal,sans-serif}
   #langBtn img,.lang-menu img{width:24px;height:16px;border-radius:3px;object-fit:cover;box-shadow:0 0 0 1px rgba(255,255,255,.15)}
@@ -210,7 +217,7 @@
 <header>
   <div class="top">
     <img src="img/logo.svg" alt="">
-    <h1 data-i18n="h1">أكواد إحالة نسك</h1>
+    <h1><span class="h1l" data-i18n="h1">أكواد إحالة نسك</span><span class="h1s" data-i18n="h1s">أكواد نسك</span></h1>
     <div class="lang" id="lang"><button type="button" id="langBtn" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" aria-label="اللغة / Language"><img id="langFlag" src="https://flagcdn.com/eg.svg" alt=""><span id="langCode">AR</span></button>
       <div class="lang-menu" id="langMenu" hidden></div></div>
     <button type="button" class="top-share" onclick="topShare()" aria-label="شارك الصفحة" data-i18n-aria="shareBtn"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M13.5 5.5 20.5 12l-7 6.5v-3.6c-4.7 0-7.9 1.3-10.5 4.6 1-5.2 3.9-9.6 10.5-10.4z"/></svg></button>
@@ -225,6 +232,7 @@
     <div class="stats-acts">
       <button type="button" class="reset-btn" onclick="document.getElementById('resetDlg').showModal()" data-i18n="resetBtn">↺ ابدأ من الأول</button>
       <button type="button" class="reset-btn add-top" onclick="ev('add_open'); document.getElementById('addDlg').showModal()" data-i18n="addBtn">➕ أضف كودك</button>
+      <a class="reset-btn apk-btn" href="Nusuk-Codes.apk" download data-i18n="apkBtn">📲 نزّل التطبيق</a>
     </div>
   </div>
 </header>
@@ -346,6 +354,8 @@
   var CHUNK = 60;
   // served from the web (the GitHub page, in a browser or inside the Android app): protected 10-at-a-time mode
   if(location.protocol !== 'file:') document.body.classList.add('web');
+  // الزرار للي في المتصفح على أندرويد أو الكمبيوتر: الآيفون مش بيشغّل APK، وجوّه التطبيق ملوش لازمة
+  if(window.AndroidApp || /iPhone|iPad|iPod/.test(navigator.userAgent)) document.body.classList.add('noapk');
   // Translations (browser only) live in i18n.js; Arabic is the page itself, so T() falls back to it.
   var I18N = {}, LANG = 'ar';
   function T(k, ar){ return (LANG !== 'ar' && I18N[LANG] && I18N[LANG][k]) || ar; }
