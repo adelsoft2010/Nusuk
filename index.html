@@ -494,9 +494,9 @@
       '</div><div class="sub">' + sub + '</div></div><button class="open" data-c="' + c + '" aria-label="فتح ' + c + '">فتح</button></div>';
   }
 
-  // Next = first code not opened on this device, in this order: 3 newest codes, the priority codes, then the rest.
+  // Next = first code not opened on this device, in this order: the priority codes first, then the rest (newest first).
   // The first code opened right after Nusuk starts often doesn't register, so the priority ones come 4th-6th.
-  var PRIORITY = ['NG-6cxFaqzt', 'NG-8KLKG8zg', 'NG-m9MfCxg8'];
+  var PRIORITY = ['NG-6cxFaqzt', 'NG-8KLKG8zg', 'NG-m9MfCxg8', 'NG-UkFeRTwq'];
   // Browser: never gets the full list. It holds the next 10 unopened codes (?api=peek), keeps them in localStorage
   // so they're ready the moment the page (re)loads, and asks for more in the background when 5 are left.
   // A tap that comes before the very first batch is held (waitTap) and opens the code as soon as it arrives.
@@ -530,7 +530,7 @@
   function nextCode(){
     if(WEB) return webNext();
     var rest = pinned.concat(codes).filter(function(c){ return PRIORITY.indexOf(c) === -1; });
-    var all = rest.slice(0, 3).concat(PRIORITY, rest.slice(3));
+    var all = PRIORITY.concat(rest);
     for(var i = 0; i < all.length; i++) if(!opened[all[i]]) return all[i];
     return null;
   }
