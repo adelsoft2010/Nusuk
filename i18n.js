@@ -8,7 +8,7 @@
 
   var D = {
   en: {
-    title: 'Nusuk Referral Codes', h1: 'Nusuk Referral Codes', refresh: 'Refresh',
+    title: 'Nusuk Referral Codes', h1: 'Nusuk Referral Codes', h1s: 'Nusuk Codes', refresh: 'Refresh',
     next: 'Open a new code', nextNote: 'Each tap opens a new code, and a code you opened never comes back to you.',
     gTitle: 'How do you get a key with every code?', vbtn: '▶ Watch the video', gBack: 'Back button ↓',
     s1: 'Open the Nusuk app first', t1: 'Open it, wait until the home screen appears, and leave it open.',
@@ -17,7 +17,7 @@
     s4: 'Got an error message?', t4: 'Press your phone\'s <q>Back</q> button until the <q>Congratulations</q> message shows (or go back to the Nusuk home screen), then come back here, tap <q>Open a new code</q> and tap <q>Verify code</q>, even if the error message is still showing.',
     prev: 'Previous step', nextStep: 'Next step', pause: '⏸ Pause', play: '▶ Play',
     stLeft: 'Not opened yet', stDone: 'You opened', stTotal: 'All codes',
-    autoNote: 'Codes are added automatically every day. Have a code? Add it and let others benefit.', addBtn: '➕ Add your code',
+    autoNote: 'Codes are added automatically every day. Have a code? Add it and let others benefit.', addBtn: '➕ Add your code', apkBtn: '📲 Get the app',
     shareCta: '<b>🤲 «None of you truly believes until he loves for his brother what he loves for himself»</b>Share the page with your family, friends and groups… one tap from you could be the reason someone else goes to Umrah, and «whoever guides to good is like the one who does it».',
     shareBtn: '📤 Share the page', wa: 'WhatsApp', fb: 'Facebook', x: 'X', tg: 'Telegram', copyLink: '📋 Copy text & link', sms: 'Text message', email: 'Email', more: '⋯ More',
     vTitle: '▶ Video guide', vAria: 'Video guide to the Nusuk challenge codes', yt: 'Or watch it on YouTube ↗',
@@ -46,7 +46,7 @@
     offline: 'No connection; this is the last saved copy.', loadFail: 'Couldn\'t load the codes; check your internet and tap ⟳.'
   },
   es: {
-    title: 'Códigos de referido de Nusuk', h1: 'Códigos de referido de Nusuk', refresh: 'Actualizar',
+    title: 'Códigos de referido de Nusuk', h1: 'Códigos de referido de Nusuk', h1s: 'Códigos Nusuk', refresh: 'Actualizar',
     next: 'Abrir un código nuevo', nextNote: 'Cada toque abre un código nuevo, y un código que ya abriste no vuelve a aparecer.',
     gTitle: '¿Cómo consigues una llave con cada código?', vbtn: '▶ Ver el video', gBack: 'Botón atrás ↓',
     s1: 'Abre primero la app Nusuk', t1: 'Ábrela, espera a que aparezca la pantalla de inicio y déjala abierta.',
@@ -55,7 +55,7 @@
     s4: '¿Te salió un mensaje de error?', t4: 'Pulsa el botón <q>Atrás</q> del móvil hasta que aparezca <q>Enhorabuena</q> (o vuelve al inicio de Nusuk), luego vuelve aquí, toca <q>Abrir un código nuevo</q> y toca <q>Verificar código</q>, aunque el error siga en pantalla.',
     prev: 'Paso anterior', nextStep: 'Paso siguiente', pause: '⏸ Pausa', play: '▶ Reproducir',
     stLeft: 'Sin abrir', stDone: 'Abiertos por ti', stTotal: 'Todos los códigos',
-    autoNote: 'Los códigos se añaden automáticamente cada día. ¿Tienes un código? Añádelo y ayuda a otros.', addBtn: '➕ Añade tu código',
+    autoNote: 'Los códigos se añaden automáticamente cada día. ¿Tienes un código? Añádelo y ayuda a otros.', addBtn: '➕ Añade tu código', apkBtn: '📲 La app',
     shareCta: '<b>🤲 «Ninguno de vosotros cree de verdad hasta que ama para su hermano lo que ama para sí mismo»</b>Comparte la página con tu familia, amigos y grupos… un toque tuyo puede ser la razón de que otra persona haga la Umrah, y «quien guía hacia el bien es como quien lo hace».',
     shareBtn: '📤 Compartir la página', wa: 'WhatsApp', fb: 'Facebook', x: 'X', tg: 'Telegram', copyLink: '📋 Copiar texto y enlace', sms: 'SMS', email: 'Correo', more: '⋯ Más',
     vTitle: '▶ Guía en video', vAria: 'Guía en video de los códigos del reto Nusuk', yt: 'O míralo en YouTube ↗',
@@ -84,7 +84,7 @@
     offline: 'Sin conexión; esta es la última copia guardada.', loadFail: 'No se pudieron cargar los códigos; revisa tu internet y toca ⟳.'
   },
   fr: {
-    title: 'Codes de parrainage Nusuk', h1: 'Codes de parrainage Nusuk', refresh: 'Actualiser',
+    title: 'Codes de parrainage Nusuk', h1: 'Codes de parrainage Nusuk', h1s: 'Codes Nusuk', refresh: 'Actualiser',
     next: 'Ouvrir un nouveau code', nextNote: 'Chaque appui ouvre un nouveau code, et un code déjà ouvert ne vous revient jamais.',
     gTitle: 'Comment obtenir une clé avec chaque code ?', vbtn: '▶ Voir la vidéo', gBack: 'Bouton retour ↓',
     s1: 'Ouvrez d\'abord l\'application Nusuk', t1: 'Ouvrez-la, attendez l\'écran d\'accueil et laissez-la ouverte.',
@@ -93,7 +93,7 @@
     s4: 'Un message d\'erreur ?', t4: 'Appuyez sur le bouton <q>Retour</q> du téléphone jusqu\'à voir <q>Félicitations</q> (ou revenez à l\'accueil de Nusuk), puis revenez ici, appuyez sur <q>Ouvrir un nouveau code</q> et sur <q>Vérifier le code</q>, même si l\'erreur est encore affichée.',
     prev: 'Étape précédente', nextStep: 'Étape suivante', pause: '⏸ Pause', play: '▶ Lecture',
     stLeft: 'Pas encore ouverts', stDone: 'Ouverts par vous', stTotal: 'Tous les codes',
-    autoNote: 'Les codes sont ajoutés automatiquement chaque jour. Vous avez un code ? Ajoutez-le pour en faire profiter les autres.', addBtn: '➕ Ajouter votre code',
+    autoNote: 'Les codes sont ajoutés automatiquement chaque jour. Vous avez un code ? Ajoutez-le pour en faire profiter les autres.', addBtn: '➕ Ajouter votre code', apkBtn: '📲 L’appli',
     shareCta: '<b>🤲 « Aucun de vous n\'est vraiment croyant tant qu\'il n\'aime pas pour son frère ce qu\'il aime pour lui-même »</b>Partagez la page avec votre famille, vos amis et vos groupes… un simple appui peut permettre à quelqu\'un d\'accomplir la Omra, et « celui qui guide vers le bien est comme celui qui le fait ».',
     shareBtn: '📤 Partager la page', wa: 'WhatsApp', fb: 'Facebook', x: 'X', tg: 'Telegram', copyLink: '📋 Copier le texte et le lien', sms: 'SMS', email: 'E-mail', more: '⋯ Plus',
     vTitle: '▶ Guide vidéo', vAria: 'Guide vidéo des codes du défi Nusuk', yt: 'Ou regardez-la sur YouTube ↗',
@@ -122,7 +122,7 @@
     offline: 'Pas de connexion ; voici la dernière copie enregistrée.', loadFail: 'Impossible de charger les codes ; vérifiez votre connexion et appuyez sur ⟳.'
   },
   zh: {
-    title: 'Nusuk 推荐码', h1: 'Nusuk 推荐码', refresh: '刷新',
+    title: 'Nusuk 推荐码', h1: 'Nusuk 推荐码', h1s: 'Nusuk 推荐码', refresh: '刷新',
     next: '打开一个新代码', nextNote: '每点一次打开一个新代码，已打开过的代码不会再出现。',
     gTitle: '如何用每个代码获得一把钥匙？', vbtn: '▶ 观看视频', gBack: '返回键 ↓',
     s1: '先打开 Nusuk 应用', t1: '打开它，等主页出现后保持打开。',
@@ -131,7 +131,7 @@
     s4: '出现错误提示？', t4: '按手机的<q>返回</q>键直到出现<q>恭喜</q>（或回到 Nusuk 主页），然后回到这里点击<q>打开一个新代码</q>并点击<q>验证代码</q>，即使错误提示还在。',
     prev: '上一步', nextStep: '下一步', pause: '⏸ 暂停', play: '▶ 播放',
     stLeft: '尚未打开', stDone: '你已打开', stTotal: '全部代码',
-    autoNote: '代码每天自动添加。你有代码吗？添加它，让别人也受益。', addBtn: '➕ 添加你的代码',
+    autoNote: '代码每天自动添加。你有代码吗？添加它，让别人也受益。', addBtn: '➕ 添加你的代码', apkBtn: '📲 下载应用',
     shareCta: '<b>🤲 「你们中任何人都不算真正的信士，直到他为兄弟喜爱他为自己所喜爱的」</b>把页面分享给家人、朋友和群组……你的一次点击可能让别人去完成副朝，而「指引行善者如同行善者」。',
     shareBtn: '📤 分享页面', wa: 'WhatsApp', fb: 'Facebook', x: 'X', tg: 'Telegram', copyLink: '📋 复制文字和链接', sms: '短信', email: '电子邮件', more: '⋯ 更多',
     vTitle: '▶ 视频教程', vAria: 'Nusuk 挑战代码视频教程', yt: '或在 YouTube 观看 ↗',
@@ -160,7 +160,7 @@
     offline: '无网络，这是最后保存的版本。', loadFail: '无法加载代码，请检查网络并点击 ⟳。'
   },
   ur: {
-    title: 'نسک ریفرل کوڈز', h1: 'نسک ریفرل کوڈز', refresh: 'تازہ کریں',
+    title: 'نسک ریفرل کوڈز', h1: 'نسک ریفرل کوڈز', h1s: 'نسک کوڈز', refresh: 'تازہ کریں',
     next: 'نیا کوڈ کھولیں', nextNote: 'ہر بار دبانے پر نیا کوڈ کھلتا ہے، اور جو کوڈ آپ کھول چکے وہ دوبارہ نہیں آئے گا۔',
     gTitle: 'ہر کوڈ سے چابی کیسے حاصل کریں؟', vbtn: '▶ ویڈیو دیکھیں', gBack: 'واپس کا بٹن ↓',
     s1: 'پہلے نسک ایپ کھولیں', t1: 'اسے کھولیں، ہوم اسکرین آنے تک انتظار کریں اور کھلا رہنے دیں۔',
@@ -169,7 +169,7 @@
     s4: 'غلطی کا پیغام آیا؟', t4: 'فون کا <q>واپس</q> بٹن دبائیں یہاں تک کہ <q>مبارک</q> کا پیغام آئے (یا نسک کی ہوم اسکرین پر جائیں)، پھر یہاں واپس آ کر <q>نیا کوڈ کھولیں</q> اور <q>کوڈ کی تصدیق کریں</q> دبائیں، چاہے غلطی کا پیغام ابھی بھی ہو۔',
     prev: 'پچھلا قدم', nextStep: 'اگلا قدم', pause: '⏸ روکیں', play: '▶ چلائیں',
     stLeft: 'ابھی نہیں کھولے', stDone: 'آپ نے کھولے', stTotal: 'تمام کوڈز',
-    autoNote: 'کوڈز ہر روز خود بخود شامل ہوتے ہیں۔ آپ کے پاس کوڈ ہے؟ شامل کریں اور دوسروں کو فائدہ دیں۔', addBtn: '➕ اپنا کوڈ شامل کریں',
+    autoNote: 'کوڈز ہر روز خود بخود شامل ہوتے ہیں۔ آپ کے پاس کوڈ ہے؟ شامل کریں اور دوسروں کو فائدہ دیں۔', addBtn: '➕ اپنا کوڈ شامل کریں', apkBtn: '📲 ایپ',
     shareCta: '<b>🤲 «تم میں سے کوئی مومن نہیں ہو سکتا جب تک اپنے بھائی کے لیے وہی پسند نہ کرے جو اپنے لیے پسند کرتا ہے»</b>یہ صفحہ اپنے گھر والوں، دوستوں اور گروپس کے ساتھ شیئر کریں… آپ کا ایک کلک کسی اور کے عمرہ کا سبب بن سکتا ہے، اور «نیکی کی طرف رہنمائی کرنے والا اسے کرنے والے جیسا ہے»۔',
     shareBtn: '📤 صفحہ شیئر کریں', wa: 'واٹس ایپ', fb: 'فیس بک', x: 'ایکس', tg: 'ٹیلیگرام', copyLink: '📋 متن اور لنک کاپی کریں', sms: 'ایس ایم ایس', email: 'ای میل', more: '⋯ مزید',
     vTitle: '▶ ویڈیو گائیڈ', vAria: 'نسک چیلنج کوڈز کی ویڈیو گائیڈ', yt: 'یا یوٹیوب پر دیکھیں ↗',
@@ -198,7 +198,7 @@
     offline: 'کنکشن نہیں؛ یہ آخری محفوظ نسخہ ہے۔', loadFail: 'کوڈز لوڈ نہیں ہو سکے؛ انٹرنیٹ چیک کریں اور ⟳ دبائیں۔'
   },
   id: {
-    title: 'Kode Referral Nusuk', h1: 'Kode Referral Nusuk', refresh: 'Muat ulang',
+    title: 'Kode Referral Nusuk', h1: 'Kode Referral Nusuk', h1s: 'Kode Nusuk', refresh: 'Muat ulang',
     next: 'Buka kode baru', nextNote: 'Setiap ketukan membuka kode baru, dan kode yang sudah kamu buka tidak akan muncul lagi.',
     gTitle: 'Bagaimana mendapat kunci dengan setiap kode?', vbtn: '▶ Tonton video', gBack: 'Tombol kembali ↓',
     s1: 'Buka aplikasi Nusuk dulu', t1: 'Buka, tunggu sampai halaman utama muncul, dan biarkan tetap terbuka.',
@@ -207,7 +207,7 @@
     s4: 'Muncul pesan error?', t4: 'Tekan tombol <q>Kembali</q> di ponsel sampai pesan <q>Selamat</q> muncul (atau kembali ke halaman utama Nusuk), lalu kembali ke sini, ketuk <q>Buka kode baru</q> dan ketuk <q>Verifikasi kode</q>, meskipun pesan error masih terlihat.',
     prev: 'Langkah sebelumnya', nextStep: 'Langkah berikutnya', pause: '⏸ Jeda', play: '▶ Putar',
     stLeft: 'Belum dibuka', stDone: 'Sudah kamu buka', stTotal: 'Semua kode',
-    autoNote: 'Kode ditambahkan otomatis setiap hari. Punya kode? Tambahkan dan bantu orang lain.', addBtn: '➕ Tambahkan kodemu',
+    autoNote: 'Kode ditambahkan otomatis setiap hari. Punya kode? Tambahkan dan bantu orang lain.', addBtn: '➕ Tambahkan kodemu', apkBtn: '📲 Aplikasi',
     shareCta: '<b>🤲 «Tidak sempurna iman seseorang di antara kalian hingga ia mencintai untuk saudaranya apa yang ia cintai untuk dirinya sendiri»</b>Bagikan halaman ini ke keluarga, teman, dan grupmu… satu ketukan darimu bisa menjadi sebab orang lain berumrah, dan «orang yang menunjukkan kebaikan seperti orang yang melakukannya».',
     shareBtn: '📤 Bagikan halaman', wa: 'WhatsApp', fb: 'Facebook', x: 'X', tg: 'Telegram', copyLink: '📋 Salin teks & tautan', sms: 'SMS', email: 'Email', more: '⋯ Lainnya',
     vTitle: '▶ Panduan video', vAria: 'Panduan video kode tantangan Nusuk', yt: 'Atau tonton di YouTube ↗',
@@ -236,7 +236,7 @@
     offline: 'Tidak ada koneksi; ini salinan terakhir yang tersimpan.', loadFail: 'Gagal memuat kode; periksa internet dan ketuk ⟳.'
   },
   hi: {
-    title: 'नुसुक रेफ़रल कोड', h1: 'नुसुक रेफ़रल कोड', refresh: 'रीफ़्रेश',
+    title: 'नुसुक रेफ़रल कोड', h1: 'नुसुक रेफ़रल कोड', h1s: 'नुसुक कोड', refresh: 'रीफ़्रेश',
     next: 'नया कोड खोलें', nextNote: 'हर टैप पर नया कोड खुलता है, और जो कोड आप खोल चुके वह दोबारा नहीं आएगा।',
     gTitle: 'हर कोड से चाबी कैसे पाएँ?', vbtn: '▶ वीडियो देखें', gBack: 'बैक बटन ↓',
     s1: 'पहले नुसुक ऐप खोलें', t1: 'इसे खोलें, होम स्क्रीन आने तक रुकें और खुला रहने दें।',
@@ -245,7 +245,7 @@
     s4: 'त्रुटि संदेश आया?', t4: 'फ़ोन का <q>बैक</q> बटन तब तक दबाएँ जब तक <q>बधाई</q> का संदेश न आए (या नुसुक की होम स्क्रीन पर जाएँ), फिर यहाँ लौटकर <q>नया कोड खोलें</q> और <q>कोड सत्यापित करें</q> दबाएँ, भले ही त्रुटि संदेश अभी भी दिख रहा हो।',
     prev: 'पिछला चरण', nextStep: 'अगला चरण', pause: '⏸ रोकें', play: '▶ चलाएँ',
     stLeft: 'अभी नहीं खोले', stDone: 'आपने खोले', stTotal: 'सभी कोड',
-    autoNote: 'कोड हर दिन अपने आप जोड़े जाते हैं। आपके पास कोड है? जोड़ें और दूसरों को फ़ायदा दें।', addBtn: '➕ अपना कोड जोड़ें',
+    autoNote: 'कोड हर दिन अपने आप जोड़े जाते हैं। आपके पास कोड है? जोड़ें और दूसरों को फ़ायदा दें।', addBtn: '➕ अपना कोड जोड़ें', apkBtn: '📲 ऐप',
     shareCta: '<b>🤲 «तुम में से कोई तब तक सच्चा मोमिन नहीं जब तक वह अपने भाई के लिए वही पसंद न करे जो अपने लिए पसंद करता है»</b>यह पेज अपने परिवार, दोस्तों और ग्रुप्स के साथ शेयर करें… आपका एक टैप किसी और के उमरा का कारण बन सकता है, और «भलाई की राह दिखाने वाला उसे करने वाले जैसा है»।',
     shareBtn: '📤 पेज शेयर करें', wa: 'व्हाट्सऐप', fb: 'फ़ेसबुक', x: 'X', tg: 'टेलीग्राम', copyLink: '📋 टेक्स्ट और लिंक कॉपी करें', sms: 'एसएमएस', email: 'ईमेल', more: '⋯ और',
     vTitle: '▶ वीडियो गाइड', vAria: 'नुसुक चैलेंज कोड की वीडियो गाइड', yt: 'या यूट्यूब पर देखें ↗',
@@ -274,7 +274,7 @@
     offline: 'कनेक्शन नहीं; यह आख़िरी सहेजी गई कॉपी है।', loadFail: 'कोड लोड नहीं हुए; इंटरनेट जाँचें और ⟳ दबाएँ।'
   },
   bn: {
-    title: 'নুসুক রেফারেল কোড', h1: 'নুসুক রেফারেল কোড', refresh: 'রিফ্রেশ',
+    title: 'নুসুক রেফারেল কোড', h1: 'নুসুক রেফারেল কোড', h1s: 'নুসুক কোড', refresh: 'রিফ্রেশ',
     next: 'নতুন কোড খুলুন', nextNote: 'প্রতিবার চাপলে নতুন কোড খোলে, আর যে কোড আপনি খুলেছেন তা আর ফিরে আসবে না।',
     gTitle: 'প্রতিটি কোড দিয়ে কীভাবে চাবি পাবেন?', vbtn: '▶ ভিডিও দেখুন', gBack: 'ব্যাক বোতাম ↓',
     s1: 'আগে নুসুক অ্যাপ খুলুন', t1: 'অ্যাপটি খুলুন, হোম স্ক্রিন আসা পর্যন্ত অপেক্ষা করুন এবং খোলা রাখুন।',
@@ -283,7 +283,7 @@
     s4: 'ত্রুটির বার্তা এসেছে?', t4: 'ফোনের <q>ব্যাক</q> বোতাম চাপুন যতক্ষণ না <q>অভিনন্দন</q> বার্তা আসে (বা নুসুকের হোম স্ক্রিনে যান), তারপর এখানে ফিরে <q>নতুন কোড খুলুন</q> ও <q>কোড যাচাই করুন</q> চাপুন, ত্রুটির বার্তা থাকলেও।',
     prev: 'আগের ধাপ', nextStep: 'পরের ধাপ', pause: '⏸ থামান', play: '▶ চালান',
     stLeft: 'এখনো খোলা হয়নি', stDone: 'আপনি খুলেছেন', stTotal: 'সব কোড',
-    autoNote: 'প্রতিদিন স্বয়ংক্রিয়ভাবে কোড যোগ হয়। আপনার কোড আছে? যোগ করুন, অন্যরাও উপকৃত হোক।', addBtn: '➕ আপনার কোড যোগ করুন',
+    autoNote: 'প্রতিদিন স্বয়ংক্রিয়ভাবে কোড যোগ হয়। আপনার কোড আছে? যোগ করুন, অন্যরাও উপকৃত হোক।', addBtn: '➕ আপনার কোড যোগ করুন', apkBtn: '📲 অ্যাপ',
     shareCta: '<b>🤲 «তোমাদের কেউ প্রকৃত মুমিন হবে না, যতক্ষণ না সে তার ভাইয়ের জন্য তা-ই পছন্দ করে যা নিজের জন্য পছন্দ করে»</b>পেজটি পরিবার, বন্ধু ও গ্রুপে শেয়ার করুন… আপনার একটি ট্যাপ অন্য কারো উমরাহর কারণ হতে পারে, আর «ভালো কাজের পথ দেখানো ব্যক্তি তা সম্পাদনকারীর মতো»।',
     shareBtn: '📤 পেজ শেয়ার করুন', wa: 'হোয়াটসঅ্যাপ', fb: 'ফেসবুক', x: 'X', tg: 'টেলিগ্রাম', copyLink: '📋 লেখা ও লিংক কপি করুন', sms: 'এসএমএস', email: 'ইমেইল', more: '⋯ আরও',
     vTitle: '▶ ভিডিও গাইড', vAria: 'নুসুক চ্যালেঞ্জ কোডের ভিডিও গাইড', yt: 'অথবা ইউটিউবে দেখুন ↗',
@@ -312,7 +312,7 @@
     offline: 'সংযোগ নেই; এটি সর্বশেষ সংরক্ষিত কপি।', loadFail: 'কোড লোড হয়নি; ইন্টারনেট দেখে ⟳ চাপুন।'
   },
   tr: {
-    title: 'Nusuk Davet Kodları', h1: 'Nusuk Davet Kodları', refresh: 'Yenile',
+    title: 'Nusuk Davet Kodları', h1: 'Nusuk Davet Kodları', h1s: 'Nusuk Kodları', refresh: 'Yenile',
     next: 'Yeni kod aç', nextNote: 'Her dokunuş yeni bir kod açar; açtığınız bir kod size bir daha gelmez.',
     gTitle: 'Her kodla nasıl anahtar kazanırsınız?', vbtn: '▶ Videoyu izle', gBack: 'Geri tuşu ↓',
     s1: 'Önce Nusuk uygulamasını açın', t1: 'Açın, ana ekran gelene kadar bekleyin ve açık bırakın.',
@@ -321,7 +321,7 @@
     s4: 'Hata mesajı mı çıktı?', t4: 'Telefonun <q>Geri</q> tuşuna <q>Tebrikler</q> mesajı çıkana kadar basın (ya da Nusuk ana ekranına dönün), sonra buraya dönüp <q>Yeni kod aç</q>a ve <q>Kodu doğrula</q>ya dokunun; hata mesajı hâlâ görünse bile.',
     prev: 'Önceki adım', nextStep: 'Sonraki adım', pause: '⏸ Duraklat', play: '▶ Oynat',
     stLeft: 'Henüz açılmadı', stDone: 'Açtıklarınız', stTotal: 'Tüm kodlar',
-    autoNote: 'Kodlar her gün otomatik eklenir. Kodunuz mu var? Ekleyin, başkaları da faydalansın.', addBtn: '➕ Kodunu ekle',
+    autoNote: 'Kodlar her gün otomatik eklenir. Kodunuz mu var? Ekleyin, başkaları da faydalansın.', addBtn: '➕ Kodunu ekle', apkBtn: '📲 Uygulama',
     shareCta: '<b>🤲 «Sizden biri, kendisi için istediğini kardeşi için de istemedikçe gerçek anlamda iman etmiş olmaz»</b>Sayfayı ailenle, arkadaşlarınla ve gruplarınla paylaş… senin bir dokunuşun başka birinin umreye gitmesine vesile olabilir; «hayra vesile olan, onu yapan gibidir».',
     shareBtn: '📤 Sayfayı paylaş', wa: 'WhatsApp', fb: 'Facebook', x: 'X', tg: 'Telegram', copyLink: '📋 Metni ve bağlantıyı kopyala', sms: 'SMS', email: 'E-posta', more: '⋯ Daha fazla',
     vTitle: '▶ Video rehber', vAria: 'Nusuk yarışması kodları video rehberi', yt: 'Ya da YouTube\'da izle ↗',
