@@ -383,8 +383,9 @@
   document.querySelectorAll('.faq details').forEach(function(d){ d.addEventListener('toggle', function(){
     if(d.open) document.querySelectorAll('.faq details[open]').forEach(function(o){ if(o !== d) o.open = false; }); }); });
   // Click counter (browser only, the owner's own clicks aren't counted). keepalive: share links leave the page.
+  var IN_APP = window.AndroidApp ? '&app=1' : '';   // جوّه تطبيق الأندرويد: السيرفر بيعدّه مع الكل وكمان لوحده
   function ev(name){
-    if(document.body.classList.contains('web') && !read('web_admin')) fetch(API + '?api=ev&e=' + name, { keepalive: true }).catch(function(){});
+    if(document.body.classList.contains('web') && !read('web_admin')) fetch(API + '?api=ev&e=' + name + IN_APP, { keepalive: true }).catch(function(){});
   }
   document.addEventListener('click', function(e){ var a = e.target.closest('[data-ev]'); if(a) ev(a.dataset.ev); });
   // "Watch the video": scroll to it and start it right away (the click counts as the gesture browsers need for sound).
@@ -705,10 +706,12 @@
                   ['share', 'شارك الصفحة'], ['sh_wa', 'واتساب'], ['sh_fb', 'فيسبوك'], ['sh_x', 'إكس'], ['sh_tg', 'تليجرام'],
                   ['sh_copy', 'نسخ الرابط'], ['video', 'شوف الفيديو'], ['credit', 'عادل النهر (فيسبوك)'],
                   ['apk', 'تنزيل التطبيق: موبايل أندرويد'], ['apk_pc', 'تنزيل التطبيق: كمبيوتر']];
-        var t = st.events || { total: {}, today: {} }, n = function(o, k){ return Number(o[k] || 0); };
+        var t = st.events || { total: {}, today: {} }, n = function(o, k){ return Number((o || {})[k] || 0); }, a = st.app || {};
+        // «منهم تطبيق» = جوّه تطبيق الأندرويد؛ الباقي متصفح. عدّ التطبيق لوحده بدأ مع الإصدار 31 من السيرفر.
         b.innerHTML = '👁 زوار الموقع: ' + Number(st.visitors) + ' · النهارده: ' + Number(st.today) + ' · متواجدين دلوقتي: ' + Number(st.online) + ' — ظاهر ليك بس' +
-          '<details' + (open ? ' open' : '') + '><summary>تفاصيل الضغطات</summary><table><tr><th>الزرار</th><th>النهارده</th><th>الإجمالي</th></tr>' +
-          EV.map(function(r){ return '<tr><td>' + r[1] + '</td><td class="n">' + n(t.today, r[0]) + '</td><td class="n">' + n(t.total, r[0]) + '</td></tr>'; }).join('') +
+          '<br>📱 منهم من التطبيق: ' + n(a, 'visitors') + ' · النهارده: ' + n(a, 'today') + ' · متواجدين: ' + n(a, 'online') +
+          '<details' + (open ? ' open' : '') + '><summary>تفاصيل الضغطات</summary><table><tr><th>الزرار</th><th>النهارده</th><th>منهم تطبيق</th><th>الإجمالي</th><th>منهم تطبيق</th></tr>' +
+          EV.map(function(r){ return '<tr><td>' + r[1] + '</td><td class="n">' + n(t.today, r[0]) + '</td><td class="n">' + n(t.appToday, r[0]) + '</td><td class="n">' + n(t.total, r[0]) + '</td><td class="n">' + n(t.app, r[0]) + '</td></tr>'; }).join('') +
           '</table></details>';
         b.classList.add('shown');
       }).catch(function(){}); };
@@ -717,8 +720,8 @@
     }
     var vid = read('web_vid');
     if(!vid){ vid = Math.random().toString(36).slice(2, 12) + Date.now().toString(36); store('web_vid', vid); }
-    fetch(API + '?api=visit&v=' + vid).catch(function(){});
-    setInterval(function(){ if(!document.hidden) fetch(API + '?api=ping&v=' + vid).catch(function(){}); }, 60000);
+    fetch(API + '?api=visit&v=' + vid + IN_APP).catch(function(){});
+    setInterval(function(){ if(!document.hidden) fetch(API + '?api=ping&v=' + vid + IN_APP).catch(function(){}); }, 60000);
   })();
   // Walkthrough: one step at a time; auto-advances every 6 s until the visitor takes over.
   (function(){
